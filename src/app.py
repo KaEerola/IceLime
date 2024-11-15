@@ -21,7 +21,6 @@ def add_book():
     return render_template("add_book.html")
 
 
-
 @app.route("/add_book", methods=["POST"])
 def add_POST_book():
 
@@ -30,12 +29,12 @@ def add_POST_book():
     pub = request.form["publisher"]
     year = request.form["year"]
 
-    #print(aut , tit , pub ,year)
-
     reference = [aut, tit, pub, year]
 
+    #print(reference)
+
     try:
-        resp = validate_book(reference)
+        validate_book(reference)
         add_user_book(reference)
         return render_template("index.html")
     except:
