@@ -6,7 +6,6 @@ CREATE TABLE "inproceedings" (
   "title" TEXT,
   "year" integer,
   "booktitle" TEXT,
-  "reference_id" INTEGER
 );
 
 CREATE TABLE "books" (
@@ -15,7 +14,6 @@ CREATE TABLE "books" (
   "title" TEXT,
   "year" integer,
   "publisher" TEXT,
-  "reference_id" INTEGER
 );
 
 CREATE TABLE "articles" (
@@ -26,6 +24,5 @@ CREATE TABLE "articles" (
   "year" integer,
   "volume" integer,
   "pages" TEXT,
-  "reference_id" INTEGER
 );
 
