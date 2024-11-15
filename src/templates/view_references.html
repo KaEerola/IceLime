@@ -8,14 +8,13 @@ View references
 
 <h2>View your references</h2>
 
-<p>
 {% for book in books %}
 
-  {{ book.author }}. <i>{{ book.title }}</i>. {{ book.publisher }}, {{ book.year }}.
+  <p>{{ book.author }}. <i>{{ book.title }}</i>. {{ book.publisher }}, {{ book.year }}.</p>
 
 {% endfor %}
-</p>
 
+<a href="/add_reference"><button>Add a new reference</button></a>
 <a href="/"><button>Back Home</button></a>
 
 {% endblock %}
