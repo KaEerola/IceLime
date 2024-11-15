@@ -27,3 +27,17 @@ Open And Configure Browser
 Reset Todos
     Go To  ${RESET_URL}
 
+Go To Main Page
+    Go to  ${HOME_URL}
+
+Press Add Reference
+    Click Button  Add a new reference
+
+Main Page Should Be Open
+    Title Should Be  Create a bibtex
+
+Press View Reference
+    Click Button  View reference
+
+Press Submit
+    Click Button  Add
