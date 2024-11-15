@@ -1,7 +1,4 @@
-CREATE TABLE "references" (
-  "id" SERIAL PRIMARY KEY,
-  "name" TEXT UNIQUE
-);
+
 
 CREATE TABLE "inproceedings" (
   "id" SERIAL PRIMARY KEY,
@@ -32,8 +29,3 @@ CREATE TABLE "articles" (
   "reference_id" INTEGER
 );
 
-ALTER TABLE "books" ADD FOREIGN KEY ("reference_id") REFERENCES "references" ("id") ON DELETE CASCADE;
-
-ALTER TABLE "articles" ADD FOREIGN KEY ("reference_id") REFERENCES "references" ("id") ON DELETE CASCADE;
-
-ALTER TABLE "inproceedings" ADD FOREIGN KEY ("reference_id") REFERENCES "references" ("id") ON DELETE CASCADE;
