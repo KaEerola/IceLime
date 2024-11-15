@@ -8,8 +8,11 @@ View references
 
 <h2>View your references</h2>
 
-<p>No references yet!</p>
+{% for book in books %}
 
+  {{ book.author }}. <i>{{ book.title }}</i>. {{ book.publisher }}, {{ book.year }}
+
+{% endfor %}
 
 {% endblock %}
       
