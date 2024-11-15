@@ -1,9 +1,6 @@
 class UserInputError(Exception):
     pass
 
-def validate_todo(content):
-    if len(content) < 5:
-        raise UserInputError("Todo content length must be greater than 4")
-
-    if len(content) > 100:
-          raise UserInputError("Todo content length must be smaller than 100")
+def validate_book(content):
+    if int(content[3]) > 2024:
+          raise UserInputError("This year hasn't come yet")

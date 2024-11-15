@@ -3,7 +3,7 @@ from db_helper import reset_db
 from repositories.todo_repository import get_todos, create_todo, set_done
 from repositories.book_repository import add_user_book, get_books
 from config import app, test_env
-from util import validate_todo
+from util import validate_book
 
 @app.route("/")
 def index():
@@ -20,6 +20,8 @@ def add_book():
 
     return render_template("add_book.html")
 
+
+
 @app.route("/add_book", methods=["POST"])
 def add_POST_book():
 
@@ -28,11 +30,17 @@ def add_POST_book():
     pub = request.form["publisher"]
     year = request.form["year"]
 
-    print(aut , tit , pub ,year)
+    #print(aut , tit , pub ,year)
 
-    add_user_book([aut, tit, pub, year])
+    reference = [aut, tit, pub, year]
 
-    return render_template("index.html")
+    try:
+        resp = validate_book(reference)
+        add_user_book(reference)
+        return render_template("index.html")
+    except:
+        return redirect("/add_book")
+
 
 @app.route("/view_references")
 def view_references():
