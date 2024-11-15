@@ -37,7 +37,7 @@ def add_POST_book():
 @app.route("/view_references")
 def view_references():
     books = get_books()
-    return render_template("view_references.html")
+    return render_template("view_references.html", books=books)
     
 
 
