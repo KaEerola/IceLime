@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Create a reference
+{% endblock %}
+
+{% block body %}
+
+<h2>Add a refence to a book</h2>
+
+<form action="/add_book" method="post">
+  <p>Author:</p>
+  <input type="text" name="author">
+  <p>Title:</p>
+  <input type="text" name="title">
+  <p>Publisher:</p>
+  <input type="text" name="publisher">
+  <p>Year:</p>
+  <input type="number" name="year">
+  <button type="submit">
+    Add
+  </button>
+</form>
+
+{% endblock %}
