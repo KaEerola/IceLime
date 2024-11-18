@@ -7,7 +7,6 @@ from util import validate_book
 
 @app.route("/")
 def index():
-
     return render_template("index.html") 
 
 @app.route("/add_reference", methods=["GET"])
@@ -31,15 +30,14 @@ def add_POST_book():
 
     reference = [aut, tit, pub, year]
 
-    #print(reference)
-
     try:
         validate_book(reference)
         add_user_book(reference)
-        return render_template("index.html")
+        flash('Reference added succesfully', "")
+        return redirect("/")
     except:
+        flash('You must put valid Author, Tilte, Publisher And Year',"")
         return redirect("/add_book")
-
 
 @app.route("/view_references")
 def view_references():
