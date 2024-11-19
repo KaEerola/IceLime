@@ -28,7 +28,8 @@ jobs:
       #  run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
 
       - name: Clear database
-        env: ${{ secrets.DATABASE_URL}}
+        env: 
+           BATABASE_URI: ${{ secrets.DATABASE_URL}}
         run: poetry run pyhton3 src/db_helper.py
       
       #- name: Clear database
