@@ -33,6 +33,8 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
+      - name: Clear database
+        run: poetry run python3 src/db_helper.py
       - name: Run robot tests
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
