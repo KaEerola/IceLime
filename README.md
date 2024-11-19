@@ -37,6 +37,18 @@ Server should start in the address:
 
 http://127.0.0.1:5001/
 
+# Definition of Done
+
+## Sprint 1
+
+### User can add a reference to a book with the required fields: author, title, publisher, year
+
+There is a button on the main page that takes the user to the page for adding a new reference. From there, the user can click a link to add a new book reference. This takes the user to a page with the appropriate number of text fields (author, title, publisher, year). When the user has put in the proper values, they can add the reference to the database by clicking the add-button. If the user tries to add a year that hasn't come yet, or leaves fields empty, there is an error message.
+
+### User can view the references that they have already added
+
+There is a button on the main page that takes the user to the page for viewing the references that are currently in the database. This takes the user to a page titled "view your references", where each reference (currently just the book references) are gathered from the database and shown in a list. 
+
 # Contributors
 
 
