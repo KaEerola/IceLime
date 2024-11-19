@@ -27,9 +27,12 @@ jobs:
       #- name: DATABASE_URL
       #  run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
 
+      - name: Create .env file
+        run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
+          echo "SECRET_KEY= chacja" >> .env
+
       - name: Clear database
-        env: 
-           DATABASE_URL: ${{ secrets.DATABASE_URL}}
         run: poetry run python3 src/db_helper.py
       
       #- name: Clear database
