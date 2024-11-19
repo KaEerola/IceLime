@@ -14,6 +14,7 @@ https://docs.google.com/spreadsheets/d/17_ErdDH1jxFkODuv1_hyGJekEFNDRP_3ufEJWUNc
 # Install guide:
 
 Create a new folder and clone the repository:
+
 `$ git clone git@github.com:KaEerola/IceLime.git`
 
 Create a .env file inside the repository directory with the database url.
