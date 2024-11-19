@@ -1,7 +1,7 @@
 # IceLime
 Repository for the miniproject
 
-![GHA workflow badge] https://github.com/<KaEerola/IceLime/workflows/CI/badge.svg
+![GHA workflow badge](https://github.com/KaEerola/IceLime/workflows/CI/badge.svg)
 
 # Telegram link
 
