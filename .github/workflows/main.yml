@@ -29,7 +29,7 @@ jobs:
 
       - name: Clear database
         env: 
-           BATABASE_URL: ${{ secrets.DATABASE_URL}}
+           DATABASE_URL: ${{ secrets.DATABASE_URL}}
         run: poetry run python3 src/db_helper.py
       
       #- name: Clear database
