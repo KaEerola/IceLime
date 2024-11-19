@@ -17,8 +17,6 @@ disable=raw-checker-failed,
         missing-class-docstring
 
 [FORMAT]
-indent-string=`` ``
-max-line-length=100
 
 [REFACTORING]
 
