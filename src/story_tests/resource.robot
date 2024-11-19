@@ -6,6 +6,7 @@ ${SERVER}     localhost:5001
 ${DELAY}      0.5 seconds
 ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
+${BOOK_URL}   http://${SERVER}/add_book
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
@@ -33,11 +34,15 @@ Go To Main Page
 Press Add Reference
     Click Button  add_reference
 
-Main Page Should Be Open
-    Title Should Be  Create a bibtex
+Submit Should Succeed With Message
+    [Arguments]  ${message}
+    Page Should Contain  ${message}
 
 Press View Reference
     Click Button  View reference
 
 Press Submit
     Click Button  Add
+
+Add Book Page Should Be Open
+    Title Should Be  Create a reference

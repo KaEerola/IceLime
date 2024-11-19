@@ -1,6 +1,5 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
-from repositories.todo_repository import get_todos, create_todo, set_done
 from repositories.book_repository import add_user_book, get_books
 from config import app, test_env
 from util import validate_book
@@ -36,7 +35,7 @@ def add_POST_book():
         flash('Reference added succesfully', "")
         return redirect("/")
     except:
-        flash('You must put valid Author, Tilte, Publisher And Year',"")
+        flash('You must put valid Author, Title, Publisher And Year',"")
         return redirect("/add_book")
 
 @app.route("/view_references")

@@ -6,20 +6,23 @@ Suite Teardown   Close Browser
 
 *** Test Cases ***
 Succesfully Add A Book Reference
-    Go To Main Page
-    Press Add Reference
-    Press Add Book
+    Go To Add Book
     Write Author  Aleksis Kivi
     Write Title  Seitsemän Veljestä
     Write Year  1870
     Write Publisher  Otava
     Press Submit
-    Main Page Should Be Open
+    Submit Should Succeed With Message  Reference added succesfully
 
-Viewing After Succesfully Adding A Book
-    Press View Reference
+Unsuccesfully Adding A Book Reference
+    Go To Add Book
+    Press Submit
+    Submit Should Fail With Message  You must put valid Author, Title, Publisher And Year
 
 *** Keywords ***
+Go To Add Book
+    Go To  ${BOOK_URL}
+
 Press Add Book Reference
     Click Button  add_book
 
@@ -38,3 +41,9 @@ Write Year
 Write Publisher
     [Arguments]  ${publisher}
     Input Text  publisher  ${publisher}
+
+Submit Should Fail With Message
+    [Arguments]  ${message}
+    Add Book Page Should Be Open
+    Page Should Contain  ${message}
+    
