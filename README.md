@@ -46,6 +46,8 @@ http://127.0.0.1:5001/
 <a href="https://github.com/KaEerola"><img src="https://avatars.githubusercontent.com/u/157395194?v=4" title="KaEerola" width="50" height="50"></a>
 <a href="https://github.com/acpeltol"><img src="https://avatars.githubusercontent.com/u/152793290?v=4" title="acpeltol" width="50" height="50"></a>
 <a href="https://github.com/neononoen"><img src="https://avatars.githubusercontent.com/u/153290803?v=4" title="neononoen" width="50" height="50"></a>
+<a href="https://github.com/kirkeruusalu"><img src="https://avatars.githubusercontent.com/u/128533486?v=4" title="kirkeruusalu" width="50" height="50"></a>
+<a href="https://github.com/ratilmii"><img src="https://avatars.githubusercontent.com/u/32961917?v=4" title="ratilmii" width="50" height="50"></a>
 
 [//]: contributor-faces
 
