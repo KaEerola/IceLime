@@ -32,6 +32,9 @@ jobs:
           echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
           echo "SECRET_KEY= chacja" >> .env
 
+      - name: Debug .env contents
+        run: cat .env 
+
       - name: Clear database
         run: poetry run python3 src/db_helper.py
       
