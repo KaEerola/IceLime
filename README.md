@@ -11,7 +11,7 @@ https://t.me/+O2f-2Y4y1p84MzU0
 
 https://docs.google.com/spreadsheets/d/17_ErdDH1jxFkODuv1_hyGJekEFNDRP_3ufEJWUNcTP8/edit?gid=0#gid=0
 
-#Install guide:
+# Install guide:
 
 Create a new folder and clone the repository:
 `$ git clone git@github.com:KaEerola/IceLime.git`
