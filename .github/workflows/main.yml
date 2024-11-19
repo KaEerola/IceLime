@@ -30,7 +30,7 @@ jobs:
       - name: Clear database
         env: 
            BATABASE_URI: ${{ secrets.DATABASE_URL}}
-        run: poetry run pyhton3 src/db_helper.py
+        run: poetry run pyhton src/db_helper.py
       
       #- name: Clear database
       #  run: poetry run python3 src/db_helper.py
