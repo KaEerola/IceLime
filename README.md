@@ -18,15 +18,15 @@ Create a new folder and clone the repository:
 
 Create a .env file inside the repository directory with the database url.
 
-`DATABASE_URL=postgresql:///{user}`
-`TEST_ENV = true`
-`SECRET_KEY={secret_key}`
+* `DATABASE_URL=postgresql:///{user}`
+* `TEST_ENV = true`
+* `SECRET_KEY={secret_key}`
 
 Set up the environment inside the repository:
 
-`$ poetry install`
+* `$ poetry install`
 
-`$ poetry shell`
+* `$ poetry shell`
 
 Start PostgreSQL and run the database setup:
 
