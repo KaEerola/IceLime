@@ -31,7 +31,7 @@ Go To Main Page
     Go to  ${HOME_URL}
 
 Press Add Reference
-    Click Button  Add a new reference
+    Click Button  add_reference
 
 Main Page Should Be Open
     Title Should Be  Create a bibtex

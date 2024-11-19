@@ -2,7 +2,7 @@
 Resource  resource.robot
 Suite Setup      Open And Configure Browser
 Suite Teardown   Close Browser
-Test Setup       Reset References
+
 
 *** Test Cases ***
 Succesfully Add A Book Reference
@@ -21,7 +21,7 @@ Viewing After Succesfully Adding A Book
 
 *** Keywords ***
 Press Add Book Reference
-    Click Button  Add book
+    Click Button  add_book
 
 Write Title
     [Arguments]  ${title}
