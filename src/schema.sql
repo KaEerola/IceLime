@@ -1,5 +1,3 @@
-
-
 CREATE TABLE "inproceedings" (
   "id" SERIAL PRIMARY KEY,
   "author" TEXT,
