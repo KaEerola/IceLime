@@ -23,6 +23,10 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
+
+      - name: DATABASE_URL
+        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
+
       - name: Clear database
         run: poetry run python3 src/db_helper.py
       - name: Run robot tests
