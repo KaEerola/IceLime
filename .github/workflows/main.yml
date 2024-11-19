@@ -1,8 +1,5 @@
 name: CI
 
-env:
-  DATABASE_URL: postgresql://avnadmin:AVNS_4FXEG-xcKZ_54sQ_yeX@pg-380f990f-kirke-17aa.f.aivencloud.com:26892/defaultdb?sslmode=require
-
 on:
   push:
     branches: [main]
@@ -36,5 +33,11 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
+      - name: Run tests
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: poetry run pytest
       - name: Run robot tests
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: bash run_robot_tests.sh
