@@ -86,7 +86,7 @@ def setup_db():
     "title" TEXT,
     "year" integer,
     "publisher" TEXT,
-    "editor" TEXT DEFAULT NULL
+    "editor" TEXT DEFAULT NULL,
     "volume" integer DEFAULT NULL,
     "number" integer DEFAULT NULL,
     "pages" TEXT DEFAULT NULL,
