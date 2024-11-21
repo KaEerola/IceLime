@@ -10,13 +10,25 @@ Create a reference
 
 <form action="/add_book" method="post">
   <p>Author:</p>
-  <input type="text" name="author">
+  <input type="text" name="author" placeholder="required" required>
   <p>Title:</p>
-  <input type="text" name="title">
+  <input type="text" name="title" placeholder="required" required>
   <p>Publisher:</p>
-  <input type="text" name="publisher">
+  <input type="text" name="publisher" placeholder="required" required>
   <p>Year:</p>
-  <input type="number" name="year">
+  <input type="number" name="year" placeholder="required" required>
+  <p>Editor:</p>
+  <input type="text" name="editor" placeholder="optional">
+  <p>Volume:</p>
+  <input type="text" name="volume" placeholder="optional">
+  <p>Number:</p>
+  <input type="text" name="number" placeholder="optional">
+  <p>Pages:</p>
+  <input type="text" name="pages" placeholder="optional">
+  <p>Month:</p>
+  <input type="text" name="month" placeholder="optional">
+  <p>Note:</p>
+  <input type="text" name="note" placeholder="optional">
   <button type="submit">
     Add
   </button>
