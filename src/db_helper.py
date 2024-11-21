@@ -87,6 +87,10 @@ def setup_db():
     "year" integer,
     "publisher" TEXT,
     "volume" TEXT DEFAULT NULL,
+    "number" integer DEFAULT NULL,
+    "pages" TEXT DEFAULT NULL,
+    "month" integer DEFAULT NULL,
+    "note" TEXT DEFAULT NULL,
     "reference_id" INTEGER
       )
     """
