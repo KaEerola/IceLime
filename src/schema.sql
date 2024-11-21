@@ -14,6 +14,7 @@ CREATE TABLE "books" (
   "title" TEXT,
   "year" integer,
   "publisher" TEXT,
+  "editor" TEXT,
   "volume" integer,
   "number" integer,
   "pages" TEXT,
