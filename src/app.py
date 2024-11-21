@@ -26,8 +26,20 @@ def add_POST_book():
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
+    if request.form["editor"] == None:
+        edt = "NA"
+    if request.form["volume"] == None:
+        vol = 0
+    if request.form["number"] == None:
+        num = 0
+    if request.form["pages"] == None:
+        pages = "NA"
+    if request.form["month"] == None:
+        month = 0
+    if request.form["note"] == None:
+        note = "NA"
 
-    reference = [aut, tit, pub, year]
+    reference = [aut, tit, pub, year, edt, vol, num, pages, month, note]
 
     try:
         validate_book(reference)
