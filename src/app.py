@@ -1,6 +1,7 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.book_repository import add_user_book, get_books
+from repositories.article_repository import add_user_article, get_articles
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
 from config import app, test_env
 from util import validate_book
@@ -48,13 +49,37 @@ def add_POST_book():
 @app.route("/view_references")
 def view_references():
     books = get_books()
-    return render_template("view_references.html", books=books)
+    articles = get_articles()
+    return render_template("view_references.html", books=books, articles=articles)
 
  
 @app.route("/add_article", methods = ["GET"])
 def add_article():
 
     return render_template("add_article.html")
+
+@app.route("/add_article", methods = ["POST"])
+def add_POST_article():
+    aut = request.form["author"]
+    tit = request.form["title"]
+    jou = request.form["journal"]
+    year = request.form["year"]
+    vol = request.form.get("volume") or None
+    num = request.form.get("number") or None
+    pages = request.form.get("pages") or None
+    month = request.form.get("month") or None
+    note = request.form.get("note") or None
+
+    reference = [aut, tit, jou, year, vol, num, pages, month, note]
+
+    try:
+        add_user_article(reference)
+        flash('Reference added succesfully', "")
+        return redirect("/")
+    except:
+        flash('You must put valid Author, Title, Journal And Year',"")
+        return redirect("/add_article")
+    
 
 @app.route("/add_inproceeding", methods = ["GET"])
 def add_inproceeding():

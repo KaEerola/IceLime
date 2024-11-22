@@ -14,6 +14,11 @@ View references
 
 {% endfor %}
 
+{%for article in articles%}
+
+  <p>{{ article.author }},  <i>{{ article.title }}</i>, {{ article.journal }}, {{ article.year}}.</p>
+
+{% endfor %}
 <a href="/add_reference"><button>Add a new reference</button></a>
 <a href="/"><button>Back Home</button></a>
 

@@ -123,10 +123,13 @@ def setup_db():
     "id" SERIAL PRIMARY KEY,
     "author" TEXT,
     "title" TEXT,
-    "journal" text,
+    "journal" TEXT,
     "year" integer,
     "volume" integer,
+    "number" integer,
     "pages" TEXT,
+    "month" integer,
+    "note" TEXT,
     "reference_id" INTEGER
     )
     """

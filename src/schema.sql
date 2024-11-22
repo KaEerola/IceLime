@@ -38,6 +38,10 @@ CREATE TABLE "articles" (
   "journal" text,
   "year" integer,
   "volume" integer,
+  "number" integer,
   "pages" TEXT,
+  "month" integer, 
+  "note" TEXT,
+  
 );
 
