@@ -26,19 +26,17 @@ def add_POST_book():
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
-    edt = request.form.get("editor", "NA")
-    vol = request.form.get("volume", 0)
-    num = request.form.get("number", 0)
-    pages = request.form.get("pages", "NA")
-    month = request.form.get("month", 0)
-    note = request.form.get("note", "NA")
+    edt = request.form.get("editor") or None
+    vol = request.form.get("volume") or None
+    num = request.form.get("number") or None
+    pages = request.form.get("pages") or None
+    month = request.form.get("month") or None
+    note = request.form.get("note") or None
 
     reference = [aut, tit, pub, year, edt, vol, num, pages, month, note]
 
     try:
-        flash("hello")
         validate_book(reference)
-        flash("validation worked")
         add_user_book(reference)
         flash('Reference added succesfully', "")
         return redirect("/")

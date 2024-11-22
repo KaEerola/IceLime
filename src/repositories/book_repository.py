@@ -19,19 +19,19 @@ def add_user_book(book):
     author = book[0]
     title = book[1]
     publisher = book[2]
-    year = int(book[3])
+    year = book[3]
     editor = book[4]
-    volume = int(book[5])
-    number = int(book[6])
+    volume = book[5]
+    number = book[6]
     pages = book[7]
-    month = int(book[8])
+    month = book[8]
     note = book[9]
 
 
     #db.session.execute("INSERT INTO books (author, title, year, publisher) VALUES ('cha','cha','cha',12)")
 
     sql = text(f'''INSERT INTO books (author, title, year, publisher, editor, volume, number, pages, month, note) VALUES (:author, 
-               :title,:year, :publisher, :editor, :volume, :number, :pages, :month, :note)''')
+               :title, :year, :publisher, :editor, :volume, :number, :pages, :month, :note)''')
     
 
     db.session.execute(sql ,{"author":author, "title":title,"year": year, "publisher": publisher, "editor": editor, "volume": volume, "number": number, "pages": pages, "month": month, "note": note })
