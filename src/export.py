@@ -1,13 +1,13 @@
 class Bibtex():
-    def __init__(self, books_list):
-        self.books = books_list
+    def __init__(self):
+        pass
 
-    def create_book_bibtex(self):
+    def create_book_bibtex(self, books_list):
 
 
         with open("bibtex.bib", "w") as file:
 
-            for book in self.books:
+            for book in books_list:
             
                 file.write(f'''@book{{book{book.id}''')
                 file.write(f''',\n    author = "{book.author}"''')
