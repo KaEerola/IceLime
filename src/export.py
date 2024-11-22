@@ -1,5 +1,3 @@
-
-
 class Bibtex():
     def __init__(self, books_list):
         self.books = books_list
@@ -17,22 +15,22 @@ class Bibtex():
                 file.write(f''',\n    year = "{book.year}"''')
                 file.write(f''',\n    publisher = "{book.publisher}"''')
 
-                if book.editor != None:
+                if book.editor != "":
                     file.write(f''',\n    editor = "{book.editor}"''')
 
-                if book.volume != None:
+                if book.volume != "":
                     file.write(f''',\n    volume = "{book.volume}"''')
 
-                if book.number != None:
+                if book.number != "":
                     file.write(f''',\n    number = "{book.number}"''')
 
-                if book.pages != None:
+                if book.pages != "":
                     file.write(f''',\n    pages = "{book.pages}"''')
 
-                if book.month != None:
+                if book.month != "":
                     file.write(f''',\n    month = "{book.month}"''')
 
-                if book.note != None:
+                if book.note != "":
                     file.write(f''',\n    note = "{book.note}"''')
 
                 file.write('''\n}\n\n\n''')
