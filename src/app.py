@@ -48,7 +48,12 @@ def add_POST_book():
 def view_references():
     books = get_books()
     return render_template("view_references.html", books=books)
-    
+
+ 
+@app.route("/add_article", methods = ["GET"])
+def add_article():
+
+    return render_template("add_article.html")
 
 
 # testausta varten oleva reitti
