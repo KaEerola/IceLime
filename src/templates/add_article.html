@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Create a reference
+{% endblock %}
+
+{% block body %}
+
+<h2>Add a reference to an article</h2>
+
+<form action="/add_article" method ="post">
+    <p>Author:</p>
+    <input type="text" name="author" placeholder="required">
+    <p>Title:</p>
+    <input type="text" name="title" placeholder="required">
+    <p>Journal:</p>
+    <input type="text" name="journal" placeholder="required">
+    <p>Year:</p>
+    <input type="number" name="year" placeholder="required">
+    <p>Volume:</p>
+    <input type="text" name="volume" placeholder="optional">
+    <p>Number:</p>
+    <input type="text" name="number" placeholder="optional">
+    <p>Pages:</p>
+    <input type="text" name="pages" placeholder="optional">
+    <p>Month:</p>
+    <input type="text" name="month" placeholder="optional">
+    <p>Note:</p>
+    <input type="text" name="note" placeholder="optional">
+    <button type="submit">
+        Add
+    </button>
+</form>
+
+{% endblock %}
