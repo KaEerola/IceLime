@@ -1,11 +1,12 @@
 class Bibtex():
     def __init__(self):
-        pass
+        with open("bibtex.bib", "w") as file:
+            pass
 
     def create_book_bibtex(self, books_list):
 
 
-        with open("bibtex.bib", "w") as file:
+        with open("bibtex.bib", "a") as file:
 
             for book in books_list:
             

@@ -7,6 +7,7 @@ kirja = Book("13","1324","123","123","123","123","123","123","123","123","123")
 
 kirja2 = Book("11","1324","123","123","123","123","123","123","123","123","123")
 
-bibtex = Bibtex([kirja,kirja2])
+bibtex = Bibtex()
+bibtex.create_book_bibtex([kirja])
 
-bibtex.create_book_bibtex()
+bibtex.create_book_bibtex([kirja2])
