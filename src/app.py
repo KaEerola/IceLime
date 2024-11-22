@@ -55,6 +55,11 @@ def add_article():
 
     return render_template("add_article.html")
 
+@app.route("/add_inproceeding", methods = ["GET"])
+def add_inproceeding():
+
+    return render_template("add_inproceeding.html")
+
 
 # testausta varten oleva reitti
 if test_env:
