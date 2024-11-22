@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Create a reference
+{% endblock %}
+
+{% block body %}
+
+<h2>Add a reference to an inproceeding</h2>
+
+<form action="/add_inproceeding" method="post">
+  <p>Author:</p>
+  <input type="text" name="author" placeholder="required">
+  <p>Title:</p>
+  <input type="text" name="title" placeholder="required">
+  <p>Booktitle:</p>
+  <input type="text" name="booktitle" placeholder="required">
+  <p>Year:</p>
+  <input type="number" name="year" placeholder="required">
+  <p>Editor:</p>
+  <input type="text" name="editor" placeholder="optional">
+  <p>Volume:</p>
+  <input type="text" name="volume" placeholder="optional">
+  <p>Number:</p>
+  <input type="text" name="number" placeholder="optional">
+  <p>Series:</p>
+  <input type="text" name="series" placeholder="optional">
+  <p>Pages:</p>
+  <input type="text" name="pages" placeholder="optional">
+  <p>Address:</p>
+  <input type="text" name="address" placeholder="optional">
+  <p>Month:</p>
+  <input type="text" name="month" placeholder="optional">
+  <p>Organization:</p>
+  <input type="text" name="organization" placeholder="optional">
+  <p>Publisher:</p>
+  <input type="text" name="publisher" placeholder="optional">
+  <button type="submit">
+    Add
+  </button>
+</form>
+
+{% endblock %}
