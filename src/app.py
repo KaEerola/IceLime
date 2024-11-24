@@ -1,13 +1,15 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
 from repositories.book_repository import add_user_book, get_books
 from repositories.article_repository import add_user_article, get_articles
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
 from config import app, test_env
 from util import validate_book
+from export import Bibtex
 
 @app.route("/")
 def index():
+
     return render_template("index.html") 
 
 @app.route("/add_reference", methods=["GET"])
@@ -19,7 +21,6 @@ def add_reference():
 def add_book():
 
     return render_template("add_book.html")
-
 
 @app.route("/add_book", methods=["POST"])
 def add_POST_book():
@@ -48,11 +49,11 @@ def add_POST_book():
 
 @app.route("/view_references")
 def view_references():
+
     books = get_books()
     articles = get_articles()
     return render_template("view_references.html", books=books, articles=articles)
 
- 
 @app.route("/add_article", methods = ["GET"])
 def add_article():
 
@@ -60,6 +61,7 @@ def add_article():
 
 @app.route("/add_article", methods = ["POST"])
 def add_POST_article():
+
     aut = request.form["author"]
     tit = request.form["title"]
     jou = request.form["journal"]
@@ -85,7 +87,6 @@ def add_POST_article():
 def add_inproceeding():
 
     return render_template("add_inproceeding.html")
-
 
 @app.route("/add_inproceeding", methods=["POST"])
 def add_POST_inproceeding():
@@ -114,8 +115,20 @@ def add_POST_inproceeding():
         flash('You must put valid Author, Title, Publisher And Year',"")
         return redirect("/add_inproceeding")
 
+@app.route("/export", methods=["GET"])
+def export():
 
+    books = get_books()
 
+    bibtex = Bibtex()
+    bibtex.create_book_bibtex(books)
+
+    return send_file(
+        "bibtex.bib",
+        as_attachment = True,
+        download_name = "references.bib",
+        mimetype = "text/plain"
+    )
 
 # testausta varten oleva reitti
 if test_env:
