@@ -7,6 +7,7 @@ ${DELAY}      0.5 seconds
 ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
 ${BOOK_URL}   http://${SERVER}/add_book
+${ARTICLE_URL}  http://${SERVER}/add_article
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
