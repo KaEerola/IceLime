@@ -24,7 +24,11 @@ Create a reference
     <p>Pages:</p>
     <input type="text" name="pages" placeholder="optional">
     <p>Month:</p>
-    <input type="text" name="month" placeholder="optional">
+    <select name="month">
+        {% for month in months %}
+        <option value={{month}}>{{month}}</option>
+        {% endfor %}
+      </select>
     <p>Note:</p>
     <input type="text" name="note" placeholder="optional">
     <button type="submit">

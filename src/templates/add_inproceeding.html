@@ -31,7 +31,11 @@ Create a reference
   <p>Address:</p>
   <input type="text" name="address" placeholder="optional">
   <p>Month:</p>
-  <input type="text" name="month" placeholder="optional">
+  <select name="month">
+    {% for month in months %}
+    <option value={{month}}>{{month}}</option>
+    {% endfor %}
+  </select>
   <p>Organization:</p>
   <input type="text" name="organization" placeholder="optional">
   <p>Publisher:</p>

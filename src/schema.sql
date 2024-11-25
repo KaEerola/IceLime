@@ -40,7 +40,7 @@ CREATE TABLE "articles" (
   "volume" integer,
   "number" integer,
   "pages" TEXT,
-  "month" integer, 
+  "month" TEXT, 
   "note" TEXT,
   
 );

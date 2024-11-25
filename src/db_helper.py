@@ -128,7 +128,7 @@ def setup_db():
     "volume" integer,
     "number" integer,
     "pages" TEXT,
-    "month" integer,
+    "month" TEXT,
     "note" TEXT,
     "reference_id" INTEGER
     )
