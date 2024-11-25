@@ -8,6 +8,7 @@ ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
 ${BOOK_URL}   http://${SERVER}/add_book
 ${ARTICLE_URL}  http://${SERVER}/add_article
+${INPROCEEDING_URL}  http://${SERVER}/add_inproceeding
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
