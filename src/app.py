@@ -77,6 +77,7 @@ def add_POST_article():
     reference = [aut, tit, jou, year, vol, num, pages, month, note]
 
     try:
+        validate_book(reference)
         add_user_article(reference)
         flash('Reference added succesfully', "")
         return redirect("/")
@@ -112,6 +113,7 @@ def add_POST_inproceeding():
     reference = [aut, tit, bti, year, edt, vol, num, series, pages, address, month, org, publisher]
 
     try:
+        validate_book(reference)
         add_user_inproceeding(reference)
         flash('Reference added succesfully', "")
         return redirect("/")
