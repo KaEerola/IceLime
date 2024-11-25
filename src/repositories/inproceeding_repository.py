@@ -11,7 +11,8 @@ def get_inproceedings():
 
     result = result.fetchall()
 
-    return [Inproceeding(inproceeding[0], inproceeding[1], inproceeding[2], inproceeding[3]) for inproceeding in result]
+    return [Inproceeding(inproceeding[0], inproceeding[1], inproceeding[2], inproceeding[3], inproceeding[4], inproceeding[5], inproceeding[6], 
+                         inproceeding[7], inproceeding[8], inproceeding[9], inproceeding[10], inproceeding[11], inproceeding[12],inproceeding[13]) for inproceeding in result]
 
 def add_user_inproceeding(inproceeding):
     author = inproceeding[0]

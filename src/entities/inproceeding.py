@@ -3,7 +3,7 @@ class Inproceeding:
         self.id = id
         self.author = author
         self.title = title
-        self.journal = booktitle
+        self.booktitle = booktitle
         self.year = year
 
         self.editor = editor
@@ -15,6 +15,8 @@ class Inproceeding:
         self.month = month
         self.organization = organization
         self.publisher = publisher
+
+        print(self.publisher)
 
     def __str__(self):
         return None

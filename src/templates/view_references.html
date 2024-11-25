@@ -39,6 +39,26 @@ View references
   </p>
 {% endfor %}
 
+
+{% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
+{% for inproceeding in inproceedings %}
+  <p>
+    {{ inproceeding.author }}.
+    {{ inproceeding.title }}.
+    <i>{{ inproceeding.booktitle }}</i>,
+    {{ inproceeding.year }}
+    {%- if inproceeding.volume %}, volume {{ inproceeding.volume }}{% endif -%}
+    {%- if inproceeding.number %}, number {{ inproceeding.number }}{% endif -%}
+    {%- if inproceeding.series %}, series {{ inproceeding.series }}{% endif -%}
+    {%- if inproceeding.month %}, published in {{ inproceeding.month }}{% endif -%}
+    {%- if inproceeding.editor %}, editor: {{ inproceeding.editor }}{% endif -%}
+    {%- if inproceeding.pages %}, pages {{ inproceeding.pages }}{% endif -%}
+    {%- if inproceeding.address %}, address {{ inproceeding.address }}{% endif -%}
+    {%- if inproceeding.organization %}, organization {{ inproceeding.organization }}{% endif -%}
+    {%- if inproceeding.publisher %}, publisher {{ inproceeding.publisher }}{% endif -%}.
+  </p>
+{% endfor %}
+
 <a href="/add_reference"><button>Add a new reference</button></a>
 <a href="/export"><button>Export to file</button></a>
 <a href="/"><button>Back Home</button></a>

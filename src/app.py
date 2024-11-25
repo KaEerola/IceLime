@@ -52,7 +52,8 @@ def view_references():
 
     books = get_books()
     articles = get_articles()
-    return render_template("view_references.html", books=books, articles=articles)
+    inproceedings = get_inproceedings()
+    return render_template("view_references.html", books=books, articles=articles, inproceedings=inproceedings)
 
 @app.route("/add_article", methods = ["GET"])
 def add_article():
