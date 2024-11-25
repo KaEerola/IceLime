@@ -50,3 +50,5 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: poetry run pytest src/tests
           
+      - name: Pylint
+        run: poetry run pylint src

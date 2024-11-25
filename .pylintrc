@@ -14,10 +14,13 @@ disable=raw-checker-failed,
         use-symbolic-message-instead,
         missing-module-docstring,
         missing-function-docstring,
-        missing-class-docstring
+        missing-class-docstring,
+        too-many-positional-arguments
 
 [FORMAT]
-
+max-line-length=150
 [REFACTORING]
 
 [DESIGN]
+max-attributes=15
+max-args=15

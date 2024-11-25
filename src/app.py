@@ -10,7 +10,7 @@ from export import Bibtex
 @app.route("/")
 def index():
 
-    return render_template("index.html") 
+    return render_template("index.html")
 
 @app.route("/add_reference", methods=["GET"])
 def add_reference():
@@ -85,7 +85,7 @@ def add_POST_article():
     except:
         flash('You must put valid Author, Title, Journal And Year',"")
         return redirect("/add_article")
-    
+
 
 @app.route("/add_inproceeding", methods = ["GET"])
 def add_inproceeding():

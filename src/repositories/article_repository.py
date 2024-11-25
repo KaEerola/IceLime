@@ -1,7 +1,6 @@
-from config import db
 from sqlalchemy import text
-
-from entities.article import Article
+from config import db
+from entities.article import Article # pylint: disable=unused-import,import-error
 
 
 def get_articles():
@@ -27,8 +26,9 @@ def add_user_article(article):
 
     sql = text('''INSERT INTO articles (author, title, journal, year, volume, number, pages, month, note)
                VALUES (:author, :title, :journal, :year, :volume, :number, :pages, :month, :note)''')
-    
-    db.session.execute(sql, {"author":author, "title":title, "journal":journal, "year":year, "volume":volume, "number":number, "pages":pages, "month":month, "note":note})
+
+    db.session.execute(sql, {"author":author, "title":title, "journal":journal, "year":year, "volume":volume, "number":number,
+                              "pages":pages, "month":month, "note":note})
 
 
     db.session.commit()

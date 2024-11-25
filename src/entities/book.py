@@ -1,5 +1,5 @@
 class Book:
-    def __init__(self, id, author, title, year, publisher, editor="", volume="", number="", pages="", month="", note=""):
+    def __init__(self, id, author, title, year, publisher, editor="", volume="", number="", pages="", month="", note=""): # pylint: disable=redefined-builtin
         self.id = id
         self.author = author
         self.title = title
@@ -12,5 +12,5 @@ class Book:
         self.month = month
         self.note = note
 
-    def __str__(self):
+    def __str__(self): # pylint: disable=invalid-str-returned
         return None

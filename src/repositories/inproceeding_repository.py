@@ -1,7 +1,6 @@
-from config import db
 from sqlalchemy import text
-
-from entities.inproceeding import Inproceeding
+from config import db
+from entities.inproceeding import Inproceeding # pylint: disable=unused-import,import-error
 
 
 def get_inproceedings():
@@ -31,22 +30,13 @@ def add_user_inproceeding(inproceeding):
 
     #print(inproceeding)
 
-    
-    
+    sql = text('''INSERT INTO inproceedings (author, title, booktitle, year, editor,
+                volume, number, series, pages, address, month, organization, publisher)
+               VALUES (:author, :title, :booktitle, :year, :editor,
+                :volume, :number, :series, :pages, :address, :month, :organization, :publisher)''')
 
-    sql = text('''INSERT INTO inproceedings (author, title, booktitle, year, editor, volume, number, series, pages, address, month, organization, publisher)
-               VALUES (:author, :title, :booktitle, :year, :editor, :volume, :number, :series, :pages, :address, :month, :organization, :publisher)''')
-    
-    db.session.execute(sql, {"author":author, "title":title, "booktitle":booktitle, "year":year, "editor":editor, "volume":volume, "number":number, "series":series, "pages":pages, "address":address, "month":month, "organization":organization, "publisher":publisher})
-
-
-    #db.session.commit()
-
-    
-    #sql = text(f'''INSERT INTO books (author, title, year, publisher, editor, volume, number, pages, month, note) VALUES (:author, 
-    #           :title, :year, :publisher, :editor, :volume, :number, :pages, :month, :note)''')
-    
-
-    #db.session.execute(sql ,{"author":author, "title":title,"year": year, "publisher": publisher, "editor": editor, "volume": volume, "number": number, "pages": pages, "month": month, "note": organization })
+    db.session.execute(sql, {"author":author, "title":title, "booktitle":booktitle, "year":year, "editor":editor, "volume":volume, "number":number,
+                              "series":series, "pages":pages, "address":address, "month":month, "organization":organization, "publisher":publisher})
 
     db.session.commit()
+    
