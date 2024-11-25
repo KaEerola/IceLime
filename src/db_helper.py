@@ -98,7 +98,7 @@ def setup_db():
     "volume" integer DEFAULT NULL,
     "number" integer DEFAULT NULL,
     "pages" TEXT DEFAULT NULL,
-    "month" integer DEFAULT NULL,
+    "month" TEXT DEFAULT NULL,
     "note" TEXT DEFAULT NULL,
     "reference_id" INTEGER
       )

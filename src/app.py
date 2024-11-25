@@ -19,8 +19,8 @@ def add_reference():
 
 @app.route("/add_book", methods=["GET"])
 def add_book():
-
-    return render_template("add_book.html")
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    return render_template("add_book.html", months = months)
 
 @app.route("/add_book", methods=["POST"])
 def add_POST_book():
