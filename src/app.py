@@ -19,7 +19,7 @@ def add_reference():
 
 @app.route("/add_book", methods=["GET"])
 def add_book():
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     return render_template("add_book.html", months = months)
 
 @app.route("/add_book", methods=["POST"])
@@ -57,7 +57,7 @@ def view_references():
 @app.route("/add_article", methods = ["GET"])
 def add_article():
 
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     return render_template("add_article.html", months = months)
 
@@ -89,7 +89,7 @@ def add_POST_article():
 @app.route("/add_inproceeding", methods = ["GET"])
 def add_inproceeding():
 
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     return render_template("add_inproceeding.html", months = months)
 
