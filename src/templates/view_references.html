@@ -8,17 +8,37 @@ View references
 
 <h2>View your references</h2>
 
+{% if books %}<h3>Books:</h3>{% endif %}
 {% for book in books %}
-
-  <p>{{ book.author }}. <i>{{ book.title }}</i>. {{ book.publisher }}, {{ book.year }}.</p>
-
+  <p>
+    {{ book.author }}.
+    <i>{{ book.title }}</i>.
+    {{ book.publisher }},
+    {{ book.year }}
+    {%- if book.editor %}, edited by {{ book.editor }}{% endif -%}
+    {%- if book.volume %}, volume {{ book.volume }}{% endif -%}
+    {%- if book.number %}, number {{ book.number }}{% endif -%}
+    {%- if book.pages %}, pages {{ book.pages }}{% endif -%}
+    {%- if book.month %}, published in {{ book.month }}{% endif -%}
+    {%- if book.note %}, note: {{ book.note }}{% endif -%}.
+  </p>
 {% endfor %}
 
-{%for article in articles%}
-
-  <p>{{ article.author }},  <i>{{ article.title }}</i>, {{ article.journal }}, {{ article.year}}.</p>
-
+{% if articles %}<h3>Articles:</h3>{% endif %}
+{% for article in articles %}
+  <p>
+    {{ article.author }}.
+    {{ article.title }}.
+    <i>{{ article.journal }}</i>,
+    {{ article.year }}
+    {%- if article.volume %}, volume {{ article.volume }}{% endif -%}
+    {%- if article.number %}, number {{ article.number }}{% endif -%}
+    {%- if article.pages %}, pages {{ article.pages }}{% endif -%}
+    {%- if article.month %}, published in {{ article.month }}{% endif -%}
+    {%- if article.note %}, note: {{ article.note }}{% endif -%}.
+  </p>
 {% endfor %}
+
 <a href="/add_reference"><button>Add a new reference</button></a>
 <a href="/export"><button>Export to file</button></a>
 <a href="/"><button>Back Home</button></a>

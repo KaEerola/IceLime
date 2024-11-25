@@ -12,7 +12,7 @@ def get_books():
     
     result = result.fetchall()
 
-    return [Book(book[0],book[1],book[2],book[3],book[4],book[5],book[6],book[7],book[8],book[9],book[10]) for book in result]
+    return [Book(book[0], book[1], book[2], book[3], book[4], book[5], book[6], book[7], book[8], book[9], book[10]) for book in result]
 
 def add_user_book(book):
 

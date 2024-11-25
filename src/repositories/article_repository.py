@@ -11,7 +11,7 @@ def get_articles():
 
     result = result.fetchall()
 
-    return [Article(article[0], article[1], article[2], article[3], article[4]) for article in result]
+    return [Article(article[0], article[1], article[2], article[3], article[4], article[5], article[6], article[7], article[8]) for article in result]
 
 def add_user_article(article):
     author = article[0]
