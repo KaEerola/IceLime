@@ -49,6 +49,17 @@ There is a button on the main page that takes the user to the page for adding a 
 
 There is a button on the main page that takes the user to the page for viewing the references that are currently in the database. This takes the user to a page titled "view your references", where each reference (currently just the book references) are gathered from the database and shown in a list. 
 
+
+## Sprint 2
+
+### User can add article and inproceeding references
+
+There are two new types of references that can be added with same functionality as books.
+
+### User can export a .bib file
+
+A .bib file can be exported that contains saved book references in a correct format. 
+
 # Contributors
 
 
