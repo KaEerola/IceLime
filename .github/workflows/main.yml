@@ -44,3 +44,9 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: bash run_robot_tests.sh
+
+      - name: Run pytest
+        env: 
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: poetry run pytest src/tests
+          
