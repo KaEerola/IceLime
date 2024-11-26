@@ -54,11 +54,11 @@ There is a button on the main page that takes the user to the page for viewing t
 
 ### User can add article and inproceeding references
 
-There are two new types of references that can be added with same functionality as books.
+There are two new types of references that can be added, articles and inproceedings. Adding work like in adding book reference.
 
 ### User can export a .bib file
 
-A .bib file can be exported that contains saved book references in a correct format. 
+There is a button on the view_reference page that creates a bibtex file. A .bib file yet can create only references for books. 
 
 # Contributors
 
