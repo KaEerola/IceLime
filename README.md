@@ -58,7 +58,11 @@ There are two new types of references that can be added, articles and inproceedi
 
 ### User can export a .bib file
 
-There is a button on the view_reference page that creates a bibtex file. A .bib file yet can create only references for books. 
+There is a button on the view_reference page that creates a bibtex file. A .bib file yet can create only references for books.
+
+### User can add optional fields to the references
+
+There are optional input fields in the different types of references. User can choose which optional fields they want to fill out. If the fields are filled out correctly the user will get a message that the reference was added successfully. If the required fields are empty or year isn't correct the user will get an error message.
 
 # Contributors
 
