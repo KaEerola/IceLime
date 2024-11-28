@@ -126,9 +126,13 @@ def add_POST_inproceeding():
 def export():
 
     books = get_books()
+    articles = get_articles()
+    inproceedings = get_inproceedings()
 
     bibtex = Bibtex()
     bibtex.create_book_bibtex(books)
+    bibtex.create_article_bibtex(articles)
+    bibtex.create_inproceedings_bibtex(inproceedings)
 
     return send_file(
         "bibtex.bib",
