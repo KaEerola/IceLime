@@ -14,12 +14,11 @@ View references
 
 {% if books %}<h3>Books:</h3>{% endif %}
 
-
 <form action="/">
     <label for="book-select">Choose a book to delete:</label>
     <select name="books" id="book-select">
         {% for book in books %}
-          <option value="{{book.title}}">{{book.title}}</option>
+          <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
         {% endfor %}
         </select>
     <br><br>
@@ -33,7 +32,7 @@ View references
     <label for="article-select">Choose an article to delete:</label>
     <select name="article" id="article-select">
         {% for article in articles %}
-          <option value="{{article.title}}">{{article.title}}</option>
+          <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
         {% endfor %}
         </select>
     <br><br>
@@ -47,7 +46,7 @@ View references
     <label for="inproceeding-select">Choose an inproceeding to delete:</label>
     <select name="inproceeding" id="inproceeding-select">
         {% for inproceeding in inproceedings %}
-          <option value="{{inproceeding.title}}">{{inproceeding.title}}</option>
+          <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
         {% endfor %}
         </select>
     <br><br>
