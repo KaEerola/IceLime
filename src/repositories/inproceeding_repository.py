@@ -14,19 +14,19 @@ def get_inproceedings():
                          inproceeding[7], inproceeding[8], inproceeding[9], inproceeding[10], inproceeding[11], inproceeding[12],inproceeding[13]) for inproceeding in result]
 
 def add_user_inproceeding(inproceeding):
-    author = inproceeding[0]
-    title = inproceeding[1]
-    booktitle = inproceeding[2]
-    year = inproceeding[3]
-    editor = inproceeding[4]
-    volume = inproceeding[5]
-    number = inproceeding[6]
-    series = inproceeding[7]
-    pages = inproceeding[8]
-    address = inproceeding[9]
-    month = inproceeding[10]
-    organization = inproceeding[11]
-    publisher = inproceeding[12]
+    author = f"{inproceeding[0]} {inproceeding[1]}"
+    title = inproceeding[2]
+    booktitle = inproceeding[3]
+    year = inproceeding[4]
+    editor = inproceeding[5]
+    volume = inproceeding[6]
+    number = inproceeding[7]
+    series = inproceeding[8]
+    pages = inproceeding[9]
+    address = inproceeding[10]
+    month = inproceeding[11]
+    organization = inproceeding[12]
+    publisher = inproceeding[13]
 
     #print(inproceeding)
 

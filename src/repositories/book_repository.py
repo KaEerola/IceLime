@@ -15,16 +15,16 @@ def get_books():
 
 def add_user_book(book):
 
-    author = book[0]
-    title = book[1]
-    publisher = book[2]
-    year = book[3]
-    editor = book[4]
-    volume = book[5]
-    number = book[6]
-    pages = book[7]
-    month = book[8]
-    note = book[9]
+    author = f"{book[0]} {book[1]}"
+    title = book[2]
+    publisher = book[3]
+    year = book[4]
+    editor = book[5]
+    volume = book[6]
+    number = book[7]
+    pages = book[8]
+    month = book[9]
+    note = book[10]
 
 
     #db.session.execute("INSERT INTO books (author, title, year, publisher) VALUES ('cha','cha','cha',12)")

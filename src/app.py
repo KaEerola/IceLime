@@ -29,7 +29,8 @@ def add_POST_book():
     if request.form["action"] == "reset":
         months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         return render_template("add_book.html",
-                               author="",
+                               author_firstname="",
+                               author_lastname="",
                                title="",
                                publisher="",
                                year="",
@@ -41,7 +42,8 @@ def add_POST_book():
                                note="",
                                months=months)
 
-    aut = request.form["author"]
+    aut_firstname = request.form["author_firstname"]
+    aut_lastname = request.form["author_lastname"]
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
@@ -52,7 +54,7 @@ def add_POST_book():
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut, tit, pub, year, edt, vol, num, pages, month, note]
+    reference = [aut_firstname, aut_lastname, tit, pub, year, edt, vol, num, pages, month, note]
 
     try:
         validate_book(reference)
@@ -84,7 +86,8 @@ def add_POST_article():
     if request.form["action"] == "reset":
         months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         return render_template("add_article.html",
-                               author="",
+                               author_firstname="",
+                               author_lastname="",
                                title="",
                                journal="",
                                year="",
@@ -95,7 +98,8 @@ def add_POST_article():
                                note="",
                                months=months)
 
-    aut = request.form["author"]
+    aut_firstname = request.form["author_firstname"]
+    aut_lastname = request.form["author_lastname"]
     tit = request.form["title"]
     jou = request.form["journal"]
     year = request.form["year"]
@@ -105,7 +109,7 @@ def add_POST_article():
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut, tit, jou, year, vol, num, pages, month, note]
+    reference = [aut_firstname, aut_lastname, tit, jou, year, vol, num, pages, month, note]
 
     try:
         validate_book(reference)
@@ -130,7 +134,8 @@ def add_POST_inproceeding():
     if request.form["action"] == "reset":
         months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         return render_template("add_inproceeding.html",
-                               author="",
+                               author_firstname="",
+                               author_lastname="",
                                title="",
                                booktitle="",
                                year="",
@@ -145,7 +150,8 @@ def add_POST_inproceeding():
                                publisher="",
                                months=months)
 
-    aut = request.form["author"]
+    aut_firstname = request.form["author_firstname"]
+    aut_lastname = request.form["author_lastname"]
     tit = request.form["title"]
     bti = request.form["booktitle"]
     year = request.form["year"]
@@ -159,7 +165,7 @@ def add_POST_inproceeding():
     org = request.form.get("organization") or None
     publisher = request.form.get("publisher") or None
 
-    reference = [aut, tit, bti, year, edt, vol, num, series, pages, address, month, org, publisher]
+    reference = [aut_firstname, aut_lastname, tit, bti, year, edt, vol, num, series, pages, address, month, org, publisher]
 
     try:
         validate_book(reference)
@@ -185,11 +191,11 @@ def fetch_book_doi():
 
     try:
         data = get_book_data_by_doi(doi)
-        author_fullname = f"{data[0]} {data[1]}"
         editor_fullname = f"{data[6]} {data[7]}"
 
         return render_template("add_book.html",
-                               author = author_fullname,
+                               author_firstname = data[0],
+                               author_lastname = data[1],
                                editor = editor_fullname,
                                title = data[2],
                                publisher = data[3],
