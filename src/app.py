@@ -186,7 +186,7 @@ def fetch_book_doi():
     try:
         data = get_book_data_by_doi(doi)
         author_fullname = f"{data[0]} {data[1]}"
-        editor_fullname = f"{data[6]} {data[7]}")
+        editor_fullname = f"{data[6]} {data[7]}"
 
         return render_template("add_book.html",
                                author = author_fullname,
