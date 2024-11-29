@@ -31,9 +31,22 @@ Create a reference
       </select>
     <p>Note:</p>
     <input type="text" name="note" placeholder="optional">
-    <button type="submit">
-        Add
-    </button>
+    <p>
+      <button type="submit" name="action" value="add">
+        Add Reference
+      </button>
+      <button type="submit" name="action" value="reset">
+        Reset
+      </button>
+    </p>
 </form>
+
+<div>
+<p>
+  <a href="/add_reference"><button>Add another reference type</button></a>
+  <a href="/view_references"><button>View references</button></a>
+  <a href="/"><button>Back Home</button></a>
+</p>
+</div>
 
 {% endblock %}

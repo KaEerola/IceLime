@@ -26,6 +26,21 @@ def add_book():
 @app.route("/add_book", methods=["POST"])
 def add_POST_book():
 
+    if request.form["action"] == "reset":
+        months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        return render_template("add_book.html",
+                               author="",
+                               title="",
+                               publisher="",
+                               year="",
+                               editor="",
+                               volume="",
+                               number="",
+                               pages="",
+                               month="",
+                               note="",
+                               months=months)
+
     aut = request.form["author"]
     tit = request.form["title"]
     pub = request.form["publisher"]
@@ -66,6 +81,20 @@ def add_article():
 @app.route("/add_article", methods = ["POST"])
 def add_POST_article():
 
+    if request.form["action"] == "reset":
+        months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        return render_template("add_article.html",
+                               author="",
+                               title="",
+                               journal="",
+                               year="",
+                               volume="",
+                               number="",
+                               pages="",
+                               month="",
+                               note="",
+                               months=months)
+
     aut = request.form["author"]
     tit = request.form["title"]
     jou = request.form["journal"]
@@ -97,6 +126,24 @@ def add_inproceeding():
 
 @app.route("/add_inproceeding", methods=["POST"])
 def add_POST_inproceeding():
+
+    if request.form["action"] == "reset":
+        months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        return render_template("add_inproceeding.html",
+                               author="",
+                               title="",
+                               booktitle="",
+                               year="",
+                               editor="",
+                               volume="",
+                               number="",
+                               series="",
+                               pages="",
+                               address="",
+                               month="",
+                               organization="",
+                               publisher="",
+                               months=months)
 
     aut = request.form["author"]
     tit = request.form["title"]
