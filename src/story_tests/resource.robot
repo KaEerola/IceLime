@@ -41,10 +41,10 @@ Submit Should Succeed With Message
     Page Should Contain  ${message}
 
 Press View Reference
-    Click Button  View reference
+    Click Button  View references
 
 Press Submit
-    Click Button  Add
+    Click Button  Add Reference
 
 Add Book Page Should Be Open
     Title Should Be  Create a reference
