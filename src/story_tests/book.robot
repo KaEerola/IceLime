@@ -7,7 +7,8 @@ Suite Teardown   Close Browser
 *** Test Cases ***
 Succesfully Add A Book Reference
     Go To Add Book
-    Write Author  Aleksis Kivi
+    Write Author Firstname  Aleksis
+    Write Author Lastname  Kivi
     Write Title  Seitsemän Veljestä
     Write Year  1870
     Write Publisher  Otava
@@ -30,9 +31,13 @@ Write Title
     [Arguments]  ${title}
     Input Text  title  ${title}
 
-Write Author
-    [Arguments]  ${author}
-    Input Text  author  ${author}
+Write Author Firstname
+    [Arguments]  ${author_firstname}
+    Input Text  author_firstname  ${author_firstname}
+
+Write Author Lastname
+    [Arguments]  ${author_lastname}
+    Input Text  author_lastname  ${author_lastname}
 
 Write Year
     [Arguments]  ${year}

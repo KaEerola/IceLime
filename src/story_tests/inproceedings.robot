@@ -7,7 +7,8 @@ Suite Teardown   Close Browser
 Succesfully Add An Inproceeding Reference With Required Info
     Go To Add Inproceeding
     Write Title  Vakava konferenssi
-    Write Author  Jesse
+    Write Author Firstname  Jesse
+    Write Author Lastname  Meikäläinen
     Write Booktitle  Konferenssi 1
     Write Year  2005
     Press Submit
@@ -26,9 +27,13 @@ Write Title
     [Arguments]  ${title}
     Input Text  title  ${title}
 
-Write Author
-    [Arguments]  ${author}
-    Input Text  author  ${author}
+Write Author Firstname
+    [Arguments]  ${author_firstname}
+    Input Text  author_firstname  ${author_firstname}
+
+Write Author Lastname
+    [Arguments]  ${author_lastname}
+    Input Text  author_lastname  ${author_lastname}
 
 Write Booktitle
     [Arguments]  ${booktitle}

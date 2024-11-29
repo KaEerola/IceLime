@@ -7,7 +7,8 @@ Suite Teardown   Close Browser
 *** Test Cases ***
 Succesfully Add An Article Reference With Required Info
     Go To Add Article
-    Write Author  Kalle Eerola
+    Write Author Firstname  Kalle
+    Write Author Lastname  Eerola
     Write Title  Vakava tutkimus
     Write Journal  Tiede-lehti
     Write Year  2024
@@ -27,9 +28,13 @@ Write Title
     [Arguments]  ${title}
     Input Text  title  ${title}
 
-Write Author
-    [Arguments]  ${author}
-    Input Text  author  ${author}
+Write Author Firstname
+    [Arguments]  ${author_firstname}
+    Input Text  author_firstname  ${author_firstname}
+
+Write Author Lastname
+    [Arguments]  ${author_lastname}
+    Input Text  author_lastname  ${author_lastname}
 
 Write Journal
     [Arguments]  ${journal}
