@@ -29,7 +29,7 @@ class Bibtex():
                     file.write(f''',\n    pages = {{{book.pages}}}''')
 
                 if book.month:
-                    file.write(f''',\n    month = {{{book.month}}}''')
+                    file.write(f''',\n    month = {{{book.month[:3].lower()}}}''')
 
                 if book.note:
                     file.write(f''',\n    note = {{{book.note}}}''')
@@ -60,7 +60,7 @@ class Bibtex():
                     file.write(f''',\n    pages = {{{article.pages}}}''')
 
                 if article.month:
-                    file.write(f''',\n    month = {{{article.month}}}''')
+                    file.write(f''',\n    month = {{{article.month[:3].lower()}}}''')
 
                 if article.note:
                     file.write(f''',\n    note = {{{article.note}}}''')
@@ -100,7 +100,7 @@ class Bibtex():
                     file.write(f''',\n    address = {{{inpro.address}}}''')
                 
                 if inpro.month:
-                    file.write(f''',\n    month = {{{inpro.month}}}''')
+                    file.write(f''',\n    month = {{{inpro.month[:3].lower()}}}''')
 
                 if inpro.organization:
                     file.write(f''',\n    organization = {{{inpro.organization}}}''')
