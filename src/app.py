@@ -5,6 +5,7 @@ from repositories.article_repository import add_user_article, get_articles
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
 from config import app, test_env
 from util import validate_book
+from scraper import get_book_data_by_doi
 from export import Bibtex
 
 @app.route("/")
@@ -121,6 +122,35 @@ def add_POST_inproceeding():
     except:
         flash('You must put valid Author, Title, Booktitle And Year',"")
         return redirect("/add_inproceeding")
+
+@app.route("/fetch_book_doi", methods=["POST"])
+def fetch_book_doi():
+    doi = request.form.get("doi")
+
+    if not doi:
+        flash("You must put in a valid DOI", "")
+        return redirect("/add_book")
+
+    months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ]
+
+    try:
+        data = get_book_data_by_doi(doi)
+        author_fullname = f"{data[0]} {data[1]}"
+
+        return render_template("add_book.html",
+                               author = author_fullname,
+                               title = data[2],
+                               publisher = data[3],
+                               year = data[4],
+                               months = months,
+                               imported_month = data[5])
+
+    except:
+        flash("Failed to fetch the data, please check the DOI.", "")
+        return redirect("/add_book")
 
 @app.route("/export", methods=["GET"])
 def export():
