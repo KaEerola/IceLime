@@ -225,7 +225,7 @@ def export():
         download_name = "references.bib",
         mimetype = "text/plain")
 
-@app.route("/remove_reference", methods=["POST"])
+@app.route("/remove_reference", methods=["GET"])
 def remove_reference():
 
     return render_template("remove_reference.html")
