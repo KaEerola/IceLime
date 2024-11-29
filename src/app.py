@@ -227,8 +227,11 @@ def export():
 
 @app.route("/remove_reference", methods=["GET"])
 def remove_reference():
+    books = get_books()
+    articles = get_articles()
+    inproceedings = get_inproceedings()
 
-    return render_template("remove_reference.html")
+    return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
 # testausta varten oleva reitti
 if test_env:
