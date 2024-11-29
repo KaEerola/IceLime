@@ -223,8 +223,12 @@ def export():
         "bibtex.bib",
         as_attachment = True,
         download_name = "references.bib",
-        mimetype = "text/plain"
-    )
+        mimetype = "text/plain")
+
+@app.route("/remove_reference", methods=["POST"])
+def remove_reference():
+
+    return render_template("remove_reference.html")
 
 # testausta varten oleva reitti
 if test_env:
