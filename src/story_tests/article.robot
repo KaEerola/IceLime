@@ -20,6 +20,11 @@ Unsuccesfully Adding An Article Reference
     Press Submit
     Submit Should Fail With Message  You must put valid Author, Title, Journal And Year
 
+Removing Of Article
+    Go To Remove Reference
+    Press Remove
+    Removal Shold Succeed With Message  Reference removed succesfully
+
 *** Keywords ***
 Go To Add Article
     Go To  ${ARTICLE_URL}
@@ -51,3 +56,6 @@ Submit Should Fail With Message
     [Arguments]  ${message}
     Add Article Page Should Be Open
     Page Should Contain  ${message}
+
+Press Remove
+    Click Button    Remove Article

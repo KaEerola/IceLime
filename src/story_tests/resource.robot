@@ -9,6 +9,8 @@ ${RESET_URL}  http://${SERVER}/reset_db
 ${BOOK_URL}   http://${SERVER}/add_book
 ${ARTICLE_URL}  http://${SERVER}/add_article
 ${INPROCEEDING_URL}  http://${SERVER}/add_inproceeding
+${VIEW_URL}  http://${SERVER}/view_references
+${REMOVE_URL}  http://${SERVER}/remove_reference
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
@@ -30,6 +32,9 @@ Open And Configure Browser
 Reset Todos
     Go To  ${RESET_URL}
 
+Go To Remove Reference
+    Go To  ${REMOVE_URL}
+
 Go To Main Page
     Go to  ${HOME_URL}
 
@@ -48,3 +53,11 @@ Press Submit
 
 Add Book Page Should Be Open
     Title Should Be  Create a reference
+
+View References Page Should Be Open
+    Title Should Be    View references
+
+Removal Shold Succeed With Message
+    [Arguments]  ${message}
+    View References Page Should Be Open
+    Page Should Contain  ${message}

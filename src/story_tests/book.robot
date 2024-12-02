@@ -20,6 +20,11 @@ Unsuccesfully Adding A Book Reference
     Press Submit
     Submit Should Fail With Message  You must put valid Author, Title, Publisher And Year
 
+Removing Of Book
+    Go To Remove Reference
+    Press Remove
+    Removal Shold Succeed With Message  Reference removed succesfully
+
 *** Keywords ***
 Go To Add Book
     Go To  ${BOOK_URL}
@@ -51,4 +56,7 @@ Submit Should Fail With Message
     [Arguments]  ${message}
     Add Book Page Should Be Open
     Page Should Contain  ${message}
+
+Press Remove
+    Click Button    Remove Book
     

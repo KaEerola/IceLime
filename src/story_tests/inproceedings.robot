@@ -19,9 +19,17 @@ Unsuccesfully Adding An Article Reference
     Press Submit
     Submit Should Fail With Message  You must put valid Author, Title, Booktitle And Year
 
+Removing Of Inproceeding
+    Go To Remove Reference
+    Press Remove
+    Removal Shold Succeed With Message  Reference removed succesfully
+
 *** Keywords ***
 Go To Add Inproceeding
     Go To  ${INPROCEEDING_URL}
+
+Press Remove
+    Click Button    Remove Inproceeding
 
 Write Title
     [Arguments]  ${title}
