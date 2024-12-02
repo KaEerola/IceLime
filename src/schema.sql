@@ -8,7 +8,7 @@ CREATE TABLE "inproceedings" (
   "volume" integer,
   "number" integer,
   "series" TEXT,
-  "pages" integer,
+  "pages" TEXT,
   "address" TEXT,
   "month" TEXT,
   "organization" TEXT,
