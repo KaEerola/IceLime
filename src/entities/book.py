@@ -12,5 +12,6 @@ class Book:
         self.month = month
         self.note = note
 
-    def __str__(self): # pylint: disable=invalid-str-returned
-        return None
+    def __str__(self): 
+        return f"Book(id={self.id}, title={self.title}, author={self.author}, year={self.year}, publisher={self.publisher})"
+

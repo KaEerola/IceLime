@@ -71,12 +71,11 @@ def update_book(book_id, book_updated):
 
 def get_book_by_id(ref_id):
     result = db.session.execute(
-        text("SELECT * FROM books WHERE id = :ref_id"), {"ref_id": ref_id}
+        text("SELECT id, author, title, year, publisher, editor, volume, number, pages, month, note FROM books WHERE id = :ref_id"), {"ref_id": ref_id}
     )
-    book = result.fetchone()  # Fetch a single result (the specific book)
+    book = result.fetchone() 
     
     if book:
-        # Assuming the Book class takes parameters in the same order as the DB columns
         return Book(*book)
     return None
 

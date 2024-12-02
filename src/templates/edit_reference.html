@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Edit Reference
+View references
 {% endblock %}
 
 {% block body %}
@@ -12,60 +12,52 @@ Edit Reference
   <p><i>Nothing yet!</i></p>
 {% endif %}
 
+{% if books %}<h3>Books:</h3>{% endif %}
+
 <form action="/edit_reference" method="POST">
+    <label for="book-select">Choose a book to edit:</label>
+    <select name="book_id" id="book-select">
+        {% for book in books %}
+          <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
+        {% endfor %}
+        </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+  
 
-    <input type="hidden" name="ref_type" value="{{ ref_type }}">
-    <input type="hidden" name="ref_id" value="{{ ref_id }}">
+{% if articles %}<h3>Articles:</h3>{% endif %}
 
-    {% if ref_type == "book" %}
-        <h3>Editing Book</h3>
-        <label for="author_firstname">Author First Name:</label>
-        <input type="text" name="author_firstname" id="author_firstname" value="{{ reference.author_firstname }}"><br>
-
-        <label for="author_lastname">Author Last Name:</label>
-        <input type="text" name="author_lastname" id="author_lastname" value="{{ reference.author_lastname }}"><br>
-
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" value="{{ reference.title }}"><br>
-
-        <label for="publisher">Publisher:</label>
-        <input type="text" name="publisher" id="publisher" value="{{ reference.publisher }}"><br>
-
-        <label for="year">Year:</label>
-        <input type="number" name="year" id="year" value="{{ reference.year }}"><br>
-
-        <label for="editor">Editor:</label>
-        <input type="text" name="editor" id="editor" value="{{ reference.editor }}"><br>
-
-        <label for="volume">Volume:</label>
-        <input type="text" name="volume" id="volume" value="{{ reference.volume }}"><br>
-
-        <label for="number">Number:</label>
-        <input type="text" name="number" id="number" value="{{ reference.number }}"><br>
-
-        <label for="pages">Pages:</label>
-        <input type="text" name="pages" id="pages" value="{{ reference.pages }}"><br>
-
-        <label for="month">Month:</label>
-        <input type="text" name="month" id="month" value="{{ reference.month }}"><br>
-
-        <label for="note">Note:</label>
-        <input type="text" name="note" id="note" value="{{ reference.note }}"><br>
-
-    {% endif %}
-
-    <br>
-    <input type="submit" value="Save Changes">
+<form action="/">
+    <label for="article-select">Choose an article to delete:</label>
+    <select name="article" id="article-select">
+        {% for article in articles %}
+          <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
+        {% endfor %}
+        </select>
+    <br><br>
+    <input type="submit" value="Submit">
 </form>
 
 
+{% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
+
+<form action="/">
+    <label for="inproceeding-select">Choose an inproceeding to delete:</label>
+    <select name="inproceeding" id="inproceeding-select">
+        {% for inproceeding in inproceedings %}
+          <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
+        {% endfor %}
+        </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+<br>
 
 <a href="/add_reference"><button>Add a new reference</button></a>
 <a href="/export"><button>Export to file</button></a>
 <a href="/remove_reference"><button>Remove a reference</button></a>
-<a href="/view_references"><button>Back to References</button></a>
 <a href="/"><button>Back Home</button></a>
 
 {% endblock %}
       
-

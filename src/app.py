@@ -264,46 +264,6 @@ def remove_reference():
 
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
-
-
-@app.route("/remove_reference", methods=["POST"])
-def remove_reference2():
-    books = get_books()
-    articles = get_articles()
-    inproceedings = get_inproceedings()
-
-
-    book_id = request.form.get('book_id')
-    article_id = request.form.get("article_id")
-    inproceedings_id = request.form.get("inproceeding_id")
-
-    if book_id:
-        try:
-            remove_book(book_id)
-            flash('Reference removed succesfully', "")
-            return redirect("/view_references")  
-        except Exception as e:
-            return f"An error occurred: {e}", 500
-    
-    if article_id:
-        try:
-            remove_article(article_id)
-            flash('Reference removed succesfully', "")
-            return redirect("/view_references")  
-        except Exception as e:
-            return f"An error occurred: {e}", 500
-
-    if inproceedings_id:
-        try:
-            remove_inproceeding(inproceedings_id)
-            flash('Reference removed succesfully', "")
-            return redirect("/view_references")  
-        except Exception as e:
-            return f"An error occurred: {e}", 500
-    return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
-
-
-
 #@app.route("/edit_reference", methods=["GET"])
 #def edit_reference():
  #   ref_type = request.args.get("ref_type")
@@ -318,24 +278,21 @@ def remove_reference2():
       #  return redirect("/view_references")
     #return render_template("edit_reference", reference=reference, ref_type=ref_type, ref_id=ref_id)
 
-#@app.route("/edit_reference", methods=["POST"])
-#def edit_POST_reference():
- #   ref_type = request.form.get("ref_type")
-  #  ref_id = request.form.get("ref_id")
-   # data_updated = request.form.to_dict()
+@app.route("/edit_reference", methods=["POST"])
+def edit_POST_reference():
+    book_id = request.form.get("book_id")
 
-    #try:
-     #   if ref_type == "book":
-      #      update_book(ref_id, data_updated)
-      #  elif ref_type == "article":
-      #      update_article(ref_id, data_updated)
-       # elif ref_type == "inproceeding":
-        #    update_inproceeding(ref_id, data_updated)
-    #    flash("Reference updated!")
-     #   return redirect("/view_references")
-    #except Exception:
-     #   flash("failed")
-      #  return redirect("/edit_reference")
+    if not book_id:
+        flash("no book selected")
+        return redirect("/edit_reference")
+
+    reference = get_book_by_id(book_id)
+    if not reference:
+        flash("Book not found!")
+        return redirect("/edit_reference")
+
+    return render_template("update_book.html", reference=reference)
+
 
 # testausta varten oleva reitti
 
