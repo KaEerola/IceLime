@@ -4,6 +4,18 @@ from entities.book import Book # pylint: disable=unused-import,import-error
 
 
 
+def remove_book(id):
+    
+    sql = text("DELETE FROM books WHERE id = :id")
+    
+    db.session.execute(sql, {"id": id})
+    
+
+    db.session.commit()
+
+
+
+
 
 def get_books():
     result = db.session.execute(
