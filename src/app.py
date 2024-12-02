@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
-from repositories.book_repository import add_user_book, get_books, update_book, get_book_by_id
+from repositories.book_repository import add_user_book, get_books, update_book, get_book_by_id, remove_book
 from repositories.article_repository import add_user_article, get_articles
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
 from config import app, test_env
