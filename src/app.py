@@ -264,6 +264,28 @@ def remove_reference():
 
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
+
+
+@app.route("/remove_reference", methods=["POST"])
+def remove_reference2():
+    books = get_books()
+    articles = get_articles()
+    inproceedings = get_inproceedings()
+
+
+    book_id = request.form.get('book_id')
+
+    if book_id:
+        try:
+            remove_book(book_id)
+            return redirect("/")  
+        except Exception as e:
+            return f"An error occurred: {e}", 500
+        
+    return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
+
+
+
 #@app.route("/edit_reference", methods=["GET"])
 #def edit_reference():
  #   ref_type = request.args.get("ref_type")
@@ -298,6 +320,10 @@ def remove_reference():
       #  return redirect("/edit_reference")
 
 # testausta varten oleva reitti
+
+
+
+
 if test_env:
     @app.route("/reset_db")
     def reset_database():
