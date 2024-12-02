@@ -264,19 +264,49 @@ def remove_reference():
 
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
-#@app.route("/edit_reference", methods=["GET"])
-#def edit_reference():
- #   ref_type = request.args.get("ref_type")
-  #  ref_id = request.args.get("ref_id")
+@app.route("/remove_reference", methods=["POST"])
+def remove_reference2():
+    books = get_books()
+    articles = get_articles()
+    inproceedings = get_inproceedings()
 
-   # reference=None
 
-    #if ref_type == "book":
-     #   reference = get_book_by_id(ref_id)
-    #if reference is None:
-     #   flash("reference not found")
-      #  return redirect("/view_references")
-    #return render_template("edit_reference", reference=reference, ref_type=ref_type, ref_id=ref_id)
+    book_id = request.form.get('book_id')
+    article_id = request.form.get("article_id")
+    inproceedings_id = request.form.get("inproceeding_id")
+
+    if book_id:
+        try:
+            remove_book(book_id)
+            flash('Reference removed succesfully', "")
+            return redirect("/view_references")  
+        except Exception as e:
+            return f"An error occurred: {e}", 500
+    
+    if article_id:
+        try:
+            remove_article(article_id)
+            flash('Reference removed succesfully', "")
+            return redirect("/view_references")  
+        except Exception as e:
+            return f"An error occurred: {e}", 500
+
+    if inproceedings_id:
+        try:
+            remove_inproceeding(inproceedings_id)
+            flash('Reference removed succesfully', "")
+            return redirect("/view_references")  
+        except Exception as e:
+            return f"An error occurred: {e}", 500
+    return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
+
+@app.route("/edit_reference", methods=["GET"])
+def edit_reference():
+    books = get_books()
+    articles = get_articles()
+    inproceedings = get_inproceedings()
+
+    return render_template("edit_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
 @app.route("/edit_reference", methods=["POST"])
 def edit_POST_reference():
