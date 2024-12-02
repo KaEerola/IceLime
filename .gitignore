@@ -10,4 +10,4 @@ report.html
 .coverage
 *.code-workspace
 .coveragerc
-*/src/tst_file_for_bibtex.py
+src/tst_file_for_bibtex.py
