@@ -278,7 +278,8 @@ def remove_reference2():
     if book_id:
         try:
             remove_book(book_id)
-            return redirect("/")  
+            flash('Reference removed succesfully', "")
+            return redirect("/view_references")  
         except Exception as e:
             return f"An error occurred: {e}", 500
         
