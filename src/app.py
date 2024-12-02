@@ -1,8 +1,11 @@
 from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
-from repositories.book_repository import add_user_book, get_books, update_book, get_book_by_id, remove_book
-from repositories.article_repository import add_user_article, get_articles, remove_article
-from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings, remove_inproceeding
+from repositories.book_repository import add_user_book, get_books, get_book_by_id
+from repositories.book_repository import update_book, remove_book
+from repositories.article_repository import add_user_article, get_articles,
+from repositories.article_repository import remove_article
+from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
+from repositories.inproceeding_repository import remove_inproceeding
 from config import app, test_env
 from util import validate_book
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
@@ -20,14 +23,20 @@ def add_reference():
 
 @app.route("/add_book", methods=["GET"])
 def add_book():
-    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April",
+              "May", "June", "July", "August", "September",
+              "October", "November", "December"]
+
     return render_template("add_book.html", months = months)
 
 @app.route("/add_book", methods=["POST"])
 def add_POST_book():
 
     if request.form["action"] == "reset":
-        months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        months = ["", "January", "February", "March", "April",
+                  "May", "June", "July", "August", "September",
+                  "October", "November", "December"]
+
         return render_template("add_book.html",
                                author_firstname="",
                                author_lastname="",
@@ -71,12 +80,17 @@ def view_references():
     books = get_books()
     articles = get_articles()
     inproceedings = get_inproceedings()
-    return render_template("view_references.html", books=books, articles=articles, inproceedings=inproceedings)
+    return render_template("view_references.html",
+                           books=books,
+                           articles=articles,
+                           inproceedings=inproceedings)
 
 @app.route("/add_article", methods = ["GET"])
 def add_article():
 
-    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April",
+              "May", "June", "July", "August", "September",
+              "October", "November", "December"]
 
     return render_template("add_article.html", months = months)
 
@@ -84,7 +98,10 @@ def add_article():
 def add_POST_article():
 
     if request.form["action"] == "reset":
-        months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        months = ["", "January", "February", "March", "April",
+                  "May", "June", "July", "August", "September",
+                  "October", "November", "December"]
+
         return render_template("add_article.html",
                                author_firstname="",
                                author_lastname="",
@@ -124,7 +141,9 @@ def add_POST_article():
 @app.route("/add_inproceeding", methods = ["GET"])
 def add_inproceeding():
 
-    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April",
+              "May", "June", "July", "August", "September",
+              "October", "November", "December"]
 
     return render_template("add_inproceeding.html", months = months)
 
@@ -132,7 +151,10 @@ def add_inproceeding():
 def add_POST_inproceeding():
 
     if request.form["action"] == "reset":
-        months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        months = ["", "January", "February", "March", "April",
+                  "May", "June", "July", "August", "September",
+                  "October", "November", "December"]
+
         return render_template("add_inproceeding.html",
                                author_firstname="",
                                author_lastname="",
@@ -165,7 +187,13 @@ def add_POST_inproceeding():
     org = request.form.get("organization") or None
     publisher = request.form.get("publisher") or None
 
-    reference = [aut_firstname, aut_lastname, tit, bti, year, edt, vol, num, series, pages, address, month, org, publisher]
+    reference = [aut_firstname,
+                 aut_lastname,
+                 tit, bti, year,
+                 edt, vol, num,
+                 series, pages,
+                 address, month,
+                 org, publisher]
 
     try:
         validate_book(reference)
@@ -299,14 +327,16 @@ def remove_reference():
     articles = get_articles()
     inproceedings = get_inproceedings()
 
-    return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
+    return render_template("remove_reference.html",
+                           books=books,
+                           articles=articles,
+                           inproceedings=inproceedings)
 
 @app.route("/remove_reference", methods=["POST"])
 def remove_reference2():
     books = get_books()
     articles = get_articles()
     inproceedings = get_inproceedings()
-
 
     book_id = request.form.get('book_id')
     article_id = request.form.get("article_id")
@@ -335,7 +365,10 @@ def remove_reference2():
             return redirect("/view_references")  
         except Exception as e:
             return f"An error occurred: {e}", 500
-    return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
+    return render_template("remove_reference.html",
+                           books=books,
+                           articles=articles,
+                           inproceedings=inproceedings)
 
 @app.route("/edit_reference", methods=["GET"])
 def edit_reference():
@@ -343,7 +376,10 @@ def edit_reference():
     articles = get_articles()
     inproceedings = get_inproceedings()
 
-    return render_template("edit_reference.html", books=books, articles=articles, inproceedings=inproceedings)
+    return render_template("edit_reference.html",
+                           books=books,
+                           articles=articles,
+                           inproceedings=inproceedings)
 
 @app.route("/edit_reference", methods=["POST"])
 def edit_POST_reference():
@@ -360,11 +396,7 @@ def edit_POST_reference():
 
     return render_template("update_book.html", reference=reference)
 
-
 # testausta varten oleva reitti
-
-
-
 
 if test_env:
     @app.route("/reset_db")
