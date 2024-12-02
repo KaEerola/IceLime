@@ -14,9 +14,9 @@ View references
 
 {% if books %}<h3>Books:</h3>{% endif %}
 
-<form action="/">
+<form action="/remove_reference" method="POST">
     <label for="book-select">Choose a book to delete:</label>
-    <select name="books" id="book-select">
+    <select name="book_id" id="book-select">
         {% for book in books %}
           <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
         {% endfor %}
