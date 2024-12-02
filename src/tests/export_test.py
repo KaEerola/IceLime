@@ -1,4 +1,5 @@
 from entities.book import Book
+from entities.article import Article
 from export import Bibtex
 import unittest
 
@@ -33,8 +34,21 @@ txt = '''@book{book13,
 '''
 
 
+txt2 = '''@article{article2,
+    author = {Jack Back},
+    title = {Chocko Iland},
+    year = {2017},
+    journal = {New Journal},
+    volume = {2},
+    number = {23},
+    pages = {14}
+}
+
+
+'''
+
 class TestStatisticsService(unittest.TestCase):
-    def test_exports_bibtex_class1(self):
+    def test_exports_bibtex_book(self):
         
         kirja = Book("13","1324","123","123","123","123","123","123","123","123","123")
 
@@ -50,3 +64,16 @@ class TestStatisticsService(unittest.TestCase):
             text = file.read()
 
         self.assertEqual(txt == text,True)
+
+    def test_exports_bibtex_article(self):
+
+        article = Article("2","Jack Back","Chocko Iland","New Journal","2017",  "2", "23","14")
+
+        bibtex = Bibtex()
+        bibtex.create_article_bibtex([article])
+
+        with open("src/bibtex.bib","r",encoding= 'utf-8') as file:
+
+            text = file.read()
+
+        self.assertEqual(txt2 == text,True)
