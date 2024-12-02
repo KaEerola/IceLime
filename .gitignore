@@ -9,3 +9,5 @@ report.html
 *.DS_Store
 .coverage
 *.code-workspace
+.coveragerc
+tst_file_for_bibtex.py
