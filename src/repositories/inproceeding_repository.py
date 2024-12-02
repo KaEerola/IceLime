@@ -2,6 +2,14 @@ from sqlalchemy import text
 from config import db
 from entities.inproceeding import Inproceeding # pylint: disable=unused-import,import-error
 
+def remove_inproceeding(id):
+
+    sql = text("DELETE FROM inproceedings WHERE id = :id")
+    
+    db.session.execute(sql, {"id": id})
+    
+
+    db.session.commit()
 
 def get_inproceedings():
     result = db.session.execute(

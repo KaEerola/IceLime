@@ -1,8 +1,8 @@
 from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
 from repositories.book_repository import add_user_book, get_books, update_book, get_book_by_id, remove_book
-from repositories.article_repository import add_user_article, get_articles
-from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
+from repositories.article_repository import add_user_article, get_articles, remove_article
+from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings, remove_inproceeding
 from config import app, test_env
 from util import validate_book
 from scraper import get_book_data_by_doi, get_article_data_by_doi
@@ -274,6 +274,8 @@ def remove_reference2():
 
 
     book_id = request.form.get('book_id')
+    article_id = request.form.get("article_id")
+    inproceedings_id = request.form.get("inproceeding_id")
 
     if book_id:
         try:
@@ -282,7 +284,22 @@ def remove_reference2():
             return redirect("/view_references")  
         except Exception as e:
             return f"An error occurred: {e}", 500
-        
+    
+    if article_id:
+        try:
+            remove_article(article_id)
+            flash('Reference removed succesfully', "")
+            return redirect("/view_references")  
+        except Exception as e:
+            return f"An error occurred: {e}", 500
+
+    if inproceedings_id:
+        try:
+            remove_inproceeding(inproceedings_id)
+            flash('Reference removed succesfully', "")
+            return redirect("/view_references")  
+        except Exception as e:
+            return f"An error occurred: {e}", 500
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
 

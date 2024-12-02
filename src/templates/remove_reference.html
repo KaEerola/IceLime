@@ -30,7 +30,7 @@ View references
 
 <form action="/">
     <label for="article-select">Choose an article to delete:</label>
-    <select name="article" id="article-select">
+    <select name="article_id" id="article-select">
         {% for article in articles %}
           <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
         {% endfor %}
@@ -44,7 +44,7 @@ View references
 
 <form action="/">
     <label for="inproceeding-select">Choose an inproceeding to delete:</label>
-    <select name="inproceeding" id="inproceeding-select">
+    <select name="inproceeding_id" id="inproceeding-select">
         {% for inproceeding in inproceedings %}
           <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
         {% endfor %}
@@ -56,7 +56,7 @@ View references
 
 <a href="/add_reference"><button>Add a new reference</button></a>
 <a href="/export"><button>Export to file</button></a>
-<a href="/remove_reference"><button>Remove a reference</button></a>
+<a href="/view_references"><button>View references</button></a>
 <a href="/"><button>Back Home</button></a>
 
 {% endblock %}

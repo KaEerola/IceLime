@@ -2,6 +2,15 @@ from sqlalchemy import text
 from config import db
 from entities.article import Article # pylint: disable=unused-import,import-error
 
+def remove_article(id):
+
+    sql = text("DELETE FROM articles WHERE id = :id")
+
+    db.session.execute(sql, {"id": id})
+    
+
+    db.session.commit()
+
 
 def get_articles():
     result = db.session.execute(
