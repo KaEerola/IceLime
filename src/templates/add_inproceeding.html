@@ -9,20 +9,28 @@ Create a reference
 
 <h2>Add a reference to an inproceeding</h2>
 
+<form action="/fetch_inproceeding_doi" method="post">
+  <p>Import from DOI (if available):</p>
+  <input type="text" name="doi">
+  <button type="submit" name="import">
+    Import
+  </button>
+</form>
+
 <form action="/add_inproceeding" method="post">
   <p>Author:</p>
   Firstname: <input type="text" name="author_firstname" value="{{author_firstname}}" placeholder="required">
   Lastname: <input type="text" name="author_lastname" value="{{author_lastname}}" placeholder="required">
   <p>Title:</p>
-  <input type="text" name="title" placeholder="required">
+  <input type="text" name="title" value="{{title}}" placeholder="required">
   <p>Booktitle:</p>
-  <input type="text" name="booktitle" placeholder="required">
+  <input type="text" name="booktitle" value="{{booktitle}}" placeholder="required">
   <p>Year:</p>
-  <input type="number" name="year" placeholder="required">
+  <input type="number" name="year" value="{{year}}" placeholder="required">
   <p>Editor:</p>
-  <input type="text" name="editor" placeholder="optional">
+  <input type="text" name="editor" value="{{editor}}" placeholder="optional">
   <p>Volume:</p>
-  <input type="number" name="volume" placeholder="optional">
+  <input type="number" name="volume" value="{{volume}}" placeholder="optional">
   <p>Number:</p>
   <input type="number" name="number" placeholder="optional">
   <p>Series:</p>
@@ -40,7 +48,7 @@ Create a reference
   <p>Organization:</p>
   <input type="text" name="organization" placeholder="optional">
   <p>Publisher:</p>
-  <input type="text" name="publisher" placeholder="optional">
+  <input type="text" name="publisher" value="{{publisher}}" placeholder="optional">
   <p>
     <button type="submit" name="action" value="add">
       Add Reference

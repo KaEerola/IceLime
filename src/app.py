@@ -5,7 +5,7 @@ from repositories.article_repository import add_user_article, get_articles, remo
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings, remove_inproceeding
 from config import app, test_env
 from util import validate_book
-from scraper import get_book_data_by_doi, get_article_data_by_doi
+from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
 from export import Bibtex
 
 @app.route("/")
@@ -191,7 +191,9 @@ def fetch_book_doi():
 
     try:
         data = get_book_data_by_doi(doi)
-        editor_fullname = f"{data[6]} {data[7]}"
+        editor_fullname = ""
+        if data[6] and data[7]:
+            editor_fullname = f"{data[6]} {data[7]}"
 
         return render_template("add_book.html",
                                author_firstname = data[0],
@@ -226,17 +228,52 @@ def fetch_article_doi():
         return render_template("add_article.html",
                                author_firstname = data[0],
                                author_lastname = data[1],
-                               journal = data[6],
-                               volume = data[7],
                                title = data[2],
                                publisher = data[3],
                                year = data[4],
                                months = months,
-                               imported_month = data[5])
+                               imported_month = data[5],
+                               journal = data[6],
+                               volume = data[7],)
 
     except:
         flash("Failed to fetch the data, please check the DOI.", "")
         return redirect("/add_article")
+
+@app.route("/fetch_inproceeding_doi", methods=["POST"])
+def fetch_inproceeding_doi():
+    doi = request.form.get("doi")
+
+    if not doi:
+        flash("You must put in a valid DOI", "")
+        return redirect("/add_inproceeding")
+
+    months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ]
+
+    try:
+        data = get_inproceeding_data_by_doi(doi)
+        editor_fullname = ""
+        if data[6] and data[7]:
+            editor_fullname = f"{data[6]} {data[7]}"
+
+        return render_template("add_inproceeding.html",
+                               author_firstname = data[0],
+                               author_lastname = data[1],
+                               title = data[2],
+                               publisher = data[3],
+                               year = data[4],
+                               months = months,
+                               imported_month = data[5],
+                               editor = editor_fullname,
+                               booktitle = data[8],
+                               volume = data[9],)
+
+    except:
+        flash("Failed to fetch the data, please check the DOI.", "")
+        return redirect("/add_inproceeding")
 
 @app.route("/export", methods=["GET"])
 def export():
