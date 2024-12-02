@@ -28,7 +28,7 @@ View references
 
 {% if articles %}<h3>Articles:</h3>{% endif %}
 
-<form action="/">
+<form action="/remove_reference">
     <label for="article-select">Choose an article to delete:</label>
     <select name="article_id" id="article-select">
         {% for article in articles %}
@@ -42,7 +42,7 @@ View references
 
 {% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
 
-<form action="/">
+<form action="/remove_reference">
     <label for="inproceeding-select">Choose an inproceeding to delete:</label>
     <select name="inproceeding_id" id="inproceeding-select">
         {% for inproceeding in inproceedings %}
