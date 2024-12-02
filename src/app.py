@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
-from repositories.book_repository import add_user_book, get_books
+from repositories.book_repository import add_user_book, get_books, update_book, get_book_by_id
 from repositories.article_repository import add_user_article, get_articles
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
 from config import app, test_env
@@ -233,9 +233,33 @@ def remove_reference():
 
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
-@app.route("/edit_reference", methods=["POST"])
+@app.route("/edit_reference", methods=["GET"])
 def edit_reference():
-    return render_template("edit_reference.html")
+    ref_type = request.args.get("ref_type")
+    ref_id = request.args.get("ref_id")
+
+    if ref_type == "book":
+        reference = get_book_by_id(ref_id)
+    return render_template("edit_reference.html", reference=reference, ref_type=ref_type, ref_id=ref_id)
+
+@app.route("/edit_reference", methods=["POST"])
+def edit_POST_reference():
+    ref_type = request.form.get("ref_type")
+    ref_id = request.form.get("ref_id")
+    data_updated = request.form.to_dict()
+
+    try:
+        if ref_type == "book":
+            update_book(ref_id, data_updated)
+      #  elif ref_type == "article":
+      #      update_article(ref_id, data_updated)
+       # elif ref_type == "inproceeding":
+        #    update_inproceeding(ref_id, data_updated)
+        flash("Reference updated!")
+        return redirect("/view_references")
+    except Exception:
+        flash("failed")
+        return redirect("/edit_reference")
 
 # testausta varten oleva reitti
 if test_env:
