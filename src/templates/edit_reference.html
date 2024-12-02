@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Edit Reference
+{% endblock %}
+
+{% block body %}
+
+<h2>Reference edit view</h2>
+
+{% if not books and not articles and not inproceedings %}
+  <p><i>Nothing yet!</i></p>
+{% endif %}
+
+{% if books %}<h3>Books:</h3>{% endif %}
+
+<form action="/">
+    <label for="book-select">Choose a book to edit:</label>
+    <select name="books" id="book-select">
+        {% for book in books %}
+          <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
+        {% endfor %}
+        </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+  
+
+{% if articles %}<h3>Articles:</h3>{% endif %}
+
+<form action="/">
+    <label for="article-select">Choose an article to edit:</label>
+    <select name="article" id="article-select">
+        {% for article in articles %}
+          <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
+        {% endfor %}
+        </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+{% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
+
+<form action="/">
+    <label for="inproceeding-select">Choose an inproceeding to edit:</label>
+    <select name="inproceeding" id="inproceeding-select">
+        {% for inproceeding in inproceedings %}
+          <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
+        {% endfor %}
+        </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+<br>
+
+<a href="/add_reference"><button>Add a new reference</button></a>
+<a href="/export"><button>Export to file</button></a>
+<a href="/remove_reference"><button>Remove a reference</button></a>
+<a href="/"><button>Back Home</button></a>
+
+{% endblock %}
+      
+

@@ -233,6 +233,10 @@ def remove_reference():
 
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
+@app.route("/edit_reference", methods=["POST"])
+def edit_reference():
+    return render_template("edit_reference.html")
+
 # testausta varten oleva reitti
 if test_env:
     @app.route("/reset_db")
