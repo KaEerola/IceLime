@@ -8,18 +8,26 @@ Create a reference
 
 <h2>Add a reference to an article</h2>
 
+<form action="/fetch_article_doi" method="post">
+  <p>Import from DOI (if available):</p>
+  <input type="text" name="doi">
+  <button type="submit" name="import">
+    Import
+  </button>
+</form>
+
 <form action="/add_article" method ="post">
     <p>Author:</p>
     Firstname: <input type="text" name="author_firstname" value="{{author_firstname}}" placeholder="required">
     Lastname: <input type="text" name="author_lastname" value="{{author_lastname}}" placeholder="required">
     <p>Title:</p>
-    <input type="text" name="title" placeholder="required">
+    <input type="text" name="title" value="{{title}}" placeholder="required">
     <p>Journal:</p>
-    <input type="text" name="journal" placeholder="required">
+    <input type="text" name="journal" value="{{journal}}" placeholder="required">
     <p>Year:</p>
-    <input type="number" name="year" placeholder="required">
+    <input type="number" name="year" value="{{year}}" placeholder="required">
     <p>Volume:</p>
-    <input type="text" name="volume" placeholder="optional">
+    <input type="text" name="volume" value="{{volume}}" placeholder="optional">
     <p>Number:</p>
     <input type="text" name="number" placeholder="optional">
     <p>Pages:</p>
