@@ -233,33 +233,38 @@ def remove_reference():
 
     return render_template("remove_reference.html", books=books, articles=articles, inproceedings=inproceedings)
 
-@app.route("/edit_reference", methods=["GET"])
-def edit_reference():
-    ref_type = request.args.get("ref_type")
-    ref_id = request.args.get("ref_id")
+#@app.route("/edit_reference", methods=["GET"])
+#def edit_reference():
+ #   ref_type = request.args.get("ref_type")
+  #  ref_id = request.args.get("ref_id")
 
-    if ref_type == "book":
-        reference = get_book_by_id(ref_id)
-    return render_template("edit_reference.html", reference=reference, ref_type=ref_type, ref_id=ref_id)
+   # reference=None
 
-@app.route("/edit_reference", methods=["POST"])
-def edit_POST_reference():
-    ref_type = request.form.get("ref_type")
-    ref_id = request.form.get("ref_id")
-    data_updated = request.form.to_dict()
+    #if ref_type == "book":
+     #   reference = get_book_by_id(ref_id)
+    #if reference is None:
+     #   flash("reference not found")
+      #  return redirect("/view_references")
+    #return render_template("edit_reference", reference=reference, ref_type=ref_type, ref_id=ref_id)
 
-    try:
-        if ref_type == "book":
-            update_book(ref_id, data_updated)
+#@app.route("/edit_reference", methods=["POST"])
+#def edit_POST_reference():
+ #   ref_type = request.form.get("ref_type")
+  #  ref_id = request.form.get("ref_id")
+   # data_updated = request.form.to_dict()
+
+    #try:
+     #   if ref_type == "book":
+      #      update_book(ref_id, data_updated)
       #  elif ref_type == "article":
       #      update_article(ref_id, data_updated)
        # elif ref_type == "inproceeding":
         #    update_inproceeding(ref_id, data_updated)
-        flash("Reference updated!")
-        return redirect("/view_references")
-    except Exception:
-        flash("failed")
-        return redirect("/edit_reference")
+    #    flash("Reference updated!")
+     #   return redirect("/view_references")
+    #except Exception:
+     #   flash("failed")
+      #  return redirect("/edit_reference")
 
 # testausta varten oleva reitti
 if test_env:
