@@ -1,5 +1,6 @@
 from entities.book import Book
 from entities.article import Article
+from entities.inproceeding import Inproceeding
 from export import Bibtex
 import unittest
 
@@ -47,6 +48,19 @@ txt2 = '''@article{article2,
 
 '''
 
+txt3 = '''@inproceedings{inproceedings4,
+    author = {Jack Back},
+    title = {Chocko Iland},
+    year = {2017},
+    booktitle = {New Journal},
+    editor = {2},
+    volume = {23},
+    number = {14}
+}
+
+
+'''
+
 class TestStatisticsService(unittest.TestCase):
     def test_exports_bibtex_book(self):
         
@@ -77,3 +91,15 @@ class TestStatisticsService(unittest.TestCase):
             text = file.read()
 
         self.assertEqual(txt2 == text,True)
+
+    def test_exports_bibtex_inproceedings(self):
+        inpro = Inproceeding("4","Jack Back","Chocko Iland","New Journal","2017",  "2", "23","14")
+
+        bibtex = Bibtex()
+        bibtex.create_inproceedings_bibtex([inpro])
+
+        with open("src/bibtex.bib","r",encoding= 'utf-8') as file:
+
+            text = file.read()
+
+        self.assertEqual(txt3 == text,True)

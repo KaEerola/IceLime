@@ -1,6 +1,8 @@
 class Inproceeding:
-    def __init__(self, id, author, title, booktitle, year, editor="", volume="", number="", # pylint: disable=redefined-builtin
-                  series="", pages="", address="", month="", organization="", publisher=""):
+    def __init__(self, id, author, title, booktitle, year, 
+                editor="", volume="", number="", # pylint: disable=redefined-builtin
+                series="", pages="", address="", 
+                month="", organization="", publisher=""):
         self.id = id
         self.author = author
         self.title = title

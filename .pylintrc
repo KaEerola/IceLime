@@ -1,0 +1,35 @@
+[MASTER]
+
+ignore=tests, db_helper.py, bibtex_file_test.py
+
+[MESSAGE CONTROL]
+
+disable=raw-checker-failed,
+        bad-inline-option,
+        locally-disabled,
+        file-ignored,
+        suppressed-message,
+        useless-suppression,
+        deprecated-pragma,
+        use-symbolic-message-instead,
+        missing-module-docstring,
+        missing-function-docstring,
+        missing-class-docstring,
+        fixme,
+        broad-exception-caught,
+        too-few-public-methods,
+        bare-except,
+        too-many-instance-attributes,
+        too-many-statements
+
+[FORMAT]
+
+max-line-length=100
+
+[REFACTORING]
+
+max-nested-blocks=4
+
+[DESIGN]
+
+max-statements=15

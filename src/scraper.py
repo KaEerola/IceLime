@@ -58,7 +58,7 @@ def get_book_data_by_doi(doi):
                 editor_firstname,
                 editor_lastname]
 
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         return {"error": "Failed to fetch the data, please check the DOI."}
 
 def get_article_data_by_doi(doi):
@@ -112,7 +112,7 @@ def get_article_data_by_doi(doi):
                 journal,
                 volume]
 
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         return {"error": "Failed to fetch the data, please check the DOI."}
 
 def get_inproceeding_data_by_doi(doi):
@@ -178,7 +178,7 @@ def get_inproceeding_data_by_doi(doi):
                 booktitle,
                 volume]
 
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         return {"error": "Failed to fetch the data, please check the DOI."}
 
 

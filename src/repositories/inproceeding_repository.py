@@ -5,9 +5,9 @@ from entities.inproceeding import Inproceeding # pylint: disable=unused-import,i
 def remove_inproceeding(id):
 
     sql = text("DELETE FROM inproceedings WHERE id = :id")
-    
+
     db.session.execute(sql, {"id": id})
-    
+
 
     db.session.commit()
 
@@ -18,8 +18,11 @@ def get_inproceedings():
 
     result = result.fetchall()
 
-    return [Inproceeding(inproceeding[0], inproceeding[1], inproceeding[2], inproceeding[3], inproceeding[4], inproceeding[5], inproceeding[6], 
-                         inproceeding[7], inproceeding[8], inproceeding[9], inproceeding[10], inproceeding[11], inproceeding[12],inproceeding[13]) for inproceeding in result]
+    return [Inproceeding(inproceeding[0], inproceeding[1], inproceeding[2],
+                         inproceeding[3], inproceeding[4], inproceeding[5], inproceeding[6], 
+                         inproceeding[7], inproceeding[8], inproceeding[9],
+                         inproceeding[10], inproceeding[11], inproceeding[12],
+                         inproceeding[13]) for inproceeding in result]
 
 def add_user_inproceeding(inproceeding):
     author = f"{inproceeding[0]} {inproceeding[1]}"
@@ -43,8 +46,10 @@ def add_user_inproceeding(inproceeding):
                VALUES (:author, :title, :booktitle, :year, :editor,
                 :volume, :number, :series, :pages, :address, :month, :organization, :publisher)''')
 
-    db.session.execute(sql, {"author":author, "title":title, "booktitle":booktitle, "year":year, "editor":editor, "volume":volume, "number":number,
-                              "series":series, "pages":pages, "address":address, "month":month, "organization":organization, "publisher":publisher})
+    db.session.execute(sql, {"author":author, "title":title, "booktitle":booktitle,
+                            "year":year, "editor":editor, "volume":volume, "number":number,
+                            "series":series, "pages":pages, "address":address,
+                            "month":month, "organization":organization,
+                            "publisher":publisher})
 
     db.session.commit()
-    

@@ -126,7 +126,8 @@ def add_POST_article():
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut_firstname, aut_lastname, tit, jou, year, vol, num, pages, month, note]
+    reference = [aut_firstname, aut_lastname, tit, 
+                jou, year, vol, num, pages, month, note]
 
     try:
         validate_book(reference)

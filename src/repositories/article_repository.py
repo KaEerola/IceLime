@@ -7,7 +7,6 @@ def remove_article(id):
     sql = text("DELETE FROM articles WHERE id = :id")
 
     db.session.execute(sql, {"id": id})
-    
 
     db.session.commit()
 
@@ -19,7 +18,9 @@ def get_articles():
 
     result = result.fetchall()
 
-    return [Article(article[0], article[1], article[2], article[3], article[4], article[5], article[6], article[7], article[8]) for article in result]
+    return [Article(article[0], article[1], article[2], article[3],
+    article[4], article[5], article[6], article[7],
+    article[8]) for article in result]
 
 def add_user_article(article):
     author = f"{article[0]} {article[1]}"
@@ -33,10 +34,13 @@ def add_user_article(article):
     note = article[9]
 
 
-    sql = text('''INSERT INTO articles (author, title, journal, year, volume, number, pages, month, note)
-               VALUES (:author, :title, :journal, :year, :volume, :number, :pages, :month, :note)''')
+    sql = text('''INSERT INTO articles (author, title, journal, year,
+               volume, number, pages, month, note)
+               VALUES (:author, :title, :journal, :year, :volume,
+               :number, :pages, :month, :note)''')
 
-    db.session.execute(sql, {"author":author, "title":title, "journal":journal, "year":year, "volume":volume, "number":number,
+    db.session.execute(sql, {"author":author, "title":title, "journal":journal,
+                              "year":year, "volume":volume, "number":number,
                               "pages":pages, "month":month, "note":note})
 
 

@@ -7,14 +7,10 @@ from entities.book import Book # pylint: disable=unused-import,import-error
 def remove_book(id):
 
     sql = text("DELETE FROM books WHERE id = :id")
-    
+
     db.session.execute(sql, {"id": id})
-    
 
     db.session.commit()
-
-
-
 
 
 def get_books():
@@ -22,7 +18,8 @@ def get_books():
         text("SELECT * FROM books")) 
     result = result.fetchall()
 
-    return [Book(book[0], book[1], book[2], book[3], book[4], book[5], book[6], book[7], book[8], book[9], book[10]) for book in result]
+    return [Book(book[0], book[1], book[2], book[3], book[4], book[5], book[6],
+                book[7], book[8], book[9], book[10]) for book in result]
 
 def add_user_book(book):
 
@@ -40,20 +37,26 @@ def add_user_book(book):
 
     #db.session.execute("INSERT INTO books (author, title, year, publisher) VALUES ('cha','cha','cha',12)")
 
-    sql = text('''INSERT INTO books (author, title, year, publisher, editor, volume, number, pages, month, note) VALUES (:author,
-               :title, :year, :publisher, :editor, :volume, :number, :pages, :month, :note)''')
+    sql = text('''INSERT INTO books (author, title, year, publisher,
+                editor, volume, number, pages, month, note) VALUES (:author,
+                :title, :year, :publisher, :editor,
+                :volume, :number, :pages, :month, :note)''')
 
-    db.session.execute(sql ,{"author":author, "title":title,"year": year, "publisher": publisher, "editor": editor, "volume": volume,
-                              "number": number, "pages": pages, "month": month, "note": note })
+    db.session.execute(sql ,{"author":author, "title":title,"year": year,
+                            "publisher": publisher, "editor": editor, "volume": volume,
+                            "number": number, "pages": pages,
+                            "month": month, "note": note })
 
     db.session.commit()
 
 def update_book(book_id, book_updated):
 
-    sql = text("""UPDATE books SET author = :author, title = :title, year = :year, publisher = :publisher, editor = :editor, 
-                volume = :volume, number = :number, pages = :pages, month = :month, note = :note
+    sql = text("""UPDATE books SET author = :author, title = :title,
+                year = :year, publisher = :publisher, editor = :editor, 
+                volume = :volume, number = :number, pages = :pages,
+                month = :month, note = :note
                 WHERE id = :id""")
-    
+
     db.session.execute(sql, {
         "id": book_id,
         "author": book_updated["author"],
@@ -71,11 +74,12 @@ def update_book(book_id, book_updated):
 
 def get_book_by_id(ref_id):
     result = db.session.execute(
-        text("SELECT id, author, title, year, publisher, editor, volume, number, pages, month, note FROM books WHERE id = :ref_id"), {"ref_id": ref_id}
+        text('''SELECT id, author, title, year, publisher, editor,
+             volume, number, pages, month, note FROM books WHERE id = :ref_id'''),
+            {"ref_id": ref_id}
     )
-    book = result.fetchone() 
+    book = result.fetchone()
     
     if book:
         return Book(*book)
     return None
-
