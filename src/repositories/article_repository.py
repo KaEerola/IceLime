@@ -72,7 +72,7 @@ def update_article(article_id, article_updated):
 def get_article_by_id(ref_id):
     result = db.session.execute(
         text("""SELECT id, author, title, journal, year, volume, number,
-            pages, month, note FROM articles WHERE id = :ref_id"), {"ref_id": ref_id} """))
+            pages, month, note FROM articles WHERE id = :ref_id"""), {"ref_id": ref_id})
 
     article = result.fetchone()
 
