@@ -12,7 +12,7 @@ View references
   <p><i>Nothing yet!</i></p>
 {% endif %}
 
-{% if books %}<h3>Books:</h3>{% endif %}
+{% if books %}<h3>Books:</h3>
 
 <form action="/edit_reference" method="POST">
     <label for="book-select">Choose a book to edit:</label>
@@ -26,9 +26,9 @@ View references
       Edit book
     </Button>
 </form>
-  
+{% endif %} 
 
-{% if articles %}<h3>Articles:</h3>{% endif %}
+{% if articles %}<h3>Articles:</h3>
 
 <form action="/edit_reference" method="POST">
     <label for="article-select">Choose an article to edit:</label>
@@ -42,9 +42,9 @@ View references
       Edit article
     </Button>
 </form>
+{% endif %}
 
-
-{% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
+{% if inproceedings %}<h3>Inproceedings:</h3>
 
 <form action="/edit_reference", method="POST">
     <label for="inproceeding-select">Choose an inproceeding to edit:</label>
@@ -58,6 +58,7 @@ View references
       Edit inproceeding
     </Button>
 </form>
+{% endif %}
 <br>
 
 <a href="/add_reference"><button>Add a new reference</button></a>
