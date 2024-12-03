@@ -39,8 +39,6 @@ def add_user_inproceeding(inproceeding):
     organization = inproceeding[12]
     publisher = inproceeding[13]
 
-    #print(inproceeding)
-
     sql = text('''INSERT INTO inproceedings (author, title, booktitle, year, editor,
                 volume, number, series, pages, address, month, organization, publisher)
                VALUES (:author, :title, :booktitle, :year, :editor,
@@ -53,3 +51,45 @@ def add_user_inproceeding(inproceeding):
                             "publisher":publisher})
 
     db.session.commit()
+
+def update_inproceeding(inproceeding_id, inproceeding_updated):
+
+    id = int(inproceeding_id)
+    author = inproceeding_updated[0]
+    title = inproceeding_updated[1]
+    booktitle = inproceeding_updated[2]
+    year = inproceeding_updated[3]
+    editor = inproceeding_updated[4]
+    volume = inproceeding_updated[5]
+    number = inproceeding_updated[6]
+    series = inproceeding_updated[7]
+    pages = inproceeding_updated[8]
+    address = inproceeding_updated[9]
+    month = inproceeding_updated[10]
+    organization = inproceeding_updated[11]
+    publisher = inproceeding_updated[12]
+
+    sql = text("""UPDATE inproceedings SET author = :author, title = :title, booktitle = :booktitle,
+                year = :year, editor = :editor, volume = :volume, number = :number, series = :series,
+                pages = :pages, address = :address, month = :month, organization = :organization, publisher = :publisher
+                WHERE id = :id""")
+
+    db.session.execute(sql ,{"id" :id, "author":author, "title": title, "booktitle": booktitle,
+                             "year": year, "editor": editor, "volume": volume,  
+                             "number": number, "series": series, "pages": pages, "address": address,
+                             "month": month, "organization": organization, "publisher": publisher})
+
+    db.session.commit()
+
+def get_inproceeding_by_id(ref_id):
+    result = db.session.execute(
+        text('''SELECT id, author, title, booktitle, year, editor, volume, number, series,
+            pages, address, month, organization, publisher FROM inproceedings WHERE id = :ref_id
+             '''),
+            {"ref_id": ref_id}
+    )
+    inproceeding = result.fetchone()
+
+    if inproceeding:
+        return Inproceeding(*inproceeding)
+    return None

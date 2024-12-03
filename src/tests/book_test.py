@@ -1,5 +1,5 @@
-from entities.book import Book
 import unittest
+from entities.book import Book
 
 
 class TestStatisticsService(unittest.TestCase):
@@ -49,8 +49,3 @@ class TestStatisticsService(unittest.TestCase):
         book = Book(id,name,tit,publis, yer)
 
         self.assertEqual(book.volume, "")
-
-        
-
-
-

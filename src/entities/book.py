@@ -13,5 +13,6 @@ class Book:
         self.note = note
 
     def __str__(self): 
-        return f"Book(id={self.id}, title={self.title}, author={self.author}, year={self.year}, publisher={self.publisher})"
+        return f"""Book(id={self.id}, title={self.title}, author={self.author},
+                year={self.year}, publisher={self.publisher})"""
 

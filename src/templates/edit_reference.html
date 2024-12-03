@@ -22,7 +22,9 @@ View references
         {% endfor %}
         </select>
     <br><br>
-    <input type="submit" value="Edit">
+    <Button type="submit" value="Edit">
+      Edit book
+    </Button>
 </form>
   
 
@@ -36,21 +38,25 @@ View references
         {% endfor %}
         </select>
     <br><br>
-    <input type="submit" value="Edit">
+    <Button type="submit" value="Edit">
+      Edit article
+    </Button>
 </form>
 
 
 {% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
 
-<form action="/edit_reference">
+<form action="/edit_reference", method="POST">
     <label for="inproceeding-select">Choose an inproceeding to edit:</label>
-    <select name="inproceeding" id="inproceeding-select">
+    <select name="inproceeding_id" id="inproceeding-select">
         {% for inproceeding in inproceedings %}
           <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
         {% endfor %}
         </select>
     <br><br>
-    <input type="submit" value="Edit">
+    <Button type="submit" value="Edit">
+      Edit inproceeding
+    </Button>
 </form>
 <br>
 

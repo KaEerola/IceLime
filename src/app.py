@@ -5,7 +5,8 @@ from repositories.book_repository import update_book, remove_book
 from repositories.article_repository import add_user_article, get_articles
 from repositories.article_repository import remove_article, update_article, get_article_by_id
 from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
-from repositories.inproceeding_repository import remove_inproceeding
+from repositories.inproceeding_repository import remove_inproceeding, update_inproceeding
+from repositories.inproceeding_repository import  get_inproceeding_by_id
 from config import app, test_env
 from util import validate_book, validate_update
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
@@ -31,7 +32,7 @@ def add_book():
     return render_template("add_book.html", months = months)
 
 @app.route("/add_book", methods=["POST"])
-def add_POST_book():
+def add_post_book():
 
     if request.form["action"] == "reset":
         months = ["", "January", "February", "March", "April",
@@ -96,7 +97,7 @@ def add_article():
     return render_template("add_article.html", months = months)
 
 @app.route("/add_article", methods = ["POST"])
-def add_POST_article():
+def add_post_article():
 
     if request.form["action"] == "reset":
         months = ["", "January", "February", "March", "April",
@@ -150,7 +151,7 @@ def add_inproceeding():
     return render_template("add_inproceeding.html", months = months)
 
 @app.route("/add_inproceeding", methods=["POST"])
-def add_POST_inproceeding():
+def add_post_inproceeding():
 
     if request.form["action"] == "reset":
         months = ["", "January", "February", "March", "April",
@@ -348,15 +349,15 @@ def remove_reference2():
         try:
             remove_book(book_id)
             flash('Reference removed succesfully', "")
-            return redirect("/view_references")  
+            return redirect("/view_references")
         except Exception as e:
             return f"An error occurred: {e}", 500
-    
+
     if article_id:
         try:
             remove_article(article_id)
             flash('Reference removed succesfully', "")
-            return redirect("/view_references")  
+            return redirect("/view_references")
         except Exception as e:
             return f"An error occurred: {e}", 500
 
@@ -364,7 +365,7 @@ def remove_reference2():
         try:
             remove_inproceeding(inproceedings_id)
             flash('Reference removed succesfully', "")
-            return redirect("/view_references")  
+            return redirect("/view_references")
         except Exception as e:
             return f"An error occurred: {e}", 500
     return render_template("remove_reference.html",
@@ -384,7 +385,7 @@ def edit_reference():
                            inproceedings=inproceedings)
 
 @app.route("/edit_reference", methods=["POST"])
-def edit_POST_reference():
+def edit_post_reference():
 
     book_id = request.form.get("book_id")
     article_id = request.form.get("article_id")
@@ -392,13 +393,13 @@ def edit_POST_reference():
 
     if book_id:
         return redirect("/update_book/"+str(book_id))
-    
+
     if article_id:
         return redirect("/update_article/"+str(article_id))
 
     if inproceeding_id:
         return redirect("/update_inproceeding/"+str(inproceeding_id))
- 
+
     flash("No reference selected")
 
 @app.route("/update_book/<int:book_id>", methods=["GET"])
@@ -414,7 +415,7 @@ def update_book_reference(book_id):
     return render_template("update_book.html", reference=reference, months=months)
 
 @app.route("/update_book/<int:book_id>", methods=["POST"])
-def update_POST_book_reference(book_id):
+def update_post_book_reference(book_id):
 
     aut = request.form["author"]
     tit = request.form["title"]
@@ -442,7 +443,8 @@ def update_POST_book_reference(book_id):
 def update_article_reference(article_id):
 
     reference = get_article_by_id(article_id)
-    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months = ["", "January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"]
 
     for field, value in reference.__dict__.items():
         if not value:
@@ -451,7 +453,7 @@ def update_article_reference(article_id):
     return render_template("update_article.html", reference=reference, months=months)
 
 @app.route("/update_article/<int:article_id>", methods=["POST"])
-def update_POST_article_reference(article_id):
+def update_post_article_reference(article_id):
 
     aut = request.form["author"]
     tit = request.form["title"]
@@ -472,6 +474,45 @@ def update_POST_article_reference(article_id):
     except Exception as error:
         flash(str(error), "")
         return redirect("/update_article/"+str(article_id))
+
+@app.route("/update_inproceeding/<int:inproceeding_id>", methods=["GET"])
+def update_inproceeding_reference(inproceeding_id):
+
+    reference = get_inproceeding_by_id(inproceeding_id)
+    months = ["", "January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"]
+    for field, value in reference.__dict__.items():
+        if not value:
+            reference.__dict__[field] = ""
+
+    return render_template("update_inproceeding.html", reference=reference, months=months)
+
+@app.route("/update_inproceeding/<int:inproceeding_id>", methods=["POST"])
+def update_post_inproceeding_reference(inproceeding_id):
+
+    aut = request.form["author"]
+    tit = request.form["title"]
+    jou = request.form["booktitle"]
+    year = request.form["year"]
+    edt = request.form.get("editor") or None
+    vol = request.form.get("volume") or None
+    num = request.form.get("number") or None
+    ser = request.form.get("series") or None
+    pages = request.form.get("pages") or None
+    adr = request.form.get("address") or None
+    month = request.form.get("month") or None
+    org = request.form.get("organization") or None
+    pub = request.form.get("publisher") or None
+
+    reference = [aut, tit, jou, year, edt, vol, num, ser, pages, adr, month, org, pub]
+
+    try:
+        update_inproceeding(inproceeding_id, reference)
+        flash("Reference successfully updated", "")
+        return redirect("/view_references")
+    except Exception as error:
+        flash(str(error), "")
+        return redirect("/update_inproceeding/"+str(inproceeding_id))
 
 
 # testausta varten oleva reitti

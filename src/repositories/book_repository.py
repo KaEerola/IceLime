@@ -34,9 +34,6 @@ def add_user_book(book):
     month = book[9]
     note = book[10]
 
-
-    #db.session.execute("INSERT INTO books (author, title, year, publisher) VALUES ('cha','cha','cha',12)")
-
     sql = text('''INSERT INTO books (author, title, year, publisher,
                 editor, volume, number, pages, month, note) VALUES (:author,
                 :title, :year, :publisher, :editor,
