@@ -400,7 +400,7 @@ def edit_post_reference():
     if inproceeding_id:
         return redirect("/update_inproceeding/"+str(inproceeding_id))
 
-    flash("No reference selected")
+    flash("No reference selected", "")
 
 @app.route("/update_book/<int:book_id>", methods=["GET"])
 def update_book_reference(book_id):
@@ -435,8 +435,8 @@ def update_post_book_reference(book_id):
         update_book(book_id, reference)
         flash('Reference updated succesfully', "")
         return redirect("/view_references")
-    except Exception as error:
-        flash(str(error), "")
+    except:
+        flash("Something went wrong, please check that you have filled the required fields", "")
         return redirect("/update_book/"+str(book_id))
 
 @app.route("/update_article/<int:article_id>", methods=["GET"])
@@ -468,11 +468,12 @@ def update_post_article_reference(article_id):
     reference = [aut, tit, jou, year, vol, num, pages, month, note]
 
     try:
+        validate_update(reference)
         update_article(article_id, reference)
         flash('Reference updated succesfully', "")
         return redirect("/view_references")
-    except Exception as error:
-        flash(str(error), "")
+    except:
+        flash("Something went wrong, please check that you have filled the required fields", "")
         return redirect("/update_article/"+str(article_id))
 
 @app.route("/update_inproceeding/<int:inproceeding_id>", methods=["GET"])
@@ -507,11 +508,12 @@ def update_post_inproceeding_reference(inproceeding_id):
     reference = [aut, tit, jou, year, edt, vol, num, ser, pages, adr, month, org, pub]
 
     try:
+        validate_update(reference)
         update_inproceeding(inproceeding_id, reference)
         flash("Reference successfully updated", "")
         return redirect("/view_references")
-    except Exception as error:
-        flash(str(error), "")
+    except:
+        flash("Something went wrong, please check that you have filled the required fields", "")
         return redirect("/update_inproceeding/"+str(inproceeding_id))
 
 
