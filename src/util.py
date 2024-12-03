@@ -10,3 +10,13 @@ def validate_book(content):
     for i in range(4):
         if content[i] == "":
             raise UserInputError("You cannot have empty fields")
+
+def validate_update(reference):
+    if int(reference[3]) > 2024:
+        raise UserInputError("This year hasn't come yet")
+    if int(reference[3]) < 0:
+        raise UserInputError("You can't input a negative year")
+
+    for i in range(4):
+        if reference[i] == "":
+            raise UserInputError("You cannot have empty fields")

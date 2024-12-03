@@ -51,25 +51,24 @@ def add_user_book(book):
 
 def update_book(book_id, book_updated):
 
-    sql = text("""UPDATE books SET author = :author, title = :title,
-                year = :year, publisher = :publisher, editor = :editor, 
-                volume = :volume, number = :number, pages = :pages,
-                month = :month, note = :note
-                WHERE id = :id""")
+    id = int(book_id)
+    author = book_updated[0]
+    title = book_updated[1]
+    publisher = book_updated[2]
+    year = book_updated[3]
+    editor = book_updated[4]
+    volume = book_updated[5]
+    number = book_updated[6]
+    pages = book_updated[7]
+    month = book_updated[8]
+    note = book_updated[9]
 
-    db.session.execute(sql, {
-        "id": book_id,
-        "author": book_updated["author"],
-        "title": book_updated["title"],
-        "year": book_updated["year"],
-        "publisher": book_updated["publisher"],
-        "editor": book_updated.get("editor"),
-        "volume": book_updated.get("volume"),
-        "number": book_updated.get("number"),
-        "pages": book_updated.get("pages"),
-        "month": book_updated.get("month"),
-        "note": book_updated.get("note")
-        })
+    sql = text("""UPDATE books SET author = :author, title = :title, year = :year, publisher = :publisher, editor = :editor,
+                volume = :volume, number = :number, pages = :pages, month = :month, note = :note
+                WHERE id = :id""")
+    
+    db.session.execute(sql ,{"id" :id, "author":author, "title":title,"year": year, "publisher": publisher, "editor": editor, "volume": volume,
+                              "number": number, "pages": pages, "month": month, "note": note})
     db.session.commit()
 
 def get_book_by_id(ref_id):

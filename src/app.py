@@ -11,6 +11,7 @@ from util import validate_book
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
 from export import Bibtex
 
+
 @app.route("/")
 def index():
 
@@ -384,18 +385,93 @@ def edit_reference():
 
 @app.route("/edit_reference", methods=["POST"])
 def edit_POST_reference():
-    book_id = request.form.get("book_id")
 
-    if not book_id:
-        flash("no book selected")
-        return redirect("/edit_reference")
+    book_id = request.form.get("book_id")
+    article_id = request.form.get("article_id")
+    inproceeding_id = request.form.get("inproceeding_id")
+
+    if book_id:
+        return redirect("/update_book/"+str(book_id))
+    
+    if article_id:
+        return redirect("/update_article/"+str(article_id))
+
+    if inproceeding_id:
+        return redirect("/update_inproceeding/"+str(inproceeding_id))
+ 
+    flash("No reference selected")
+
+@app.route("/update_book/<int:book_id>", methods=["GET"])
+def update_book_reference(book_id):
 
     reference = get_book_by_id(book_id)
-    if not reference:
-        flash("Book not found!")
-        return redirect("/edit_reference")
+
+    for field, value in reference.__dict__.items():
+        if not value:
+            reference.__dict__[field] = ""
 
     return render_template("update_book.html", reference=reference)
+
+@app.route("/update_book/<int:book_id>", methods=["POST"])
+def update_POST_book_reference(book_id):
+
+    aut = request.form["author"]
+    tit = request.form["title"]
+    pub = request.form["publisher"]
+    year = request.form["year"]
+    edt = request.form.get("editor") or None
+    vol = request.form.get("volume") or None
+    num = request.form.get("number") or None
+    pages = request.form.get("pages") or None
+    month = request.form.get("month") or None
+    note = request.form.get("note") or None
+
+    reference = [aut, tit, pub, year, edt, vol, num, pages, month, note]
+
+    try:
+        validate_update(reference)
+        update_book(book_id, reference)
+        flash('Reference updated succesfully', "")
+        return redirect("/view_references")
+    except Exception as error:
+        flash(str(error), "")
+        return redirect("/update_book/"+str(book_id))
+
+@app.route("/update_article/<int:article_id>", methods=["GET"])
+def update_article_reference(article_id):
+
+    reference = get_article_by_id(article_id)
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    for field, value in reference.__dict__.items():
+        if not value:
+            reference.__dict__[field] = ""
+
+    return render_template("update_article.html", reference=reference, months=months)
+
+@app.route("/update_article/<int:article_id>", methods=["POST"])
+def update_POST_article_reference(article_id):
+
+    aut = request.form["author"]
+    tit = request.form["title"]
+    jou = request.form["journal"]
+    year = request.form["year"]
+    vol = request.form.get("volume") or None
+    num = request.form.get("number") or None
+    pages = request.form.get("pages") or None
+    month = request.form.get("month") or None
+    note = request.form.get("note") or None
+
+    reference = [aut, tit, jou, year, vol, num, pages, month, note]
+
+    try:
+        update_article(article_id, reference)
+        flash('Reference updated succesfully', "")
+        return redirect("/view_references")
+    except Exception as error:
+        flash(str(error), "")
+        return redirect("/update_article/"+str(article_id))
+
 
 # testausta varten oleva reitti
 

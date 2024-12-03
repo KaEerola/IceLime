@@ -22,27 +22,27 @@ View references
         {% endfor %}
         </select>
     <br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Edit">
 </form>
   
 
 {% if articles %}<h3>Articles:</h3>{% endif %}
 
-<form action="/">
+<form action="/edit_reference" method="POST">
     <label for="article-select">Choose an article to delete:</label>
-    <select name="article" id="article-select">
+    <select name="article_id" id="article-select">
         {% for article in articles %}
           <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
         {% endfor %}
         </select>
     <br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Edit">
 </form>
 
 
 {% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
 
-<form action="/">
+<form action="/edit_reference">
     <label for="inproceeding-select">Choose an inproceeding to delete:</label>
     <select name="inproceeding" id="inproceeding-select">
         {% for inproceeding in inproceedings %}
@@ -50,7 +50,7 @@ View references
         {% endfor %}
         </select>
     <br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Edit">
 </form>
 <br>
 

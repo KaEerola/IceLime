@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Create a reference
+{% endblock %}
+
+{% block body %}
+
+<h2>Edit Article Reference</h2>
+
+<form action="/update_article/{{ reference.id }}" method ="post">
+    <p>Author:</p>
+    <input type="text" name="author" value="{{ reference.author }}" placeholder="required">
+    <p>Title:</p>
+    <input type="text" name="title" value="{{reference.title}}" placeholder="required">
+    <p>Journal:</p>
+    <input type="text" name="journal" value="{{reference.journal}}" placeholder="required">
+    <p>Year:</p>
+    <input type="number" name="year" value="{{reference.year}}" placeholder="required">
+    <p>Volume:</p>
+    <input type="text" name="volume" value="{{reference.volume}}" placeholder="optional">
+    <p>Number:</p>
+    <input type="text" name="number" value="{{reference.number}}" placeholder="optional">
+    <p>Pages:</p>
+    <input type="text" name="pages" value="{{reference.pages}}" placeholder="optional">
+    <p>Month:</p>
+    <select name="month">
+        {% for month in months %}
+        <option {% if month == reference.month %}selected{% endif %}>{{month}}</option>
+        {% endfor %}
+      </select>
+    <p>Note:</p>
+    <input type="text" name="note" value="{{reference.note}}" placeholder="optional">
+    <p>
+        <button type="submit" name="action" value="update">
+            Update reference
+        </button>
+    </p>
+</form>
+
+<div>
+<p>
+  <a href="/view_references"><button>View references</button></a>
+  <a href="/"><button>Back Home</button></a>
+</p>
+</div>
+
+{% endblock %}
