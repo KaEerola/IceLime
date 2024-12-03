@@ -405,12 +405,13 @@ def edit_POST_reference():
 def update_book_reference(book_id):
 
     reference = get_book_by_id(book_id)
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     for field, value in reference.__dict__.items():
         if not value:
             reference.__dict__[field] = ""
 
-    return render_template("update_book.html", reference=reference)
+    return render_template("update_book.html", reference=reference, months=months)
 
 @app.route("/update_book/<int:book_id>", methods=["POST"])
 def update_POST_book_reference(book_id):

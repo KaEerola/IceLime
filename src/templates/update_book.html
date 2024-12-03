@@ -29,11 +29,11 @@ Update Reference
     <br><br>
     
     <label for="volume">Volume (optional):</label>
-    <input type="text" id="volume" name="volume" value="{{ reference.volume }}">
+    <input type="number" id="volume" name="volume" value="{{ reference.volume }}">
     <br><br>
     
     <label for="number">Number (optional):</label>
-    <input type="text" id="number" name="number" value="{{ reference.number }}">
+    <input type="number" id="number" name="number" value="{{ reference.number }}">
     <br><br>
     
     <label for="pages">Pages (optional):</label>
@@ -41,7 +41,11 @@ Update Reference
     <br><br>
     
     <label for="month">Month (optional):</label>
-    <input type="text" id="month" name="month" value="{{ reference.month }}">
+    <select name="month">
+        {% for month in months %}
+        <option {% if month == reference.month %}selected{% endif %}>{{month}}</option>
+        {% endfor %}
+    </select>
     <br><br>
     
     <label for="note">Note (optional):</label>
