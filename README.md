@@ -68,6 +68,12 @@ There is a button on the view_reference page that creates a bibtex file. A .bib 
 
 There are optional input fields in the different types of references. User can choose which optional fields they want to fill out. If the fields are filled out correctly the user will get a message that the reference was added successfully. If the required fields are empty or year isn't correct the user will get an error message.
 
+## Sprint 3
+
+### The bibtex file prints Article and Inproceedings references
+
+Application has now ability export inproceedings and article reference types into bibtex file. It can be done through a button in view_reference page.
+
 # Contributors
 
 
