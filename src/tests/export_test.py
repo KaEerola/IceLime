@@ -4,6 +4,8 @@ from entities.inproceeding import Inproceeding
 from export import Bibtex
 import unittest
 
+# Tests check that reference types are printed correctly into files. Ih they are printed like txt variabalse then they pass.
+
 txt = '''@book{book13,
     author = {1324},
     title = {123},
