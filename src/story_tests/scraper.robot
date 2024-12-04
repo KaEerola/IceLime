@@ -9,44 +9,63 @@ Successfully Import A Book Reference By DOI
     Go To Add Book
     Write Doi  10.1145/3603288
     Press Import
-    Page Should Contain  Chuchu
-    Page Should Contain  Fan
-    Page Should Contain
+    ${firstname}  Get Value  name=author_firstname
+    Should Be Equal As Strings  ${firstname}  Chuchu
+    ${lastname}  Get Value  name=author_lastname
+    Should Be Equal As Strings  ${lastname}  Fan
+    ${title}  Get Value  name=title
+    Should Be Equal As Strings ${title}
         ...  Formal Methods for Safe Autonomy:
         ...  Data-driven Verification, Synthesis, and Applications
-    Page Should Contain  ACM
-    Page Should Contain  2024
-    Page Should Contain  October
+    ${publisher}  Get Value  name=publisher
+    Should Be Equal As Strings  ${publisher}  ACM
+    ${year}  Get Value  name=year
+    Should Be Equal  ${year}  2024
+    ${month}  Get Value  name=month
+    Should Be Equal As Strings  ${month}  October
 
 Successfully Import An Article Reference By DOI
     Go To Add Article
     Write Doi  10.1145/3695770
     Press Import
-    Page Should Contain  Sergei
-    Page Should Contain  Chuprov
-    Page Should Contain
+    ${firstname}  Get Value  name=author_firstname
+    Should Be Equal As Strings  ${firstname}  Sergei
+    ${lastname}  Get Value  name=author_lastname
+    Should Be Equal As Strings  ${lastname}  Chuprov
+    ${title}  Get Value  name=title
+    Should Be Equal As Strings  ${title}
         ...  Data Quality Based Intelligent Instrument Selection
         ...  with Security Integration
-    Page Should Contain  Journal of Data and Information Quality
-    Page Should Contain  2024
-    Page Should Contain  16
-    Page Should Contain  January
+    ${journal}  Get Value  name=journal
+    Should Be Equal As Strings  ${journal}  Journal of Data and Information Quality
+    ${year}  Get Value  name=year
+    Should Be Equal  ${year}  2024
+    ${volume}  Get Value  name=volume
+    Should Be Equal  ${volume}  16
+    ${month}  Get Value  name=month
+    Should Be Equal As Strings  ${month}  January
 
 Successfully Import An Inproceeding Reference By DOI
     Go To Add Inproceeding
     Write Doi  10.1145/3372923.3404836
     Press Import
-    Page Should Contain  Michael
-    Page Should Contain  Paris
-    Page Should Contain
+    ${firstname}  Get Value  name=author_firstname
+    Should Be Equal As Strings  ${firstname}  Michael
+    ${lastname}  Get Value  name=author_lastname
+    Should Be Equal As Strings  ${lastname}  Paris
+    ${title}  Get Value  name=title
+    Should Be Equal As Strings  ${title}
         ...  How to Assess the Exhaustiveness of Longitudinal Web Archives:
         ...  A Case Study of the German Academic Web
-    Page Should Contain
-        ...  Proceedings of the 31st ACM Conference
-        ...  on Hypertext and Social Media
-    Page Should Contain  2020
-    Page Should Contain  January
-    Page Should Contain ACM
+    ${booktitle}  Get Value  name=booktitle
+    Should Be Equal As Strings  ${booktitle}
+        ...  Proceedings of the 31st ACM Conference on Hypertext and Social Media
+    ${year}  Get Value  name=year
+    Should Be Equal  ${year}  2020
+    ${month}  Get Value  name=month
+    Should Be Equal As Strings  ${month}  January
+    ${publisher}  Get Value  name=publisher
+    Should Be Equal As Strings  ${publisher}  ACM
 
 Unsuccessfully Import A Book Reference From DOI
     Go To Add Book
