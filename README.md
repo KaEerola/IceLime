@@ -76,7 +76,7 @@ Application has now ability export inproceedings and article reference types int
 
 ### User can edit book reference
 
-In view_reference window is button "Edit a reference" clicking which user can choose reference he or she want to edit. It shows all fields of the reference and user can add or erase information. Yet it only works for book reference types.
+In view_reference window is button "Edit a reference" clicking which user can choose reference he or she want to edit. It shows all fields of the reference and user can add or erase information.
 
 ### User can remove reference
 
