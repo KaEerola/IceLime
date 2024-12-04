@@ -74,7 +74,7 @@ There are optional input fields in the different types of references. User can c
 
 Application has now ability export inproceedings and article reference types into bibtex file. It can be done through a button in view_reference page.
 
-### User can edit book reference
+### User can edit a reference
 
 In view_reference window is button "Edit a reference" clicking which user can choose reference he or she want to edit. It shows all fields of the reference and user can add or erase information.
 
