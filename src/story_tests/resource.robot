@@ -11,6 +11,7 @@ ${ARTICLE_URL}  http://${SERVER}/add_article
 ${INPROCEEDING_URL}  http://${SERVER}/add_inproceeding
 ${VIEW_URL}  http://${SERVER}/view_references
 ${REMOVE_URL}  http://${SERVER}/remove_reference
+${EDIT_URL}  http://${SERVER}/edit_reference
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
@@ -38,6 +39,9 @@ Go To Remove Reference
 Go To Main Page
     Go to  ${HOME_URL}
 
+Go To Edit Reference
+    Go To  ${EDIT_URL}
+
 Press Add Reference
     Click Button  add_reference
 
@@ -59,6 +63,9 @@ Add Book Page Should Be Open
 
 View References Page Should Be Open
     Title Should Be    View references
+
+Update Reference Page Should Be Open
+    Title Should Be  Update Reference
 
 Removal Shold Succeed With Message
     [Arguments]  ${message}
