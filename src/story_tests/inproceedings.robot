@@ -19,6 +19,22 @@ Unsuccesfully Adding An Article Reference
     Press Submit
     Submit Should Fail With Message  You must put valid Author, Title, Booktitle And Year
 
+Successfully Edit Inproceeding Reference
+    Go To Edit Reference
+    Press Edit Inproceeding
+    Update Reference Page Should Be Open
+    Write Page  75
+    Press Update Inproceeding
+    Submit Should Succeed With Message  Reference updated successfully
+
+Unsuccessfully Edit Inproceeding Reference
+    Go To Edit Reference
+    Press Edit Inproceeding
+    Update Reference Page Should Be Open
+    Leave Author Empty
+    Press Update Inproceeding
+    Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields 
+
 Removing Of Inproceeding
     Go To Remove Reference
     Press Remove
@@ -58,3 +74,16 @@ Submit Should Fail With Message
     [Arguments]  ${message}
     Add Inproceeding Page Should Be Open
     Page Should Contain  ${message}
+
+Press Edit Inproceeding
+    Click Button  Edit inproceeding
+
+Write Page
+    [Arguments]  ${pages}
+    Input Text  pages  ${pages}
+
+Press Update Inproceeding
+    Click Button  Update reference
+
+Leave Author Empty
+    Clear Element Text  name:author
