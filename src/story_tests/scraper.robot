@@ -14,9 +14,7 @@ Successfully Import A Book Reference By DOI
     ${lastname}  Get Value  name=author_lastname
     Should Be Equal As Strings  ${lastname}  Fan
     ${title}  Get Value  name=title
-    Should Be Equal As Strings ${title}
-        ...  Formal Methods for Safe Autonomy:
-        ...  Data-driven Verification, Synthesis, and Applications
+    Should Be Equal As Strings  ${title}  Formal Methods for Safe Autonomy: Data-driven Verification, Synthesis, and Applications
     ${publisher}  Get Value  name=publisher
     Should Be Equal As Strings  ${publisher}  ACM
     ${year}  Get Value  name=year
@@ -33,9 +31,7 @@ Successfully Import An Article Reference By DOI
     ${lastname}  Get Value  name=author_lastname
     Should Be Equal As Strings  ${lastname}  Chuprov
     ${title}  Get Value  name=title
-    Should Be Equal As Strings  ${title}
-        ...  Data Quality Based Intelligent Instrument Selection
-        ...  with Security Integration
+    Should Be Equal As Strings  ${title}  Data Quality Based Intelligent Instrument Selection with Security Integration
     ${journal}  Get Value  name=journal
     Should Be Equal As Strings  ${journal}  Journal of Data and Information Quality
     ${year}  Get Value  name=year
@@ -54,12 +50,9 @@ Successfully Import An Inproceeding Reference By DOI
     ${lastname}  Get Value  name=author_lastname
     Should Be Equal As Strings  ${lastname}  Paris
     ${title}  Get Value  name=title
-    Should Be Equal As Strings  ${title}
-        ...  How to Assess the Exhaustiveness of Longitudinal Web Archives:
-        ...  A Case Study of the German Academic Web
+    Should Be Equal As Strings  ${title}  How to Assess the Exhaustiveness of Longitudinal Web Archives: A Case Study of the German Academic Web
     ${booktitle}  Get Value  name=booktitle
-    Should Be Equal As Strings  ${booktitle}
-        ...  Proceedings of the 31st ACM Conference on Hypertext and Social Media
+    Should Be Equal As Strings  ${booktitle}  Proceedings of the 31st ACM Conference on Hypertext and Social Media
     ${year}  Get Value  name=year
     Should Be Equal  ${year}  2020
     ${month}  Get Value  name=month
