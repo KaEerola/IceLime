@@ -82,6 +82,10 @@ In view_reference window is button "Edit a reference" clicking which user can ch
 
 In view_reference window is button "Remove a reference" clicking which user can choose certain reference from articles, inroceedings and books. By clicking submit button, user removes reference from references.
 
+### User can fulfill reference fields using DOI
+
+In every page where you are adding references. There is add DOI field where you can paste links of page of reference you want to add. It will automaticly fulfill input fields with reference information. 
+
 # Contributors
 
 
