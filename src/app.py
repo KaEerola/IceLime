@@ -433,7 +433,7 @@ def update_post_book_reference(book_id):
     try:
         validate_update(reference)
         update_book(book_id, reference)
-        flash('Reference updated succesfully', "")
+        flash('Reference updated successfully', "")
         return redirect("/view_references")
     except:
         flash("Something went wrong, please check that you have filled the required fields", "")
@@ -470,7 +470,7 @@ def update_post_article_reference(article_id):
     try:
         validate_update(reference)
         update_article(article_id, reference)
-        flash('Reference updated succesfully', "")
+        flash('Reference updated successfully', "")
         return redirect("/view_references")
     except:
         flash("Something went wrong, please check that you have filled the required fields", "")
@@ -510,7 +510,7 @@ def update_post_inproceeding_reference(inproceeding_id):
     try:
         validate_update(reference)
         update_inproceeding(inproceeding_id, reference)
-        flash("Reference successfully updated", "")
+        flash("Reference updated successfully", "")
         return redirect("/view_references")
     except:
         flash("Something went wrong, please check that you have filled the required fields", "")
