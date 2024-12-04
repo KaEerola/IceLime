@@ -51,6 +51,9 @@ Press View Reference
 Press Submit
     Click Button  Add Reference
 
+Press Import
+    Click Button  Import
+
 Add Book Page Should Be Open
     Title Should Be  Create a reference
 
