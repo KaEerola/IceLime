@@ -12,7 +12,6 @@ class Bibtex():
 
                 file.write(f'''@book{{book{book.id}''')
 
-                # Muokataan authors-listaa
                 authors = book.author
                 formatted_authors = []
 

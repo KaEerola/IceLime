@@ -66,9 +66,9 @@ txt3 = '''@inproceedings{inproceedings4,
 class TestStatisticsService(unittest.TestCase):
     def test_exports_bibtex_book(self):
         
-        kirja = Book("13","1324","123","123","123","123","123","123","123","123","123")
+        kirja = Book("1","first last","123","123","123","123","123","123","123","123","123")
 
-        kirja2 = Book("11","1324","123","123","123","123","123","123","123","123","123")
+        kirja2 = Book("2","first2 last2","123","123","123","123","123","123","123","123","123")
 
         bibtex = Bibtex()
         bibtex.create_book_bibtex([kirja])
@@ -83,7 +83,7 @@ class TestStatisticsService(unittest.TestCase):
 
     def test_exports_bibtex_article(self):
 
-        article = Article("2","Jack Back","Chocko Iland","New Journal","2017",  "2", "23","14")
+        article = Article("3","Jack Back","Chocko Iland","New Journal","2017", "2", "23","14")
 
         bibtex = Bibtex()
         bibtex.create_article_bibtex([article])
@@ -95,7 +95,7 @@ class TestStatisticsService(unittest.TestCase):
         self.assertEqual(txt2 == text,True)
 
     def test_exports_bibtex_inproceedings(self):
-        inpro = Inproceeding("4","Jack Back","Chocko Iland","New Journal","2017",  "2", "23","14")
+        inpro = Inproceeding("4","Jack Back","Chocko Iland","New Journal","2017", "2", "23","14")
 
         bibtex = Bibtex()
         bibtex.create_inproceedings_bibtex([inpro])
