@@ -18,7 +18,7 @@ class Bibtex():
                 for author in authors:
 
                     firstname = author.rsplit(" ", 1)[0]
-                    lastname = author.rsplit(' ', 1)[1]
+                    lastname = author.rsplit(" ", 1)[1]
                     formatted_authors.append(f"{lastname}, {firstname}")
 
                 authors_str = " and ".join(formatted_authors)

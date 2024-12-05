@@ -6,8 +6,8 @@ import unittest
 
 # Tests check that reference types are printed correctly into files. Ih they are printed like txt variabalse then they pass.
 
-txt = '''@book{book13,
-    author = {1324},
+txt = '''@book{book1,
+    author = {last, first},
     title = {123},
     year = {123},
     publisher = {123},
@@ -20,8 +20,8 @@ txt = '''@book{book13,
 }
 
 
-@book{book11,
-    author = {1324},
+@book{book2,
+    author = {last2, first2},
     title = {123},
     year = {123},
     publisher = {123},
@@ -37,7 +37,7 @@ txt = '''@book{book13,
 '''
 
 
-txt2 = '''@article{article2,
+txt2 = '''@article{article3,
     author = {Jack Back},
     title = {Chocko Iland},
     year = {2017},
@@ -66,9 +66,9 @@ txt3 = '''@inproceedings{inproceedings4,
 class TestStatisticsService(unittest.TestCase):
     def test_exports_bibtex_book(self):
         
-        kirja = Book("1","first last","123","123","123","123","123","123","123","123","123")
+        kirja = Book("1",["first last"],"123","123","123","123","123","123","123","123","123")
 
-        kirja2 = Book("2","first2 last2","123","123","123","123","123","123","123","123","123")
+        kirja2 = Book("2",["first2 last2"],"123","123","123","123","123","123","123","123","123")
 
         bibtex = Bibtex()
         bibtex.create_book_bibtex([kirja])
