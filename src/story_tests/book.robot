@@ -53,12 +53,12 @@ Write Title
     Input Text  title  ${title}
 
 Write Author Firstname
-    [Arguments]  ${author_firstname}
-    Input Text  author_firstname  ${author_firstname}
+    [Arguments]  ${author_firstname_0}
+    Input Text  author_firstname  ${author_firstname_0}
 
 Write Author Lastname
-    [Arguments]  ${author_lastname}
-    Input Text  author_lastname  ${author_lastname}
+    [Arguments]  ${author_lastname_0}
+    Input Text  author_lastname  ${author_lastname_0}
 
 Write Year
     [Arguments]  ${year}
@@ -74,10 +74,10 @@ Submit Should Fail With Message
     Page Should Contain  ${message}
 
 Press Remove
-    Click Button    Remove Book
+    Click Button  remove_book
 
 Press Edit Book
-    Click Button  Edit book
+    Click Button  edit_book
 
 Write Page
     [Arguments]  ${pages}

@@ -281,8 +281,6 @@ def fetch_book_doi():
         author_count = len(authors) if authors else 1
 
         editors = data[5]
-        print(data)
-
 
         return render_template("add_book.html",
                                authors = authors,
@@ -290,7 +288,7 @@ def fetch_book_doi():
                                publisher = data[2],
                                year = data[3],
                                months = months,
-                               imported_month = data[5],
+                               imported_month = data[4],
                                editor = editors[0] if editors else "", #currently only first editor from list
                                author_count = author_count)
 
