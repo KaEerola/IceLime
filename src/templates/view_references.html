@@ -15,7 +15,13 @@ View references
 {% if books %}<h3>Books:</h3>{% endif %}
 {% for book in books %}
   <p>
-    {{ book.author }}.
+    {% if book.author|length == 1 %}
+      {{ book.author[0] }}.
+    {% else %}
+      {% set last_author = book.author[-1] %}
+      {% set other_authors = book.author[:-1] %}
+      {{ other_authors | join(', ') }} and {{ last_author }}.
+    {% endif %}
     <i>{{ book.title }}</i>.
     {{ book.publisher }},
     {% if book.month %}{{ book.month }}{% endif %} {{ book.year }}

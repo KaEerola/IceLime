@@ -12,24 +12,20 @@ def get_book_data_by_doi(doi):
         item = data_as_json["message"]
 
         authors = item.get("author", [])
-        author_firstname = ""
-        author_lastname = ""
+        author_list = []
         if authors:
             for author in authors:
                 if "given" in author and "family" in author:
-                    author_firstname = author["given"]
-                    author_lastname = author["family"]
-                    break
+                    fullname = f"{author['given']} {author['family']}"
+                    author_list.append(fullname)
 
         editors = item.get("editor", [])
-        editor_firstname = ""
-        editor_lastname = ""
+        editor_list = []
         if editors:
             for editor in editors:
                 if "given" in editor and "family" in editor:
-                    editor_firstname = editor["given"]
-                    editor_lastname = editor["family"]
-                    break
+                    fullname = f"{editor['given']} {editor['family']}"
+                    editor_list.append(fullname)
 
         titles = item.get("title", [])
         main_title = titles[0] if titles else ""
@@ -47,16 +43,14 @@ def get_book_data_by_doi(doi):
             "July", "August", "September", "October", "Novemeber", "December"
         ]
 
-        month = months[month_int - 1]
+        month = months[month_int - 1] if month_int else ""
 
-        return [author_firstname,
-                author_lastname,
+        return [author_list,
                 title_full,
                 publisher,
                 year,
                 month,
-                editor_firstname,
-                editor_lastname]
+                editor_list]
 
     except requests.exceptions.RequestException:
         return {"error": "Failed to fetch the data, please check the DOI."}

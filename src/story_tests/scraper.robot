@@ -9,9 +9,9 @@ Successfully Import A Book Reference By DOI
     Go To Add Book
     Write Doi  10.1145/3603288
     Press Import
-    ${firstname}  Get Value  name=author_firstname
+    ${firstname}  Get Value  name=author_firstname_0
     Should Be Equal As Strings  ${firstname}  Chuchu
-    ${lastname}  Get Value  name=author_lastname
+    ${lastname}  Get Value  name=author_lastname_0
     Should Be Equal As Strings  ${lastname}  Fan
     ${title}  Get Value  name=title
     Should Be Equal As Strings  ${title}  Formal Methods for Safe Autonomy: Data-driven Verification, Synthesis, and Applications

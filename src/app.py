@@ -8,7 +8,7 @@ from repositories.inproceeding_repository import add_user_inproceeding, get_inpr
 from repositories.inproceeding_repository import remove_inproceeding, update_inproceeding
 from repositories.inproceeding_repository import  get_inproceeding_by_id
 from config import app, test_env
-from util import validate_book, validate_update
+from util import validate_book, validate_article, validate_inproceeding, validate_update
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
 from export import Bibtex
 
@@ -25,36 +25,89 @@ def add_reference():
 
 @app.route("/add_book", methods=["GET"])
 def add_book():
+    authors = []
+    author_count = 1
     months = ["", "January", "February", "March", "April",
               "May", "June", "July", "August", "September",
               "October", "November", "December"]
 
-    return render_template("add_book.html", months = months)
+    return render_template("add_book.html", authors=authors, author_count=author_count, months=months)
 
 @app.route("/add_book", methods=["POST"])
 def add_post_book():
-
-    if request.form["action"] == "reset":
-        months = ["", "January", "February", "March", "April",
+    months = ["", "January", "February", "March", "April",
                   "May", "June", "July", "August", "September",
                   "October", "November", "December"]
+    authors = []
+    author_count = int(request.form.get("author_count", 1))
+
+    if request.form["action"] == "reset":
+        return render_template("add_book.html",
+                               months=months,
+                               author_count=1)
+
+    elif request.form["action"] == "add_author":
+        author_count += 1
+        authors = []
+
+        idx = 0
+
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
 
         return render_template("add_book.html",
-                               author_firstname="",
-                               author_lastname="",
-                               title="",
-                               publisher="",
-                               year="",
-                               editor="",
-                               volume="",
-                               number="",
-                               pages="",
-                               month="",
-                               note="",
-                               months=months)
+                               authors=authors,
+                               title=request.form["title"],
+                               publisher=request.form["publisher"],
+                               year=request.form["year"],
+                               editor=request.form.get("editor", ""),
+                               volume=request.form.get("volume", ""),
+                               number=request.form.get("number", ""),
+                               pages=request.form.get("pages", ""),
+                               imported_month=request.form.get("month", ""),
+                               note=request.form.get("note", ""),
+                               months=months,
+                               author_count=author_count)
 
-    aut_firstname = request.form["author_firstname"]
-    aut_lastname = request.form["author_lastname"]
+    elif request.form["action"] == "remove_author":
+        author_count -= 1
+        authors = []
+
+        idx = 0
+
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        return render_template("add_book.html",
+                               authors=authors,
+                               title=request.form["title"],
+                               publisher=request.form["publisher"],
+                               year=request.form["year"],
+                               editor=request.form.get("editor", ""),
+                               volume=request.form.get("volume", ""),
+                               number=request.form.get("number", ""),
+                               pages=request.form.get("pages", ""),
+                               imported_month=request.form.get("month", ""),
+                               note=request.form.get("note", ""),
+                               months=months,
+                               author_count=author_count)
+
+    idx = 0
+    while f"author_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"author_firstname_{idx}").strip()
+        lastname = request.form.get(f"author_lastname_{idx}").strip()
+        if firstname and lastname:
+            authors.append(f"{firstname} {lastname}")
+        idx += 1
+
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
@@ -65,7 +118,7 @@ def add_post_book():
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut_firstname, aut_lastname, tit, pub, year, edt, vol, num, pages, month, note]
+    reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
 
     try:
         validate_book(reference)
@@ -130,9 +183,10 @@ def add_post_article():
 
     reference = [aut_firstname, aut_lastname, tit, 
                 jou, year, vol, num, pages, month, note]
+    print(reference)
 
     try:
-        validate_book(reference)
+        validate_article(reference)
         add_user_article(reference)
         flash('Reference added succesfully', "")
         return redirect("/")
@@ -199,7 +253,7 @@ def add_post_inproceeding():
                  org, publisher]
 
     try:
-        validate_book(reference)
+        validate_inproceeding(reference)
         add_user_inproceeding(reference)
         flash('Reference added succesfully', "")
         return redirect("/")
@@ -222,19 +276,23 @@ def fetch_book_doi():
 
     try:
         data = get_book_data_by_doi(doi)
-        editor_fullname = ""
-        if data[6] and data[7]:
-            editor_fullname = f"{data[6]} {data[7]}"
+
+        authors = data[0]
+        author_count = len(authors) if authors else 1
+
+        editors = data[5]
+        print(data)
+
 
         return render_template("add_book.html",
-                               author_firstname = data[0],
-                               author_lastname = data[1],
-                               editor = editor_fullname,
-                               title = data[2],
-                               publisher = data[3],
-                               year = data[4],
+                               authors = authors,
+                               title = data[1],
+                               publisher = data[2],
+                               year = data[3],
                                months = months,
-                               imported_month = data[5])
+                               imported_month = data[5],
+                               editor = editors[0] if editors else "", #currently only first editor from list
+                               author_count = author_count)
 
     except:
         flash("Failed to fetch the data, please check the DOI.", "")

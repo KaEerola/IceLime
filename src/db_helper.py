@@ -89,7 +89,7 @@ def setup_db():
     """
     CREATE TABLE "books" (
     "id" SERIAL PRIMARY KEY,
-    "author" TEXT,
+    "author" TEXT[],
     "title" TEXT,
     "year" integer,
     "publisher" TEXT,
@@ -98,8 +98,7 @@ def setup_db():
     "number" integer DEFAULT NULL,
     "pages" TEXT DEFAULT NULL,
     "month" TEXT DEFAULT NULL,
-    "note" TEXT DEFAULT NULL,
-    "reference_id" INTEGER
+    "note" TEXT DEFAULT NULL
       )
     """
   )

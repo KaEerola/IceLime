@@ -18,7 +18,7 @@ CREATE TABLE "inproceedings" (
 
 CREATE TABLE "books" (
   "id" SERIAL PRIMARY KEY,
-  "author" TEXT,
+  "author" TEXT[],
   "title" TEXT,
   "year" integer,
   "publisher" TEXT,
