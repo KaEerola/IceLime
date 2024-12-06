@@ -7,9 +7,23 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    
+    <div>
+      <p>
+        <a href="/add_reference"><button>Add another reference type</button></a>
+        <a href="/view_references"><button>View references</button></a>
+        <a href="/export"><button>Export to file</button></a>
+        <a href="/edit_reference"><button>Edit a reference</button></a>
+        <a href="/remove_reference"><button>Remove a reference</button></a>
+        <a href="/"><button>Back Home</button></a>
+      </p>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+
       {% if messages %}
         <ul class=flashes>
         {% for category, message in messages %}

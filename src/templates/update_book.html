@@ -5,6 +5,7 @@ Update Reference
 {% endblock %}
 
 {% block body %}
+
 <h2>Edit Book Reference</h2>
 
 <form action="/update_book/{{ reference.id }}" method="POST">
@@ -54,6 +55,4 @@ Update Reference
     
     <input type="submit" value="Update Book">
 </form>
-
-<a href="/view_references"><button>Back to References</button></a>
 {% endblock %}

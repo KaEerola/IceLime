@@ -1,0 +1,24 @@
+:root {
+    --bg-clr: #b3b3b3;
+    --white: #fff;
+    --readonly: #d4d4d4;
+    --invoice-bg: #e7e7e9;
+    --primary-clr: #2f2929;
+    --red: #ffc2c2;
+    --red-hover: #fb9d9d;
+  }
+
+
+body {
+  /**margin : 200px;**/
+  padding: 20px;
+
+}
+
+button{
+  background-color: white;
+}
+
+button:hover{
+  background-color:green;
+}
