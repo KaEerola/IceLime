@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import Mock, patch
-#from entities.book import Book
 from repositories.book_repository import get_books
 from config import db
 
