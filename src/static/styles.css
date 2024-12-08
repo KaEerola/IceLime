@@ -8,11 +8,18 @@
     --red-hover: #fb9d9d;
   }
 
-
-body {
   /**margin : 200px;**/
-  padding: 20px;
 
+body { 
+  margin: 0;
+  padding: 0;
+  background-color: #c8f3b6;
+}
+
+.m_body{
+  padding-top: 20px;
+
+  padding-left: 20px;
 }
 
 button{
@@ -20,5 +27,17 @@ button{
 }
 
 button:hover{
-  background-color:green;
+  background-color:rgb(57, 196, 57);
+}
+
+.header {
+  background-color: #192c11;
+  /**height: 20%;**/
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+}
+
+.header button{
+  margin-left: 10px;
 }
