@@ -142,36 +142,90 @@ def view_references():
 
 @app.route("/add_article", methods = ["GET"])
 def add_article():
-
+    authors = []
+    author_count = 1
     months = ["", "January", "February", "March", "April",
               "May", "June", "July", "August", "September",
               "October", "November", "December"]
 
-    return render_template("add_article.html", months = months)
+    return render_template("add_article.html", authors=authors, author_count=author_count, months=months)
 
 @app.route("/add_article", methods = ["POST"])
 def add_post_article():
 
-    if request.form["action"] == "reset":
-        months = ["", "January", "February", "March", "April",
+    months = ["", "January", "February", "March", "April",
                   "May", "June", "July", "August", "September",
                   "October", "November", "December"]
+        
+    authors = []
+    author_count = int(request.form.get("author_count", 1))
+
+    if request.form["action"] == "reset":
+        return render_template("add_article.html",
+                               months=months,
+                               author_count=1)
+
+    elif request.form["action"] == "add_author":
+        author_count += 1
+        authors = []
+
+        idx = 0
+
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
 
         return render_template("add_article.html",
-                               author_firstname="",
-                               author_lastname="",
-                               title="",
-                               journal="",
-                               year="",
-                               volume="",
-                               number="",
-                               pages="",
-                               month="",
-                               note="",
-                               months=months)
+                               authors=authors,
+                               title=request.form["title"],
+                               journal=request.form["journal"],
+                               year=request.form["year"],
+                               volume=request.form.get("volume", ""),
+                               number=request.form.get("number", ""),
+                               pages=request.form.get("pages", ""),
+                               imported_month=request.form.get("month", ""),
+                               note=request.form.get("note", ""),
+                               months=months,
+                               author_count=author_count)
 
-    aut_firstname = request.form["author_firstname"]
-    aut_lastname = request.form["author_lastname"]
+    elif request.form["action"] == "remove_author":
+        author_count -= 1
+        authors = []
+
+        idx = 0
+
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
+        
+        return render_template("add_article.html",
+                               authors=authors,
+                               title=request.form["title"],
+                               journal=request.form["journal"],
+                               year=request.form["year"],
+                               volume=request.form.get("volume", ""),
+                               number=request.form.get("number", ""),
+                               pages=request.form.get("pages", ""),
+                               imported_month=request.form.get("month", ""),
+                               note=request.form.get("note", ""),
+                               months=months,
+                               author_count=author_count)
+
+    idx = 0
+    while f"author_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"author_firstname_{idx}").strip()
+        lastname = request.form.get(f"author_lastname_{idx}").strip()
+        if firstname and lastname:
+            authors.append(f"{firstname} {lastname}")
+        idx += 1
+
+
     tit = request.form["title"]
     jou = request.form["journal"]
     year = request.form["year"]
@@ -181,7 +235,7 @@ def add_post_article():
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut_firstname, aut_lastname, tit, 
+    reference = [authors, tit, 
                 jou, year, vol, num, pages, month, note]
     print(reference)
 

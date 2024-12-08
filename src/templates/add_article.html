@@ -18,9 +18,30 @@ Create a reference
 </form>
 
 <form action="/add_article" method ="post">
-    <p>Author:</p>
-    Firstname: <input type="text" name="author_firstname" value="{{author_firstname}}" placeholder="required">
-    Lastname: <input type="text" name="author_lastname" value="{{author_lastname}}" placeholder="required">
+  <p>Author(s):</p>
+  <input type="hidden" name="author_count" value="{{ author_count }}">
+  {% for idx in range(author_count) %}
+    <div class="author-row">
+      <p>
+      <label>First name(s):</label>
+      <input type="text" name="author_firstname_{{ idx }}"
+             value="{{ authors[idx].rsplit(' ', 1)[0] if idx < authors|length else '' }}"
+             placeholder="required">
+      <label>Last name:</label>
+      <input type="text" name="author_lastname_{{ idx }}"
+             value="{{ authors[idx].rsplit(' ', 1)[1] if idx < authors|length else '' }}"
+             placeholder="required">
+
+      {% if idx == author_count - 1 %}
+        <button type="submit" name="action" value="add_author">+</button>
+      {% endif %}
+      {% if idx == author_count - 1 and idx != 0 %}
+        <button type="submit" name="action" value="remove_author">-</button>
+      {% endif %}
+      </p>
+    </div>
+  {% endfor %}
+   
     <p>Title:</p>
     <input type="text" name="title" value="{{title}}" placeholder="required">
     <p>Journal:</p>

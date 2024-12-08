@@ -119,7 +119,7 @@ def setup_db():
       """
       CREATE TABLE "articles" (
       "id" SERIAL PRIMARY KEY,
-      "author" TEXT,
+      "author" TEXT[],
       "title" TEXT,
       "journal" TEXT,
       "year" integer,

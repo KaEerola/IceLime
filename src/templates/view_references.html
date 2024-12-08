@@ -36,7 +36,13 @@ View references
 {% if articles %}<h3>Articles:</h3>{% endif %}
 {% for article in articles %}
   <p>
-    {{ article.author }}.
+    {% if article.author|length == 1 %}
+      {{ article.author[0] }}.
+    {% else %}
+      {% set last_author = article.author[-1] %}
+      {% set other_authors = article.author[:-1] %}
+      {{ other_authors | join(', ') }} and {{ last_author }}.
+    {% endif %}
     {{ article.title }}.
     <i>{{ article.journal }}</i>,
     {% if article.month %}{{ article.month }}{% endif %} {{ article.year }}
