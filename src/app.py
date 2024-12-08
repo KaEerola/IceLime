@@ -366,16 +366,19 @@ def fetch_article_doi():
     try:
         data = get_article_data_by_doi(doi)
 
+        authors = data[0]
+        author_count = len(authors) if authors else 1
+
         return render_template("add_article.html",
-                               author_firstname = data[0],
-                               author_lastname = data[1],
-                               title = data[2],
-                               publisher = data[3],
-                               year = data[4],
+                               authors = authors,
+                               title = data[1],
+                               publisher = data[2],
+                               year = data[3],
                                months = months,
-                               imported_month = data[5],
-                               journal = data[6],
-                               volume = data[7],)
+                               imported_month = data[4],
+                               journal = data[5],
+                               volume = data[6], 
+                               author_count = author_count)
 
     except:
         flash("Failed to fetch the data, please check the DOI.", "")

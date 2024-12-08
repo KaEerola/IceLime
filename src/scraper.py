@@ -67,14 +67,12 @@ def get_article_data_by_doi(doi):
         item = data_as_json["message"]
 
         authors = item.get("author", [])
-        author_firstname = ""
-        author_lastname = ""
+        author_list = []
         if authors:
             for author in authors:
                 if "given" in author and "family" in author:
-                    author_firstname = author["given"]
-                    author_lastname = author["family"]
-                    break
+                    fullname = f"{author['given']} {author['family']}"
+                    author_list.append(fullname)
 
         journal = item.get("container-title", "")[0]
         volume = item.get("volume", "")
@@ -97,8 +95,7 @@ def get_article_data_by_doi(doi):
 
         month = months[month_int - 1]
 
-        return [author_firstname,
-                author_lastname,
+        return [author_list,
                 title_full,
                 publisher,
                 year,

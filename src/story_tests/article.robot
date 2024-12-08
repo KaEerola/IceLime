@@ -51,12 +51,12 @@ Write Title
 
 Write Author Firstname
     [Arguments]  ${author_firstname}
-    Input Text  author_firstname  ${author_firstname}
+    Input Text  author_firstname_0  ${author_firstname}
 
 Write Author Lastname
     [Arguments]  ${author_lastname}
-    Input Text  author_lastname  ${author_lastname}
-
+    Input Text  author_lastname_0  ${author_lastname}
+    
 Write Journal
     [Arguments]  ${journal}
     Input Text  journal  ${journal}

@@ -26,9 +26,9 @@ Successfully Import An Article Reference By DOI
     Go To Add Article
     Write Doi  10.1145/3695770
     Press Import
-    ${firstname}  Get Value  name=author_firstname
+    ${firstname}  Get Value  name=author_firstname_0
     Should Be Equal As Strings  ${firstname}  Sergei
-    ${lastname}  Get Value  name=author_lastname
+    ${lastname}  Get Value  name=author_lastname_0
     Should Be Equal As Strings  ${lastname}  Chuprov
     ${title}  Get Value  name=title
     Should Be Equal As Strings  ${title}  Data Quality Based Intelligent Instrument Selection with Security Integration
