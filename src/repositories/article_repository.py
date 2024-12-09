@@ -1,6 +1,6 @@
 from sqlalchemy import text
 from config import db
-from entities.article import Article # pylint: disable=unused-import,import-error
+from entities.article import Article
 
 def remove_article(id):
 

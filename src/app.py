@@ -1,16 +1,30 @@
 from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
-from repositories.book_repository import add_user_book, get_books, get_book_by_id
-from repositories.book_repository import update_book, remove_book
-from repositories.article_repository import add_user_article, get_articles
-from repositories.article_repository import remove_article, update_article, get_article_by_id
-from repositories.inproceeding_repository import add_user_inproceeding, get_inproceedings
-from repositories.inproceeding_repository import remove_inproceeding, update_inproceeding
-from repositories.inproceeding_repository import  get_inproceeding_by_id
 from config import app, test_env
 from util import validate_book, validate_article, validate_inproceeding, validate_update
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
 from export import Bibtex
+from repositories.book_repository import (
+    add_user_book,
+    get_books,
+    get_book_by_id,
+    update_book,
+    remove_book
+)
+from repositories.article_repository import (
+    add_user_article,
+    get_articles,
+    remove_article,
+    update_article,
+    get_article_by_id
+)
+from repositories.inproceeding_repository import (
+    add_user_inproceeding,
+    get_inproceedings,
+    remove_inproceeding,
+    update_inproceeding,
+    get_inproceeding_by_id
+)
 
 
 @app.route("/")
