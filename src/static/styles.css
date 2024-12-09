@@ -16,28 +16,130 @@ body {
   background-color: #c8f3b6;
 }
 
-.m_body{
+.flashes{
   padding-top: 20px;
-
-  padding-left: 20px;
 }
 
-button{
-  background-color: white;
-}
-
-button:hover{
-  background-color:rgb(57, 196, 57);
-}
-
-.header {
+/**.header {
   background-color: #192c11;
-  /**height: 20%;**/
+  /**height: 20%
   padding-top: 30px;
-  padding-bottom: 30px;
-
-}
+  padding-bottom: 30px;**/
 
 .header button{
   margin-left: 10px;
+}
+
+/** Miikas part **/
+
+/* Set gradient background */
+body {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  background: linear-gradient(to bottom right, #b2dd88, #5bb091);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* Title styling */
+h1 {
+  font-size: 4rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* Header styling */
+header {
+  display: flex;
+}
+
+/* Subtitle styling */
+p {
+  font-size: 1.5rem;
+  margin: 10px 0 30px 0;
+  text-align: center;
+}
+
+/* Button container */
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Buttons styling */
+button {
+  font-size: 1.2rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  padding: 10px 20px;
+  /*border: 0.2rem solid #5bb091;*/
+  border: none;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #5bb091;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.4s;
+}
+
+button:hover {
+  color: #ffffff;
+  background-color: #5bb091;
+  /*border: 0.12rem solid white;*/
+  transform: scale(1.1);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* New styles for add_reference.html */
+
+/* Links container for add_reference */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%; /* Stretch container to match the width */
+  max-width: 20rem; /* Limit the container width */
+}
+
+/* Individual link-box styling */
+.link-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5bb091;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px; /* Limit the rectangle width */
+  height: 80px; /* Fixed height for rectangles */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: transform 0.2s, background-color 0.4s;
+}
+
+/* Hover effect for link-box */
+.link-box:hover {
+  background-color: #5bb091;
+  color: #ffffff;
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ensure it takes the full viewport height */
+  text-align: center;
 }
