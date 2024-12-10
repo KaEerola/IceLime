@@ -164,6 +164,7 @@ a {
 .container {
   width: 60vw;
   max-width: 1200px;
+  max-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -182,7 +183,8 @@ a {
 }
 
 .container h2 {
-  margin: auto;
+  margin-top: 20px;
+  text-align: center;
 }
 
 
@@ -199,9 +201,14 @@ a {
 
 /* Lomakkeen kontaineri */
 .input-form {
-  height: 85vh;
   width: 60vw;
   max-width: 1200px;
+  max-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -219,9 +226,11 @@ a {
   text-align: left; /* Tekstit tasattu vasemmalle */
 }
 
+
 .input-form h2 {
   color: #333333;
   text-align: center;
+  margin-top: 20px;
 }
 
 .input-form p {
