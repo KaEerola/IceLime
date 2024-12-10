@@ -1,14 +1,27 @@
 {% extends "layout.html" %}
 
 {% block title %}
+IceLime
+{% endblock %}
 
+{% block header %}
+<header>
+    <a href="/add_reference"><button>Add Reference</button></a>
+    <a href="/view_references"><button>View References</button></a>
+    <a href="/export"><button>Export to File</button></a>
+    <a href="/edit_reference"><button>Edit Reference</button></a>
+    <a href="/remove_reference"><button>Remove Reference</button></a>
+    <a href="/"><button>Back Home</button></a>
+</header>
 {% endblock %}
 
 {% block body %}
-
+<h1>IceLime</h1>
 <div class="index">
-
-<h2>Create a bibtex</h2>
-  
+  <p>Welcome to IceLime Bibtex reference manager!</p>
+  <div class="buttons">
+    <a href="/add_reference"><button>Create a New Reference</button></a>
+    <a href="/view_references"><button>View All References</button></a>
+  </div>
 </div>
 {% endblock %}

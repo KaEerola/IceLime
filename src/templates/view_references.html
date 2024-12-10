@@ -4,83 +4,93 @@
 View references
 {% endblock %}
 
+{% block header %}
+<header>
+    <a href="/"><button>Back Home</button></a>
+    <a href="/add_reference"><button>Add Reference</button></a>
+    <a href="/edit_reference"><button>Edit Reference</button></a>
+    <a href="/remove_reference"><button>Remove Reference</button></a>
+    <a href="/export"><button>Export to File</button></a>
+</header>
+{% endblock %}
+
 {% block body %}
 
-<h2>Currently included references</h2>
+<div class="container">
+  <h2>Currently included references:</h2>
 
-{% if not books and not articles and not inproceedings %}
-  <p><i>Nothing yet!</i></p>
-{% endif %}
+  {% if not books and not articles and not inproceedings %}
+    <p><i>Nothing yet!</i></p>
+  {% endif %}
 
-{% if books %}<h3>Books:</h3>{% endif %}
-{% for book in books %}
-  <p>
-    {%- if book.author -%}
-      {% if book.author|length == 1 %}
-        {{ book.author[0] }}.
+  {% if books %}<h3>Books:</h3>{% endif %}
+  {% for book in books %}
+    <p>
+      {%- if book.author -%}
+        {% if book.author|length == 1 %}
+          {{ book.author[0] }}.
+        {% else %}
+          {% set last_author = book.author[-1] %}
+          {% set other_authors = book.author[:-1] %}
+          {{ other_authors | join(', ') }} and {{ last_author }}.
+        {% endif %}
+      {%- endif -%}
+      <i>{{ book.title }}</i>.
+      {{ book.publisher }},
+      {% if book.month %}{{ book.month }}{% endif %} {{ book.year }}
+      {%- if book.editor -%}
+          {%- if book.editor|length == 1 -%}
+              , edited by {{ book.editor[0] }}
+          {%- else -%}
+              {%- set last_editor = book.editor[-1] -%}
+              {%- set other_editors = book.editor[:-1] -%}
+              , edited by {{ other_editors | join(', ') }} and {{ last_editor }}
+          {%- endif -%}
+      {%- endif -%}
+      {%- if book.volume %}, volume {{ book.volume }}{% endif -%}
+      {%- if book.number %}, number {{ book.number }}{% endif -%}
+      {%- if book.pages %}, pages {{ book.pages }}{% endif -%}
+      {%- if book.note %}, note: {{ book.note }}{% endif -%}.
+    </p>
+  {% endfor %}
+
+  {% if articles %}<h3>Articles:</h3>{% endif %}
+  {% for article in articles %}
+    <p>
+      {% if article.author|length == 1 %}
+        {{ article.author[0] }}.
       {% else %}
-        {% set last_author = book.author[-1] %}
-        {% set other_authors = book.author[:-1] %}
+        {% set last_author = article.author[-1] %}
+        {% set other_authors = article.author[:-1] %}
         {{ other_authors | join(', ') }} and {{ last_author }}.
       {% endif %}
-    {%- endif -%}
-    <i>{{ book.title }}</i>.
-    {{ book.publisher }},
-    {% if book.month %}{{ book.month }}{% endif %} {{ book.year }}
-    {%- if book.editor -%}
-        {%- if book.editor|length == 1 -%}
-            , edited by {{ book.editor[0] }}
-        {%- else -%}
-            {%- set last_editor = book.editor[-1] -%}
-            {%- set other_editors = book.editor[:-1] -%}
-            , edited by {{ other_editors | join(', ') }} and {{ last_editor }}
-        {%- endif -%}
-    {%- endif -%}
-    {%- if book.volume %}, volume {{ book.volume }}{% endif -%}
-    {%- if book.number %}, number {{ book.number }}{% endif -%}
-    {%- if book.pages %}, pages {{ book.pages }}{% endif -%}
-    {%- if book.note %}, note: {{ book.note }}{% endif -%}.
-  </p>
-{% endfor %}
+      {{ article.title }}.
+      <i>{{ article.journal }}</i>,
+      {% if article.month %}{{ article.month }}{% endif %} {{ article.year }}
+      {%- if article.volume %}, volume {{ article.volume }}{% endif -%}
+      {%- if article.number %}, number {{ article.number }}{% endif -%}
+      {%- if article.pages %}, pages {{ article.pages }}{% endif -%}
+      {%- if article.note %}, note: {{ article.note }}{% endif -%}.
+    </p>
+  {% endfor %}
 
-{% if articles %}<h3>Articles:</h3>{% endif %}
-{% for article in articles %}
-  <p>
-    {% if article.author|length == 1 %}
-      {{ article.author[0] }}.
-    {% else %}
-      {% set last_author = article.author[-1] %}
-      {% set other_authors = article.author[:-1] %}
-      {{ other_authors | join(', ') }} and {{ last_author }}.
-    {% endif %}
-    {{ article.title }}.
-    <i>{{ article.journal }}</i>,
-    {% if article.month %}{{ article.month }}{% endif %} {{ article.year }}
-    {%- if article.volume %}, volume {{ article.volume }}{% endif -%}
-    {%- if article.number %}, number {{ article.number }}{% endif -%}
-    {%- if article.pages %}, pages {{ article.pages }}{% endif -%}
-    {%- if article.note %}, note: {{ article.note }}{% endif -%}.
-  </p>
-{% endfor %}
+  {% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
+  {% for inproceeding in inproceedings %}
+    <p>
+      {{ inproceeding.author }}.
+      {{ inproceeding.title }}.
+      In <i>{{ inproceeding.booktitle }}</i>,
+      {% if inproceeding.month %}{{ inproceeding.month }}{% endif %} {{ inproceeding.year }}
+      {%- if inproceeding.volume %}, volume {{ inproceeding.volume }}{% endif -%}
+      {%- if inproceeding.number %}, number {{ inproceeding.number }}{% endif -%}
+      {%- if inproceeding.series %}, series {{ inproceeding.series }}{% endif -%}
+      {%- if inproceeding.editor %}, edited by {{ inproceeding.editor }}{% endif -%}
+      {%- if inproceeding.pages %}, pages {{ inproceeding.pages }}{% endif -%}
+      {%- if inproceeding.address %}, address {{ inproceeding.address }}{% endif -%}
+      {%- if inproceeding.organization %}, organization {{ inproceeding.organization }}{% endif -%}
+      {%- if inproceeding.publisher %}, published by {{ inproceeding.publisher }}{% endif -%}.
+    </p>
+  {% endfor %}
+</div>
 
-
-{% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
-{% for inproceeding in inproceedings %}
-  <p>
-    {{ inproceeding.author }}.
-    {{ inproceeding.title }}.
-    In <i>{{ inproceeding.booktitle }}</i>,
-    {% if inproceeding.month %}{{ inproceeding.month }}{% endif %} {{ inproceeding.year }}
-    {%- if inproceeding.volume %}, volume {{ inproceeding.volume }}{% endif -%}
-    {%- if inproceeding.number %}, number {{ inproceeding.number }}{% endif -%}
-    {%- if inproceeding.series %}, series {{ inproceeding.series }}{% endif -%}
-    {%- if inproceeding.editor %}, edited by {{ inproceeding.editor }}{% endif -%}
-    {%- if inproceeding.pages %}, pages {{ inproceeding.pages }}{% endif -%}
-    {%- if inproceeding.address %}, address {{ inproceeding.address }}{% endif -%}
-    {%- if inproceeding.organization %}, organization {{ inproceeding.organization }}{% endif -%}
-    {%- if inproceeding.publisher %}, published by {{ inproceeding.publisher }}{% endif -%}.
-  </p>
-{% endfor %}
 {% endblock %}
-      
-
