@@ -38,7 +38,7 @@ txt = '''@book{book1,
 
 
 txt2 = '''@article{article3,
-    author = {Jack Back},
+    author = {Back, Jack},
     title = {Chocko Iland},
     year = {2017},
     journal = {New Journal},
@@ -83,7 +83,7 @@ class TestStatisticsService(unittest.TestCase):
 
     def test_exports_bibtex_article(self):
 
-        article = Article("3","Jack Back","Chocko Iland","New Journal","2017", "2", "23","14")
+        article = Article("3",["Jack Back"],"Chocko Iland","New Journal","2017", "2", "23","14")
 
         bibtex = Bibtex()
         bibtex.create_article_bibtex([article])
