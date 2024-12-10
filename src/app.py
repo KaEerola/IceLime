@@ -590,8 +590,8 @@ def update_post_book_reference(book_id):
 
     idx = 0
     while f"author_firstname_{idx}" in request.form:
-        firstname = request.form.get(f"author_firstname_{idx}").strip()
-        lastname = request.form.get(f"author_lastname_{idx}").strip()
+        firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"author_lastname_{idx}", "").strip()
         if firstname and lastname:
             authors.append(f"{firstname} {lastname}")
         idx += 1
@@ -599,11 +599,8 @@ def update_post_book_reference(book_id):
     reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
 
     try:
-        print(reference)
         validate_update(reference)
-        print("first test")
         update_book(book_id, reference)
-        print("second test")
         flash('Reference updated successfully', "")
         return redirect("/view_references")
     except:
