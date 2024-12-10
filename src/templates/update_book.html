@@ -6,103 +6,105 @@ Update Reference
 
 {% block body %}
 
-<h2>Edit Book Reference</h2>
+<div class="input-form">
+    <h2>Edit Book Reference</h2>
 
-<form action="/update_book/{{ book_id }}" method="POST">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" value="{{ title }}" placeholder="required">
-    <br><br>
-    
-    <label for="author">Author(s):</label>
-    <input type="hidden" name="author_count" value="{{ author_count }}">
-    {% for idx in range(author_count) %}
-        <div class="author-row">
-            <p>
-            <label>First name(s):</label>
-            <input type="text" name="author_firstname_{{ idx }}"
-                    value="{{ authors[idx].rsplit(' ', 1)[0] if idx < authors|length else '' }}"
-                    placeholder="required">
-            <label>Last name:</label>
-            <input type="text" name="author_lastname_{{ idx }}"
-                    value="{{ authors[idx].rsplit(' ', 1)[1] if idx < authors|length else '' }}"
-                    placeholder="required">
+    <form action="/update_book/{{ book_id }}" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ title }}" placeholder="required">
+        <br><br>
 
-            {% if idx == author_count - 1 %}
-                <button type="submit" name="action" value="add_author">+</button>
-            {% endif %}
-            {% if idx == author_count - 1 and idx != 0 %}
-                <button type="submit" name="action" value="remove_author">-</button>
-            {% endif %}
-            </p>
-        </div>
-    {% endfor %}
-    
-    <label for="year">Year:</label>
-    <input type="text" id="year" name="year" value="{{ year }}" placeholder="required">
-    <br><br>
-    
-    <label for="publisher">Publisher:</label>
-    <input type="text" id="publisher" name="publisher" value="{{ publisher }}" placeholder="required">
-    <br><br>
-    
-    <label for="editor">Editor (optional):</label>
-    <input type="text" id="editor" name="editor" value="{{ editor }}">
-    <br><br>
-
-    <label for="editor">Editor(s):</label>
-    <input type="hidden" name="editor_count" value="{{ editor_count }}">
-    {% for idx in range(editor_count) %}
-        <div class="editor-row">
-            <p>
+        <label for="author">Author(s):</label>
+        <input type="hidden" name="author_count" value="{{ author_count }}">
+        {% for idx in range(author_count) %}
+            <div class="author-row">
+                <p>
                 <label>First name(s):</label>
-                <input type="text" name="editor_firstname_{{ idx }}"
-                    value="{{ editors[idx].rsplit(' ', 1)[0] if idx < editors|length else '' }}"
-                    placeholder="optional">
-
+                <input type="text" name="author_firstname_{{ idx }}"
+                        value="{{ authors[idx].rsplit(' ', 1)[0] if idx < authors|length else '' }}"
+                        placeholder="required (if no editors)">
                 <label>Last name:</label>
-                <input type="text" name="editor_lastname_{{ idx }}"
-                    value="{{ editors[idx].rsplit(' ', 1)[1] if idx < editors|length else '' }}"
-                    placeholder="optional">
+                <input type="text" name="author_lastname_{{ idx }}"
+                        value="{{ authors[idx].rsplit(' ', 1)[1] if idx < authors|length else '' }}"
+                        placeholder="required (if no editors)">
 
-                {% if idx == editor_count - 1 %}
-                    <button type="submit" name="action" value="add_editor">+</button>
+                {% if idx == author_count - 1 %}
+                    <button type="submit" name="action" value="add_author">+</button>
                 {% endif %}
-                {% if idx == editor_count - 1 and idx != 0 %}
-                    <button type="submit" name="action" value="remove_editor">-</button>
+                {% if idx == author_count - 1 and idx != 0 %}
+                    <button type="submit" name="action" value="remove_author">-</button>
                 {% endif %}
-            </p>
-        </div>
-    {% endfor %}
-
-    
-    <label for="volume">Volume (optional):</label>
-    <input type="number" id="volume" name="volume" value="{{ volume }}">
-    <br><br>
-    
-    <label for="number">Number (optional):</label>
-    <input type="number" id="number" name="number" value="{{ number }}">
-    <br><br>
-    
-    <label for="pages">Pages (optional):</label>
-    <input type="text" id="pages" name="pages" value="{{ pages }}">
-    <br><br>
-    
-    <label for="month">Month (optional):</label>
-    <select name="month">
-    {% for month in months %}
-        <option value="{{month}}" {% if month == imported_month %}selected{% endif %}>{{month}}</option>
+                </p>
+            </div>
         {% endfor %}
-    </select>
-    <br><br>
-    
-    <label for="note">Note (optional):</label>
-    <textarea id="note" name="note">{{ note }}</textarea>
-    <br><br>
 
-    <p>
-    <button type="submit" name="action" value="update book">
-      Update Book
-    </button>
-    </p>
-</form>
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" value="{{ year }}" placeholder="required">
+        <br><br>
+
+        <label for="publisher">Publisher:</label>
+        <input type="text" id="publisher" name="publisher" value="{{ publisher }}" placeholder="required">
+        <br><br>
+
+        <label for="editor">Editor (optional):</label>
+        <input type="text" id="editor" name="editor" value="{{ editor }}">
+        <br><br>
+
+        <label for="editor">Editor(s):</label>
+        <input type="hidden" name="editor_count" value="{{ editor_count }}">
+        {% for idx in range(editor_count) %}
+            <div class="editor-row">
+                <p>
+                    <label>First name(s):</label>
+                    <input type="text" name="editor_firstname_{{ idx }}"
+                        value="{{ editors[idx].rsplit(' ', 1)[0] if idx < editors|length else '' }}"
+                        placeholder="optional">
+
+                    <label>Last name:</label>
+                    <input type="text" name="editor_lastname_{{ idx }}"
+                        value="{{ editors[idx].rsplit(' ', 1)[1] if idx < editors|length else '' }}"
+                        placeholder="optional">
+
+                    {% if idx == editor_count - 1 %}
+                        <button type="submit" name="action" value="add_editor">+</button>
+                    {% endif %}
+                    {% if idx == editor_count - 1 and idx != 0 %}
+                        <button type="submit" name="action" value="remove_editor">-</button>
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+
+
+        <label for="volume">Volume (optional):</label>
+        <input type="number" id="volume" name="volume" value="{{ volume }}">
+        <br><br>
+
+        <label for="number">Number (optional):</label>
+        <input type="number" id="number" name="number" value="{{ number }}">
+        <br><br>
+
+        <label for="pages">Pages (optional):</label>
+        <input type="text" id="pages" name="pages" value="{{ pages }}">
+        <br><br>
+
+        <label for="month">Month (optional):</label>
+        <select name="month">
+        {% for month in months %}
+            <option value="{{month}}" {% if month == imported_month %}selected{% endif %}>{{month}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="note">Note (optional):</label>
+        <textarea id="note" name="note">{{ note }}</textarea>
+        <br><br>
+
+        <p>
+        <button type="submit" name="action" value="update book">
+        Update Book
+        </button>
+        </p>
+    </form>
+</div>
 {% endblock %}

@@ -256,6 +256,7 @@ a {
 
 /* Kenttien labelit */
 .input-form label {
+  color: #333333;
   font-weight: normal;
   text-align: left; /* Tasataan vasemmalle */
   display: block; /* Varmistetaan, että label vie oman rivinsä */
