@@ -66,9 +66,9 @@ txt3 = '''@inproceedings{inproceedings4,
 class TestStatisticsService(unittest.TestCase):
     def test_exports_bibtex_book(self):
         
-        kirja = Book("1",["first last"],"123","123","123",["first3 last3"],"123","123","123","123","123")
+        kirja = Book("1",["first last"],"123","123","123",["first3 last3"],"123","123","123","123","123","book1")
 
-        kirja2 = Book("2",["first2 last2"],"123","123","123",["first4 last4"],"123","123","123","123","123")
+        kirja2 = Book("2",["first2 last2"],"123","123","123",["first4 last4"],"123","123","123","123","123","book2")
 
         bibtex = Bibtex()
         bibtex.create_book_bibtex([kirja])

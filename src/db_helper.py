@@ -98,7 +98,8 @@ def setup_db():
     "number" integer DEFAULT NULL,
     "pages" TEXT DEFAULT NULL,
     "month" TEXT DEFAULT NULL,
-    "note" TEXT DEFAULT NULL
+    "note" TEXT DEFAULT NULL,
+    "key" TEXT
       )
     """
   )

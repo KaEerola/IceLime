@@ -9,6 +9,7 @@ from repositories.inproceeding_repository import remove_inproceeding, update_inp
 from repositories.inproceeding_repository import  get_inproceeding_by_id
 from config import app, test_env
 from util import validate_book, validate_article, validate_inproceeding, validate_update
+from util import validate_key
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
 from export import Bibtex
 
@@ -93,6 +94,7 @@ def add_post_book():
                                pages=request.form.get("pages", ""),
                                imported_month=request.form.get("month", ""),
                                note=request.form.get("note", ""),
+                               key=request.form["key"],
                                months=months,
                                author_count=author_count,
                                editor_count=editor_count)
@@ -120,11 +122,13 @@ def add_post_book():
     pages = request.form.get("pages") or None
     month = request.form.get("month") or None
     note = request.form.get("note") or None
+    key = request.form["key"]
 
-    reference = [authors, tit, pub, year, editors, vol, num, pages, month, note]
+    reference = [authors, tit, pub, year, editors, vol, num, pages, month, note, key]
 
     try:
         validate_book(reference)
+        validate_key(key)
         add_user_book(reference)
         flash('Reference added succesfully', "")
         return redirect("/")

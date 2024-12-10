@@ -1,3 +1,5 @@
+from repositories.book_repository import get_book_keys
+
 class UserInputError(Exception):
     pass
 
@@ -14,6 +16,9 @@ def validate_book(content):
     for i in range(1, 4):
         if content[i] == "":
             raise UserInputError("You cannot have empty fields")
+
+    if not content[-1]:
+        raise UserInputError("You must choose a key for the reference")
 
 def validate_article(content):
     if int(content[3]) > 2024:
@@ -48,3 +53,10 @@ def validate_update(reference):
     for i in range(1, 4):
         if reference[i] == "":
             raise UserInputError("You cannot have empty fields")
+
+def validate_key(ref_key):
+    book_keys = get_book_keys()
+
+    for key in book_keys:
+        if ref_key == key[0]:
+            raise UserInputError("You have already used this key")

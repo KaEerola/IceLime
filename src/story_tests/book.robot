@@ -12,6 +12,7 @@ Succesfully Add A Book Reference
     Write Title  Seitsemän Veljestä
     Write Year  1870
     Write Publisher  Otava
+    Write Key  Kivi
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
 
@@ -57,6 +58,7 @@ Removing Of Book
     Write Title  Seitsemän Veljestä
     Write Year  1870
     Write Publisher  Otava
+    Write Key  Kivi
     Press Submit
     Go To Remove Reference
     Press Remove
@@ -88,6 +90,10 @@ Write Year
 Write Publisher
     [Arguments]  ${publisher}
     Input Text  publisher  ${publisher}
+
+Write Key
+    [Arguments]  ${key}
+    Input Text  key  ${key}
 
 Submit Should Fail With Message
     [Arguments]  ${message}

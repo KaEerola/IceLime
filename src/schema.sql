@@ -28,6 +28,7 @@ CREATE TABLE "books" (
   "pages" TEXT,
   "month" TEXT,
   "note" TEXT,
+  "key" TEXT
 
 );
 

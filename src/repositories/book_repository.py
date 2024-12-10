@@ -18,7 +18,7 @@ def get_books():
         text("SELECT * FROM books")) 
     result = result.fetchall()
     return [Book(book[0], book[1], book[2], book[3], book[4], book[5], book[6],
-                book[7], book[8], book[9], book[10]) for book in result]
+                book[7], book[8], book[9], book[10], book[11]) for book in result]
 
 def add_user_book(book):
 
@@ -32,16 +32,17 @@ def add_user_book(book):
     pages = book[7]
     month = book[8]
     note = book[9]
+    key = book[10]
 
     sql = text('''INSERT INTO books (author, title, year, publisher,
-                editor, volume, number, pages, month, note) VALUES (:author,
+                editor, volume, number, pages, month, note, key) VALUES (:author,
                 :title, :year, :publisher, :editor,
-                :volume, :number, :pages, :month, :note)''')
+                :volume, :number, :pages, :month, :note, :key)''')
 
     db.session.execute(sql ,{"author": authors, "title": title,"year": year,
                             "publisher": publisher, "editor": editors, "volume": volume,
                             "number": number, "pages": pages,
-                            "month": month, "note": note })
+                            "month": month, "note": note, "key": key })
 
     db.session.commit()
 
@@ -80,3 +81,12 @@ def get_book_by_id(ref_id):
     if book:
         return Book(*book)
     return None
+
+def get_book_keys():
+    sql = text("""SELECT key FROM books""")
+
+    result = db.session.execute(sql)
+
+    keys = result.fetchall()
+
+    return keys

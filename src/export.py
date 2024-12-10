@@ -10,7 +10,7 @@ class Bibtex():
 
             for book in books_list:
 
-                file.write(f'''@book{{book{book.id}''')
+                file.write(f'''@book{{{book.key}''')
 
                 authors = book.author
                 formatted_authors = []

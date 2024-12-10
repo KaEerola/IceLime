@@ -25,7 +25,8 @@ class TestRemoveBook(unittest.TestCase):
                 number TEXT,
                 pages INTEGER,
                 month TEXT,
-                note TEXT
+                note TEXT,
+                key TEXT
             )
         '''))
         db.session.commit()
@@ -42,7 +43,7 @@ class TestRemoveBook(unittest.TestCase):
     def test_remove_book(self):
         book_data = [
             "John", "Doe", "Test Book", "Test Publisher", 2024, "Test Editor",
-            "1st", "1", 100, "January", "Test Note"
+            "1st", "1", 100, "January", "Test Note", "book key"
         ]
         add_user_book(book_data)
 
