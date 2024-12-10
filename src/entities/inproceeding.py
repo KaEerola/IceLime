@@ -2,7 +2,7 @@ class Inproceeding:
     def __init__(self, id, author, title, booktitle, year, # pylint: disable=redefined-builtin
                 editor="", volume="", number="",
                 series="", pages="", address="",
-                month="", organization="", publisher=""):
+                month="", organization="", publisher="", key=""):
         self.id = id
         self.author = author
         self.title = title
@@ -17,6 +17,7 @@ class Inproceeding:
         self.month = month
         self.organization = organization
         self.publisher = publisher
+        self.key = key
 
     def __str__(self): # pylint: disable=invalid-str-returned
         return None

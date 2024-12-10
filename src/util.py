@@ -1,5 +1,6 @@
 from repositories.book_repository import get_book_keys
 from repositories.article_repository import get_article_keys
+from repositories.inproceeding_repository import get_inproceeding_keys
 
 class UserInputError(Exception):
     pass
@@ -58,7 +59,7 @@ def validate_key(ref_key):
 
     book_keys = get_book_keys()
     article_keys = get_article_keys()
-
-    for key in book_keys + article_keys:
+    inproceeding_keys = get_inproceeding_keys()
+    for key in book_keys + article_keys + inproceeding_keys:
         if ref_key == key[0]:
             raise UserInputError("You have already used this key")

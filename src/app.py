@@ -292,6 +292,7 @@ def add_post_inproceeding():
                                month="",
                                organization="",
                                publisher="",
+                               key="",
                                months=months)
 
     aut_firstname = request.form["author_firstname"]
@@ -308,6 +309,7 @@ def add_post_inproceeding():
     month = request.form.get("month") or None
     org = request.form.get("organization") or None
     publisher = request.form.get("publisher") or None
+    key = request.form["key"]
 
     reference = [aut_firstname,
                  aut_lastname,
@@ -315,10 +317,11 @@ def add_post_inproceeding():
                  edt, vol, num,
                  series, pages,
                  address, month,
-                 org, publisher]
+                 org, publisher, key]
 
     try:
         validate_inproceeding(reference)
+        validate_key(key)
         add_user_inproceeding(reference)
         flash('Reference added succesfully', "")
         return redirect("/")

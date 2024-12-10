@@ -1,10 +1,11 @@
+import unittest
 from entities.book import Book
 from entities.article import Article
 from entities.inproceeding import Inproceeding
 from export import Bibtex
-import unittest
 
-# Tests check that reference types are printed correctly into files. Ih they are printed like txt variabalse then they pass.
+# Tests check that reference types are printed correctly into files.
+#  Ih they are printed like txt variabalse then they pass.
 
 txt = '''@book{book1,
     author = {last, first},
@@ -98,7 +99,8 @@ class TestStatisticsService(unittest.TestCase):
         self.assertEqual(txt2 == text,True)
 
     def test_exports_bibtex_inproceedings(self):
-        inpro = Inproceeding("4","Jack Back","Chocko Iland","New Journal","2017", "2", "23","14")
+        inpro = Inproceeding("4","Jack Back","Chocko Iland","New Journal","2017", "2", "23","14",
+                             "","","","","","","inproceedings4")
 
         bibtex = Bibtex()
         bibtex.create_inproceedings_bibtex([inpro])

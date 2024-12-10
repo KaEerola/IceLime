@@ -69,7 +69,8 @@ def setup_db():
           "address" TEXT,
           "month" TEXT,
           "organization" TEXT,
-          "publisher" TEXT
+          "publisher" TEXT,
+          "key" TEXT
       )
       """
     )

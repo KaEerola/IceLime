@@ -13,7 +13,7 @@ CREATE TABLE "inproceedings" (
   "month" TEXT,
   "organization" TEXT,
   "publisher" TEXT,
-
+  "key" TEXT
 );
 
 CREATE TABLE "books" (

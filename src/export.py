@@ -111,7 +111,7 @@ class Bibtex():
 
             for inpro in inproceeding_list:
 
-                file.write(f'''@inproceedings{{inproceedings{inpro.id}''')
+                file.write(f'''@inproceedings{{{inpro.key}''')
                 file.write(f''',\n    author = {{{inpro.author}}}''')
                 file.write(f''',\n    title = {{{inpro.title}}}''')
                 file.write(f''',\n    year = {{{inpro.year}}}''')

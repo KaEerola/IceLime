@@ -11,6 +11,7 @@ Succesfully Add An Inproceeding Reference With Required Info
     Write Author Lastname  Meikäläinen
     Write Booktitle  Konferenssi 1
     Write Year  2005
+    Write Key  konferenssi
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
 
@@ -66,6 +67,10 @@ Write Booktitle
 Write Year
     [Arguments]  ${year}
     Input Text  year  ${year}
+
+Write Key
+    [Arguments]  ${key}
+    Input Text  key  ${key}
 
 Add Inproceeding Page Should Be Open
     Title Should Be  Create a reference

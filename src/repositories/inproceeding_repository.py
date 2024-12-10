@@ -22,7 +22,7 @@ def get_inproceedings():
                          inproceeding[3], inproceeding[4], inproceeding[5], inproceeding[6], 
                          inproceeding[7], inproceeding[8], inproceeding[9],
                          inproceeding[10], inproceeding[11], inproceeding[12],
-                         inproceeding[13]) for inproceeding in result]
+                         inproceeding[13], inproceeding[14]) for inproceeding in result]
 
 def add_user_inproceeding(inproceeding):
     author = f"{inproceeding[0]} {inproceeding[1]}"
@@ -38,17 +38,19 @@ def add_user_inproceeding(inproceeding):
     month = inproceeding[11]
     organization = inproceeding[12]
     publisher = inproceeding[13]
+    key = inproceeding[14]
 
     sql = text('''INSERT INTO inproceedings (author, title, booktitle, year, editor,
-                volume, number, series, pages, address, month, organization, publisher)
-               VALUES (:author, :title, :booktitle, :year, :editor,
-                :volume, :number, :series, :pages, :address, :month, :organization, :publisher)''')
+                volume, number, series, pages, address, month, organization, publisher, key)
+                VALUES (:author, :title, :booktitle, :year, :editor,
+                :volume, :number, :series, :pages, :address, :month, :organization,
+                :publisher, :key)''')
 
     db.session.execute(sql, {"author":author, "title":title, "booktitle":booktitle,
                             "year":year, "editor":editor, "volume":volume, "number":number,
                             "series":series, "pages":pages, "address":address,
                             "month":month, "organization":organization,
-                            "publisher":publisher})
+                            "publisher":publisher, "key":key})
 
     db.session.commit()
 
@@ -93,3 +95,12 @@ def get_inproceeding_by_id(ref_id):
     if inproceeding:
         return Inproceeding(*inproceeding)
     return None
+
+def get_inproceeding_keys():
+    sql = text("""SELECT key FROM inproceedings""")
+
+    result = db.session.execute(sql)
+
+    keys = result.fetchall()
+
+    return keys
