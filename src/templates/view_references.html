@@ -15,17 +15,27 @@ View references
 {% if books %}<h3>Books:</h3>{% endif %}
 {% for book in books %}
   <p>
-    {% if book.author|length == 1 %}
-      {{ book.author[0] }}.
-    {% else %}
-      {% set last_author = book.author[-1] %}
-      {% set other_authors = book.author[:-1] %}
-      {{ other_authors | join(', ') }} and {{ last_author }}.
-    {% endif %}
+    {%- if book.author -%}
+      {% if book.author|length == 1 %}
+        {{ book.author[0] }}.
+      {% else %}
+        {% set last_author = book.author[-1] %}
+        {% set other_authors = book.author[:-1] %}
+        {{ other_authors | join(', ') }} and {{ last_author }}.
+      {% endif %}
+    {%- endif -%}
     <i>{{ book.title }}</i>.
     {{ book.publisher }},
     {% if book.month %}{{ book.month }}{% endif %} {{ book.year }}
-    {%- if book.editor %}, edited by {{ book.editor }}{% endif -%}
+    {%- if book.editor -%}
+        {%- if book.editor|length == 1 -%}
+            , edited by {{ book.editor[0] }}
+        {%- else -%}
+            {%- set last_editor = book.editor[-1] -%}
+            {%- set other_editors = book.editor[:-1] -%}
+            , edited by {{ other_editors | join(', ') }} and {{ last_editor }}
+        {%- endif -%}
+    {%- endif -%}
     {%- if book.volume %}, volume {{ book.volume }}{% endif -%}
     {%- if book.number %}, number {{ book.number }}{% endif -%}
     {%- if book.pages %}, pages {{ book.pages }}{% endif -%}

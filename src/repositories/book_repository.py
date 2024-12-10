@@ -26,7 +26,7 @@ def add_user_book(book):
     title = book[1]
     publisher = book[2]
     year = book[3]
-    editor = book[4]
+    editors = book[4]
     volume = book[5]
     number = book[6]
     pages = book[7]
@@ -38,8 +38,8 @@ def add_user_book(book):
                 :title, :year, :publisher, :editor,
                 :volume, :number, :pages, :month, :note)''')
 
-    db.session.execute(sql ,{"author":authors, "title":title,"year": year,
-                            "publisher": publisher, "editor": editor, "volume": volume,
+    db.session.execute(sql ,{"author": authors, "title": title,"year": year,
+                            "publisher": publisher, "editor": editors, "volume": volume,
                             "number": number, "pages": pages,
                             "month": month, "note": note })
 

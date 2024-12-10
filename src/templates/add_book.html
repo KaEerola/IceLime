@@ -48,8 +48,29 @@ Create a reference
   <input type="text" name="publisher" value="{{publisher}}" placeholder="required">
   <p>Year:</p>
   <input type="number" name="year" value="{{year}}" placeholder="required">
-  <p>Editor:</p>
-  <input type="text" name="editor" value="{{editor}}" placeholder="optional">
+  <p>Editor(s):</p>
+  <input type="hidden" name="editor_count" value="{{ editor_count }}">
+  {% for idx in range(editor_count) %}
+    <div class="editor-row">
+      <p>
+      <label>First name(s):</label>
+      <input type="text" name="editor_firstname_{{ idx }}"
+             value="{{ editors[idx].rsplit(' ', 1)[0] if idx < editors|length else '' }}"
+             placeholder="optional">
+      <label>Last name:</label>
+      <input type="text" name="editor_lastname_{{ idx }}"
+             value="{{ editors[idx].rsplit(' ', 1)[1] if idx < editors|length else '' }}"
+             placeholder="optional">
+
+      {% if idx == editor_count - 1 %}
+        <button type="submit" name="action" value="add_editor">+</button>
+      {% endif %}
+      {% if idx == editor_count - 1 and idx != 0 %}
+        <button type="submit" name="action" value="remove_editor">-</button>
+      {% endif %}
+      </p>
+    </div>
+  {% endfor %}
   <p>Volume:</p>
   <input type="text" name="volume" value="{{volume}}" placeholder="optional">
   <p>Number:</p>

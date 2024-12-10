@@ -8,7 +8,8 @@ def validate_book(content):
         raise UserInputError("You can't input a negative year")
 
     if not content[0]:
-        raise UserInputError("You must provide at least one author")
+        if not content[4]:
+            raise UserInputError("You must provide at least one author or editor")
 
     for i in range(1, 4):
         if content[i] == "":

@@ -29,7 +29,18 @@ class Bibtex():
                 file.write(f''',\n    publisher = {{{book.publisher}}}''')
 
                 if book.editor:
-                    file.write(f''',\n    editor = {{{book.editor}}}''')
+                    editors = book.editor
+                    formatted_editors = []
+
+                    for editor in editors:
+
+                        firstname = editor.rsplit(" ", 1)[0]
+                        lastname = editor.rsplit(" ", 1)[1]
+                        formatted_editors.append(f"{lastname}, {firstname}")
+
+                    editors_str = " and ".join(formatted_editors)
+
+                    file.write(f''',\n    editor = {{{editors_str}}}''')
 
                 if book.volume:
                     file.write(f''',\n    volume = {{{book.volume}}}''')

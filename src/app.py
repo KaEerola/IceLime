@@ -27,11 +27,14 @@ def add_reference():
 def add_book():
     authors = []
     author_count = 1
+    editors = []
+    editor_count = 1
+
     months = ["", "January", "February", "March", "April",
               "May", "June", "July", "August", "September",
               "October", "November", "December"]
 
-    return render_template("add_book.html", authors=authors, author_count=author_count, months=months)
+    return render_template("add_book.html", authors=authors, author_count=author_count, editors=editors, editor_count=editor_count, months=months)
 
 @app.route("/add_book", methods=["POST"])
 def add_post_book():
@@ -40,18 +43,30 @@ def add_post_book():
                   "October", "November", "December"]
     authors = []
     author_count = int(request.form.get("author_count", 1))
+    editors = []
+    editor_count = int(request.form.get("editor_count", 1))
 
     if request.form["action"] == "reset":
         return render_template("add_book.html",
                                months=months,
-                               author_count=1)
+                               author_count=1,
+                               editor_count=1)
 
-    elif request.form["action"] == "add_author":
-        author_count += 1
-        authors = []
+    elif request.form["action"] in ["add_author", "add_editor", "remove_author", "remove_editor"]:
+
+        if request.form["action"] == "add_author":
+            author_count += 1
+
+        elif request.form["action"] == "add_editor":
+            editor_count += 1
+
+        elif request.form["action"] == "remove_author":
+            author_count -= 1
+
+        elif request.form["action"] == "remove_editor":
+            editor_count -= 1
 
         idx = 0
-
         while idx < author_count:
             firstname = request.form.get(f"author_firstname_{idx}", "").strip()
             lastname = request.form.get(f"author_lastname_{idx}", "").strip()
@@ -59,31 +74,12 @@ def add_post_book():
                 authors.append(f"{firstname} {lastname}")
             idx += 1
 
-        return render_template("add_book.html",
-                               authors=authors,
-                               title=request.form["title"],
-                               publisher=request.form["publisher"],
-                               year=request.form["year"],
-                               editor=request.form.get("editor", ""),
-                               volume=request.form.get("volume", ""),
-                               number=request.form.get("number", ""),
-                               pages=request.form.get("pages", ""),
-                               imported_month=request.form.get("month", ""),
-                               note=request.form.get("note", ""),
-                               months=months,
-                               author_count=author_count)
-
-    elif request.form["action"] == "remove_author":
-        author_count -= 1
-        authors = []
-
         idx = 0
-
-        while idx < author_count:
-            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
-            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+        while idx < editor_count:
+            firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
             if firstname or lastname:
-                authors.append(f"{firstname} {lastname}")
+                editors.append(f"{firstname} {lastname}")
             idx += 1
 
         return render_template("add_book.html",
@@ -91,14 +87,15 @@ def add_post_book():
                                title=request.form["title"],
                                publisher=request.form["publisher"],
                                year=request.form["year"],
-                               editor=request.form.get("editor", ""),
+                               editors=editors,
                                volume=request.form.get("volume", ""),
                                number=request.form.get("number", ""),
                                pages=request.form.get("pages", ""),
                                imported_month=request.form.get("month", ""),
                                note=request.form.get("note", ""),
                                months=months,
-                               author_count=author_count)
+                               author_count=author_count,
+                               editor_count=editor_count)
 
     idx = 0
     while f"author_firstname_{idx}" in request.form:
@@ -107,18 +104,24 @@ def add_post_book():
         if firstname and lastname:
             authors.append(f"{firstname} {lastname}")
         idx += 1
-    print(authors)
+    idx = 0
+    while f"editor_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+        if firstname and lastname:
+            editors.append(f"{firstname} {lastname}")
+        idx += 1
+
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
-    edt = request.form.get("editor") or None
     vol = request.form.get("volume") or None
     num = request.form.get("number") or None
     pages = request.form.get("pages") or None
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
+    reference = [authors, tit, pub, year, editors, vol, num, pages, month, note]
 
     try:
         validate_book(reference)
@@ -333,9 +336,9 @@ def fetch_book_doi():
 
         authors = data[0]
         author_count = len(authors) if authors else 1
-
         editors = data[5]
-
+        editor_count = len(editors) if editors else 1
+        print(editors)
         return render_template("add_book.html",
                                authors = authors,
                                title = data[1],
@@ -343,8 +346,9 @@ def fetch_book_doi():
                                year = data[3],
                                months = months,
                                imported_month = data[4],
-                               editor = editors[0] if editors else "", #currently only first editor from list
-                               author_count = author_count)
+                               editors = editors,
+                               author_count = author_count,
+                               editor_count = editor_count)
 
     except:
         flash("Failed to fetch the data, please check the DOI.", "")
@@ -521,6 +525,8 @@ def update_book_reference(book_id):
     reference = get_book_by_id(book_id)
     authors = reference.author
     author_count = len(authors) if authors else 1
+    editors = reference.editor
+    editor_count = len(editors) if editors else 1
 
     months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -530,7 +536,7 @@ def update_book_reference(book_id):
                            title=reference.title,
                            publisher=reference.publisher,
                            year=reference.year,
-                           editor=reference.editor if reference.editor else "",
+                           editors=editors if editors else "",
                            volume=reference.volume if reference.volume else "",
                            number=reference.number,
                            pages=reference.pages if reference.pages else "",
@@ -538,6 +544,7 @@ def update_book_reference(book_id):
                            note=reference.note if reference.note else "",
                            months=months,
                            author_count=author_count,
+                           editor_count=editor_count,
                            reference=reference)
 
 @app.route("/update_book/<int:book_id>", methods=["POST"])
@@ -545,12 +552,12 @@ def update_post_book_reference(book_id):
     months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     authors = []
     author_count = int(request.form.get("author_count", 1))
-    redirect_template = f"update_book.html"
+    editors = []
+    editor_count = int(request.form.get("editor_count", 1))
 
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
-    edt = request.form.get("editor") or None
     vol = request.form.get("volume") or None
     num = request.form.get("number") or None
     pages = request.form.get("pages") or None
@@ -558,12 +565,22 @@ def update_post_book_reference(book_id):
     note = request.form.get("note") or None
 
 
-    if request.form["action"] == "add_author":
-        author_count += 1
-        authors = []
+    if request.form["action"] in ["add_author", "add_editor", "remove_author", "remove_editor"]:
+
+
+        if request.form["action"] == "add_author":
+            author_count += 1
+
+        elif request.form["action"] == "add_editor":
+            editor_count += 1
+
+        elif request.form["action"] == "remove_author":
+            author_count -= 1
+
+        elif request.form["action"] == "remove_editor":
+            editor_count -= 1
 
         idx = 0
-
         while idx < author_count:
             firstname = request.form.get(f"author_firstname_{idx}", "").strip()
             lastname = request.form.get(f"author_lastname_{idx}", "").strip()
@@ -571,7 +588,15 @@ def update_post_book_reference(book_id):
                 authors.append(f"{firstname} {lastname}")
             idx += 1
 
-        reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
+        idx = 0
+        while idx < editor_count:
+            firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                editors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        reference = [authors, tit, pub, year, editors, vol, num, pages, month, note]
 
         return render_template("update_book.html",
                                book_id=book_id,
@@ -579,14 +604,15 @@ def update_post_book_reference(book_id):
                                title=tit,
                                publisher=pub,
                                year=year,
-                               editor=edt if edt else "",
+                               editors=editors if editors else "",
                                volume=vol if vol else "",
                                number=num if num else "",
                                pages=pages if pages else "",
                                imported_month=month if month else "",
                                note=note if note else "",
                                months=months,
-                               author_count=author_count)
+                               author_count=author_count,
+                               editor_count=editor_count)
 
     idx = 0
     while f"author_firstname_{idx}" in request.form:
@@ -596,7 +622,15 @@ def update_post_book_reference(book_id):
             authors.append(f"{firstname} {lastname}")
         idx += 1
 
-    reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
+    idx = 0
+    while f"editor_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+        if firstname and lastname:
+            editors.append(f"{firstname} {lastname}")
+        idx += 1
+
+    reference = [authors, tit, pub, year, editors, vol, num, pages, month, note]
 
     try:
         validate_update(reference)
