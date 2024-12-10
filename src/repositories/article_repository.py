@@ -20,7 +20,7 @@ def get_articles():
 
     return [Article(article[0], article[1], article[2], article[3],
     article[4], article[5], article[6], article[7],
-    article[8]) for article in result]
+    article[8], article[9], article[10]) for article in result]
 
 def add_user_article(article):
     authors = article[0]
@@ -32,16 +32,17 @@ def add_user_article(article):
     pages = article[6]
     month = article[7]
     note = article[8]
+    key = article[9]
 
 
     sql = text('''INSERT INTO articles (author, title, journal, year,
-               volume, number, pages, month, note)
+               volume, number, pages, month, note, key)
                VALUES (:author, :title, :journal, :year, :volume,
-               :number, :pages, :month, :note)''')
+               :number, :pages, :month, :note, :key)''')
 
     db.session.execute(sql, {"author":authors, "title":title, "journal":journal,
                               "year":year, "volume":volume, "number":number,
-                              "pages":pages, "month":month, "note":note})
+                              "pages":pages, "month":month, "note":note, "key":key})
 
 
     db.session.commit()
@@ -78,3 +79,12 @@ def get_article_by_id(ref_id):
 
     if article:
         return Article(*article)
+
+def get_article_keys():
+    sql = text("""SELECT key FROM articles""")
+
+    result = db.session.execute(sql)
+
+    keys = result.fetchall()
+
+    return keys

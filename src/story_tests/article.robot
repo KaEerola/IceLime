@@ -12,6 +12,7 @@ Succesfully Add An Article Reference With Required Info
     Write Title  Vakava tutkimus
     Write Journal  Tiede-lehti
     Write Year  2024
+    Write Key  Tutkimus
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
 
@@ -64,6 +65,10 @@ Write Journal
 Write Year
     [Arguments]  ${year}
     Input Text  year  ${year}
+
+Write Key
+    [Arguments]  ${key}
+    Input Text  key  ${key}
 
 Add Article Page Should Be Open
     Title Should Be  Create a reference

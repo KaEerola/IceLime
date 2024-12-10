@@ -195,6 +195,7 @@ def add_post_article():
                                pages=request.form.get("pages", ""),
                                imported_month=request.form.get("month", ""),
                                note=request.form.get("note", ""),
+                               key=request.form["key"],
                                months=months,
                                author_count=author_count)
 
@@ -221,6 +222,7 @@ def add_post_article():
                                pages=request.form.get("pages", ""),
                                imported_month=request.form.get("month", ""),
                                note=request.form.get("note", ""),
+                               key=request.form["key"],
                                months=months,
                                author_count=author_count)
 
@@ -241,13 +243,15 @@ def add_post_article():
     pages = request.form.get("pages") or None
     month = request.form.get("month") or None
     note = request.form.get("note") or None
+    key = request.form["key"]
 
-    reference = [authors, tit, 
-                jou, year, vol, num, pages, month, note]
+    reference = [authors, tit, jou, year, vol,
+                 num, pages, month, note, key]
     print(reference)
 
     try:
         validate_article(reference)
+        validate_key(key)
         add_user_article(reference)
         flash('Reference added succesfully', "")
         return redirect("/")

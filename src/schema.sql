@@ -43,6 +43,6 @@ CREATE TABLE "articles" (
   "pages" TEXT,
   "month" TEXT, 
   "note" TEXT,
-  
+  "key" TEXT
 );
 

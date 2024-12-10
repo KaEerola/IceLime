@@ -67,7 +67,7 @@ class Bibtex():
 
             for article in article_list:
 
-                file.write(f'''@article{{article{article.id}''')
+                file.write(f'''@article{{{article.key}''')
 
 
                 authors = article.author

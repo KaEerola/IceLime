@@ -129,7 +129,7 @@ def setup_db():
       "pages" TEXT,
       "month" TEXT,
       "note" TEXT,
-      "reference_id" INTEGER
+      "key" TEXT
       )
       """
     )
