@@ -20,10 +20,10 @@
         <a href="/remove_reference"><button>Remove a reference</button></a>
         <a href="/"><button>Back Home</button></a>
       </div>
-  
-    <div class="flash">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-    </div>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
     <div class="m_body">
 
       {% if messages %}
