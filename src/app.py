@@ -519,18 +519,34 @@ def edit_post_reference():
 def update_book_reference(book_id):
 
     reference = get_book_by_id(book_id)
+    authors = reference.author
+    author_count = len(authors) if authors else 1
+
     months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-    for field, value in reference.__dict__.items():
-        if not value:
-            reference.__dict__[field] = ""
-
-    return render_template("update_book.html", reference=reference, months=months)
+    return render_template("update_book.html",
+                           book_id=reference.id,
+                           authors=authors,
+                           title=reference.title,
+                           publisher=reference.publisher,
+                           year=reference.year,
+                           editor=reference.editor if reference.editor else "",
+                           volume=reference.volume if reference.volume else "",
+                           number=reference.number,
+                           pages=reference.pages if reference.pages else "",
+                           imported_month=reference.month,
+                           note=reference.note if reference.note else "",
+                           months=months,
+                           author_count=author_count,
+                           reference=reference)
 
 @app.route("/update_book/<int:book_id>", methods=["POST"])
 def update_post_book_reference(book_id):
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    authors = []
+    author_count = int(request.form.get("author_count", 1))
+    redirect_template = f"update_book.html"
 
-    aut = request.form["author"]
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
@@ -541,11 +557,53 @@ def update_post_book_reference(book_id):
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut, tit, pub, year, edt, vol, num, pages, month, note]
+
+    if request.form["action"] == "add_author":
+        author_count += 1
+        authors = []
+
+        idx = 0
+
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
+
+        return render_template("update_book.html",
+                               book_id=book_id,
+                               authors=authors,
+                               title=tit,
+                               publisher=pub,
+                               year=year,
+                               editor=edt if edt else "",
+                               volume=vol if vol else "",
+                               number=num if num else "",
+                               pages=pages if pages else "",
+                               imported_month=month if month else "",
+                               note=note if note else "",
+                               months=months,
+                               author_count=author_count)
+
+    idx = 0
+    while f"author_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"author_firstname_{idx}").strip()
+        lastname = request.form.get(f"author_lastname_{idx}").strip()
+        if firstname and lastname:
+            authors.append(f"{firstname} {lastname}")
+        idx += 1
+
+    reference = [authors, tit, pub, year, edt, vol, num, pages, month, note]
 
     try:
+        print(reference)
         validate_update(reference)
+        print("first test")
         update_book(book_id, reference)
+        print("second test")
         flash('Reference updated successfully', "")
         return redirect("/view_references")
     except:
