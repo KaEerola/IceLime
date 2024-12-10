@@ -79,7 +79,7 @@ h1 {
 }
 
 .body h2 {
-  text-align: center;
+  margin: auto;
 }
 
 
@@ -162,7 +162,7 @@ a {
 }
 
 .container {
-  width: 80%;
+  width: 60vw;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
@@ -174,11 +174,17 @@ a {
   background-color: #fff; /* Taustaväri */
   border-radius: 8px; /* Pyöristetyt kulmat */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
 .container h2, .container h3, .container p {
   color: #333333;
 }
+
+.container h2 {
+  margin: auto;
+}
+
 
 .container h3 {
   margin-top: 20px;

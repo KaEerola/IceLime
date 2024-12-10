@@ -5,58 +5,65 @@
 Create a reference
 {% endblock %}
 
+{% block header %}
+<header>
+    <a href="/"><button>Back Home</button></a>
+    <a href="/add_reference"><button>Add Another Reference Type</button></a>
+    <a href="/view_references"><button>View References</button></a>
+</header>
+{% endblock %}
+
 {% block body %}
-
-<h2>Add a reference to an inproceeding</h2>
-
-<form action="/fetch_inproceeding_doi" method="post">
-  <p>Import from DOI (if available):</p>
-  <input type="text" name="doi">
-  <button type="submit" name="import">
-    Import
-  </button>
-</form>
-
-<form action="/add_inproceeding" method="post">
-  <p>Author:</p>
-  Firstname: <input type="text" name="author_firstname" value="{{author_firstname}}" placeholder="required">
-  Lastname: <input type="text" name="author_lastname" value="{{author_lastname}}" placeholder="required">
-  <p>Title:</p>
-  <input type="text" name="title" value="{{title}}" placeholder="required">
-  <p>Booktitle:</p>
-  <input type="text" name="booktitle" value="{{booktitle}}" placeholder="required">
-  <p>Year:</p>
-  <input type="number" name="year" value="{{year}}" placeholder="required">
-  <p>Editor:</p>
-  <input type="text" name="editor" value="{{editor}}" placeholder="optional">
-  <p>Volume:</p>
-  <input type="number" name="volume" value="{{volume}}" placeholder="optional">
-  <p>Number:</p>
-  <input type="number" name="number" placeholder="optional">
-  <p>Series:</p>
-  <input type="text" name="series" placeholder="optional">
-  <p>Pages:</p>
-  <input type="number" name="pages" placeholder="optional">
-  <p>Address:</p>
-  <input type="text" name="address" placeholder="optional">
-  <p>Month:</p>
-  <select name="month">
-    {% for month in months %}
-    <option value={{month}}>{{month}}</option>
-    {% endfor %}
-  </select>
-  <p>Organization:</p>
-  <input type="text" name="organization" placeholder="optional">
-  <p>Publisher:</p>
-  <input type="text" name="publisher" value="{{publisher}}" placeholder="optional">
-  <p>
-    <button type="submit" name="action" value="add">
-      Add Reference
+<div class="input-form">
+  <h2>Add a reference to an inproceeding</h2>
+  <form action="/fetch_inproceeding_doi" method="post">
+    <p>Import from DOI (if available):</p>
+    <input type="text" name="doi">
+    <button type="submit" name="import">
+      Import
     </button>
-    <button type="submit" name="action" value="reset">
-      Reset
-    </button>
-  </p>
-</form>
+  </form>
 
+  <form action="/add_inproceeding" method="post">
+    <p>Author:</p>
+    Firstname: <input type="text" name="author_firstname" value="{{author_firstname}}" placeholder="required">
+    Lastname: <input type="text" name="author_lastname" value="{{author_lastname}}" placeholder="required">
+    <p>Title:</p>
+    <input type="text" name="title" value="{{title}}" placeholder="required">
+    <p>Booktitle:</p>
+    <input type="text" name="booktitle" value="{{booktitle}}" placeholder="required">
+    <p>Year:</p>
+    <input type="number" name="year" value="{{year}}" placeholder="required">
+    <p>Editor:</p>
+    <input type="text" name="editor" value="{{editor}}" placeholder="optional">
+    <p>Volume:</p>
+    <input type="number" name="volume" value="{{volume}}" placeholder="optional">
+    <p>Number:</p>
+    <input type="number" name="number" placeholder="optional">
+    <p>Series:</p>
+    <input type="text" name="series" placeholder="optional">
+    <p>Pages:</p>
+    <input type="number" name="pages" placeholder="optional">
+    <p>Address:</p>
+    <input type="text" name="address" placeholder="optional">
+    <p>Month:</p>
+    <select name="month">
+      {% for month in months %}
+      <option value={{month}}>{{month}}</option>
+      {% endfor %}
+    </select>
+    <p>Organization:</p>
+    <input type="text" name="organization" placeholder="optional">
+    <p>Publisher:</p>
+    <input type="text" name="publisher" value="{{publisher}}" placeholder="optional">
+    <p>
+      <button type="submit" name="action" value="add">
+        Add Reference
+      </button>
+      <button type="submit" name="action" value="reset">
+        Reset
+      </button>
+    </p>
+  </form>
+</div>
 {% endblock %}
