@@ -76,7 +76,7 @@ Submit Should Fail With Message
     Page Should Contain  ${message}
 
 Press Edit Inproceeding
-    Click Button  Edit inproceeding
+    Click Button  Edit Inproceeding
 
 Write Page
     [Arguments]  ${pages}

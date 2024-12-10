@@ -77,7 +77,7 @@ Press Remove
     Click Button    Remove Article
 
 Press Edit Article
-    Click Button  Edit article
+    Click Button  Edit Article
 
 Write Page
     [Arguments]  ${pages}
