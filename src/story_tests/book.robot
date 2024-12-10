@@ -20,20 +20,20 @@ Unsuccesfully Adding A Book Reference
     Press Submit
     Submit Should Fail With Message  You must put valid Author, Title, Publisher And Year
 
-#Successfully Edit Book Reference
-#    Go To Add Book
-#    Write Author Firstname  Aleksis
-#    Write Author Lastname  Kivi
-#    Write Title  Seitsemän Veljestä
-#    Write Year  1870
-#    Write Publisher  Otava
-#    Press Submit
-#    Go To Edit Reference
-#    Press Edit Book
-#    Update Reference Page Should Be Open
-#    Write Page  75
-#    Press Update Book
-#    Submit Should Succeed With Message  Reference updated successfully
+Successfully Edit Book Reference
+    Go To Add Book
+    Write Author Firstname  Aleksis
+    Write Author Lastname  Kivi
+    Write Title  Seitsemän Veljestä
+    Write Year  1870
+    Write Publisher  Otava
+    Press Submit
+    Go To Edit Reference
+    Press Edit Book
+    Update Reference Page Should Be Open
+    Write Page  75
+    Press Update Book
+    Submit Should Succeed With Message  Reference updated successfully
 
 Unsuccessfully Edit Book Reference
     Go To Add Book
@@ -108,5 +108,5 @@ Press Update Book
     Click Button  Update Book
 
 Leave Author Empty
-    Clear Element Text  name:author
+    Clear Element Text  name:author_firstname_0
     
