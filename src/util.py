@@ -21,7 +21,7 @@ def validate_article(content):
     if int(content[3]) < 0:
         raise UserInputError("You can't input a negative year")
 
-    for i in range(3):
+    for i in range(4):
         if content[i] == "":
             raise UserInputError("You cannot have empty fields")
 
