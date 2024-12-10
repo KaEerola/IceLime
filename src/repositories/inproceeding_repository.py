@@ -1,6 +1,6 @@
 from sqlalchemy import text
 from config import db
-from entities.inproceeding import Inproceeding # pylint: disable=unused-import,import-error
+from entities.inproceeding import Inproceeding
 
 def remove_inproceeding(id):
 
