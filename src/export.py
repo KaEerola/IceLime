@@ -68,7 +68,20 @@ class Bibtex():
             for article in article_list:
 
                 file.write(f'''@article{{article{article.id}''')
-                file.write(f''',\n    author = {{{article.author}}}''')
+
+
+                authors = article.author
+                formatted_authors = []
+
+                for author in authors:
+
+                    firstname = author.rsplit(" ", 1)[0]
+                    lastname = author.rsplit(" ", 1)[1]
+                    formatted_authors.append(f"{lastname}, {firstname}")
+
+                authors_str = " and ".join(formatted_authors)
+
+                file.write(f''',\n    author = {{{authors_str}}}''')
                 file.write(f''',\n    title = {{{article.title}}}''')
                 file.write(f''',\n    year = {{{article.year}}}''')
                 file.write(f''',\n    journal = {{{article.journal}}}''')

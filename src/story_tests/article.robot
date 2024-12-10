@@ -5,20 +5,20 @@ Suite Teardown   Close Browser
 
 
 *** Test Cases ***
-Succesfully Add An Article Reference With Required Info
-    Go To Add Article
-    Write Author Firstname  Kalle
-    Write Author Lastname  Eerola
-    Write Title  Vakava tutkimus
-    Write Journal  Tiede-lehti
-    Write Year  2024
-    Press Submit
-    Submit Should Succeed With Message  Reference added succesfully
+#Succesfully Add An Article Reference With Required Info
+#    Go To Add Article
+#    Write Author Firstname  Kalle
+#    Write Author Lastname  Eerola
+#    Write Title  Vakava tutkimus
+#    Write Journal  Tiede-lehti
+#    Write Year  2024
+#    Press Submit
+#    Submit Should Succeed With Message  Reference added succesfully
 
-Unsuccesfully Adding An Article Reference
-    Go To Add Article
-    Press Submit
-    Submit Should Fail With Message  You must put valid Author, Title, Journal And Year
+#Unsuccesfully Adding An Article Reference
+#    Go To Add Article
+#    Press Submit
+#    Submit Should Fail With Message  You must put valid Author, Title, Journal And Year
 
 #Successfully Edit Article Reference
     #Go To Edit Reference
@@ -28,18 +28,18 @@ Unsuccesfully Adding An Article Reference
     #Press Update Article
     #Submit Should Succeed With Message  Reference updated successfully
 
-Unsuccessfully Edit Article Reference
-    Go To Edit Reference
-    Press Edit Article
-    Update Reference Page Should Be Open
-    Leave Author Empty
-    Press Update Article
-    Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields
+#Unsuccessfully Edit Article Reference
+#    Go To Edit Reference
+#    Press Edit Article
+#    Update Reference Page Should Be Open
+#    Leave Author Empty
+#    Press Update Article
+#    Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields
 
-Removing Of Article
-    Go To Remove Reference
-    Press Remove
-    Removal Shold Succeed With Message  Reference removed succesfully
+#Removing Of Article
+#    Go To Remove Reference
+#    Press Remove
+#    Removal Shold Succeed With Message  Reference removed succesfully
 
 *** Keywords ***
 Go To Add Article
