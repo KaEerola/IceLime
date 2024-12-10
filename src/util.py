@@ -7,11 +7,11 @@ def validate_book(content):
     if int(content[3]) < 0:
         raise UserInputError("You can't input a negative year")
 
-    if not reference[0]:
+    if not content[0]:
         raise UserInputError("You must provide at least one author")
 
     for i in range(1, 4):
-        if reference[i] == "":
+        if content[i] == "":
             raise UserInputError("You cannot have empty fields")
 
 def validate_article(content):

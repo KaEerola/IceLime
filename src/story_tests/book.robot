@@ -95,10 +95,10 @@ Submit Should Fail With Message
     Page Should Contain  ${message}
 
 Press Remove
-    Click Button  remove_book
+    Click Button  Remove Book
 
 Press Edit Book
-    Click Button  edit_book
+    Click Button  Edit Book
 
 Write Page
     [Arguments]  ${pages}

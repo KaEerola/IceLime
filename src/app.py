@@ -107,7 +107,7 @@ def add_post_book():
         if firstname and lastname:
             authors.append(f"{firstname} {lastname}")
         idx += 1
-
+    print(authors)
     tit = request.form["title"]
     pub = request.form["publisher"]
     year = request.form["year"]
