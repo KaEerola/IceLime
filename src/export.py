@@ -12,18 +12,20 @@ class Bibtex():
 
                 file.write(f'''@book{{{book.key}''')
 
-                authors = book.author
-                formatted_authors = []
+                if book.author:
+                    authors = book.author
+                    formatted_authors = []
 
-                for author in authors:
+                    for author in authors:
 
-                    firstname = author.rsplit(" ", 1)[0]
-                    lastname = author.rsplit(" ", 1)[1]
-                    formatted_authors.append(f"{lastname}, {firstname}")
+                        firstname = author.rsplit(" ", 1)[0]
+                        lastname = author.rsplit(" ", 1)[1]
+                        formatted_authors.append(f"{lastname}, {firstname}")
 
-                authors_str = " and ".join(formatted_authors)
+                    authors_str = " and ".join(formatted_authors)
 
-                file.write(f''',\n    author = {{{authors_str}}}''')
+                    file.write(f''',\n    author = {{{authors_str}}}''')
+
                 file.write(f''',\n    title = {{{book.title}}}''')
                 file.write(f''',\n    year = {{{book.year}}}''')
                 file.write(f''',\n    publisher = {{{book.publisher}}}''')

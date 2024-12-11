@@ -92,4 +92,4 @@ Press Update Article
     Click Button  Update reference
 
 Leave Author Empty
-    Clear Element Text  name:author
+    Clear Element Text  name:author_firstname_0
