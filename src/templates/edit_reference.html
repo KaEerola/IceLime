@@ -4,63 +4,72 @@
 View references
 {% endblock %}
 
+{% block header %}
+<header>
+    <a href="/"><button>Back Home</button></a>
+    <a href="/add_reference"><button>Add Reference</button></a>
+    <a href="/edit_reference"><button>Edit Another Reference</button></a>
+    <a href="/remove_reference"><button>Remove Reference</button></a>
+</header>
+{% endblock %}
+
 {% block body %}
+<div class="input-form">
+  <h2>Choose Reference to Edit:</h2>
 
-<h2>Reference edit view</h2>
+  {% if not books and not articles and not inproceedings %}
+    <p><i>Nothing yet!</i></p>
+  {% endif %}
 
-{% if not books and not articles and not inproceedings %}
-  <p><i>Nothing yet!</i></p>
-{% endif %}
+  {% if books %}<h3>Books:</h3>
 
-{% if books %}<h3>Books:</h3>
+  <form action="/edit_reference" method="POST">
+      <label for="book-select">Choose a book to edit:</label>
+      <select name="book_id" id="book-select">
+          {% for book in books %}
+            <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
+          {% endfor %}
+          </select>
+      <br><br>
+      <Button type="submit" name="edit_book" value="Edit">
+        Edit Book
+      </Button>
+  </form>
+  {% endif %}
 
-<form action="/edit_reference" method="POST">
-    <label for="book-select">Choose a book to edit:</label>
-    <select name="book_id" id="book-select">
-        {% for book in books %}
-          <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
-        {% endfor %}
-        </select>
-    <br><br>
-    <Button type="submit" name="edit_book" value="Edit">
-      Edit Book
-    </Button>
-</form>
-{% endif %} 
+  {% if articles %}<h3>Articles:</h3>
 
-{% if articles %}<h3>Articles:</h3>
+  <form action="/edit_reference" method="POST">
+      <label for="article-select">Choose an article to edit:</label>
+      <select name="article_id" id="article-select">
+          {% for article in articles %}
+            <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
+          {% endfor %}
+          </select>
+      <br><br>
+      <Button type="submit" name="edit_article" value="Edit">
+        Edit Article
+      </Button>
+  </form>
+  {% endif %}
 
-<form action="/edit_reference" method="POST">
-    <label for="article-select">Choose an article to edit:</label>
-    <select name="article_id" id="article-select">
-        {% for article in articles %}
-          <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
-        {% endfor %}
-        </select>
-    <br><br>
-    <Button type="submit" name="edit_article" value="Edit">
-      Edit Article
-    </Button>
-</form>
-{% endif %}
+  {% if inproceedings %}<h3>Inproceedings:</h3>
 
-{% if inproceedings %}<h3>Inproceedings:</h3>
-
-<form action="/edit_reference", method="POST">
-    <label for="inproceeding-select">Choose an inproceeding to edit:</label>
-    <select name="inproceeding_id" id="inproceeding-select">
-        {% for inproceeding in inproceedings %}
-          <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
-        {% endfor %}
-        </select>
-    <br><br>
-    <Button type="submit" name="edit_inproceeding" value="Edit">
-      Edit Inproceeding
-    </Button>
-</form>
-{% endif %}
-<br>
-
+  <form action="/edit_reference", method="POST">
+      <label for="inproceeding-select">Choose an inproceeding to edit:</label>
+      <select name="inproceeding_id" id="inproceeding-select">
+          {% for inproceeding in inproceedings %}
+            <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
+          {% endfor %}
+          </select>
+      <br><br>
+      <Button type="submit" name="edit_inproceeding" value="Edit">
+        Edit Inproceeding
+      </Button>
+  </form>
+  {% endif %}
+  <br>
+</div>
 
 {% endblock %}
       

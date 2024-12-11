@@ -654,21 +654,34 @@ def update_post_book_reference(book_id):
 
 @app.route("/update_article/<int:article_id>", methods=["GET"])
 def update_article_reference(article_id):
-
     reference = get_article_by_id(article_id)
+    authors = reference.author
+    author_count = len(authors) if authors else 1
+
     months = ["", "January", "February", "March", "April", "May", "June",
               "July", "August", "September", "October", "November", "December"]
 
-    for field, value in reference.__dict__.items():
-        if not value:
-            reference.__dict__[field] = ""
-
-    return render_template("update_article.html", reference=reference, months=months)
+    return render_template("update_article.html",
+                           article_id=reference.id,
+                           authors=authors,
+                           title=reference.title,
+                           journal=reference.journal,
+                           year=reference.year,
+                           volume=reference.volume if reference.volume else "",
+                           number=reference.number if reference.number else "",
+                           pages=reference.pages if reference.pages else "",
+                           imported_month=reference.month,
+                           note=reference.note if reference.note else "",
+                           months=months,
+                           author_count=author_count,
+                           reference=reference)
 
 @app.route("/update_article/<int:article_id>", methods=["POST"])
 def update_post_article_reference(article_id):
+    months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    authors = []
+    author_count = int(request.form.get("author_count", 1))
 
-    aut = request.form["author"]
     tit = request.form["title"]
     jou = request.form["journal"]
     year = request.form["year"]
@@ -678,7 +691,49 @@ def update_post_article_reference(article_id):
     month = request.form.get("month") or None
     note = request.form.get("note") or None
 
-    reference = [aut, tit, jou, year, vol, num, pages, month, note]
+
+    if request.form["action"] in ["add_author", "remove_author"]:
+
+
+        if request.form["action"] == "add_author":
+            author_count += 1
+
+        elif request.form["action"] == "remove_author":
+            author_count -= 1
+
+        idx = 0
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        reference = [authors, tit, jou, year, vol, num, pages, month, note]
+
+        return render_template("update_article.html",
+                               article_id=article_id,
+                               authors=authors,
+                               title=tit,
+                               journal=jou,
+                               year=year,
+                               volume=vol if vol else "",
+                               number=num if num else "",
+                               pages=pages if pages else "",
+                               imported_month=month if month else "",
+                               note=note if note else "",
+                               months=months,
+                               author_count=author_count)
+
+    idx = 0
+    while f"author_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+        if firstname and lastname:
+            authors.append(f"{firstname} {lastname}")
+        idx += 1
+
+    reference = [authors, tit, jou, year, vol, num, pages, month, note]
 
     try:
         validate_update(reference)

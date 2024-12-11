@@ -68,6 +68,7 @@ def update_article(article_id, article_updated):
     db.session.execute(sql ,{"id" :id, "author":author, "title":title, "journal":journal, 
                              "year": year, "volume": volume, "number": number, 
                              "pages": pages, "month": month, "note": note})
+
     db.session.commit()
 
 def get_article_by_id(ref_id):

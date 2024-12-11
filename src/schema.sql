@@ -34,7 +34,7 @@ CREATE TABLE "books" (
 
 CREATE TABLE "articles" (
   "id" SERIAL PRIMARY KEY,
-  "author" TEXT,
+  "author" TEXT[],
   "title" TEXT,
   "journal" text,
   "year" integer,
