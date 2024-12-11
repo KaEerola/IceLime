@@ -19,7 +19,7 @@ View references
   <h2>Currently included references:</h2>
 
   {% if not books and not articles and not inproceedings %}
-    <p><i>Nothing yet!</i></p>
+    <div class="p-message"><i>Nothing yet!</i></div>
   {% endif %}
 
   {% if books %}<h3>Books:</h3>{% endif %}
@@ -90,7 +90,9 @@ View references
       {%- if inproceeding.publisher %}, published by {{ inproceeding.publisher }}{% endif -%}.
     </p>
   {% endfor %}
-  <a href="/export"><button>Export to File</button></a>
+  {% if books or articles or inproceedings %}
+    <a href="/export"><button>Export to File</button></a>
+  {% endif %}
 </div>
 
 {% endblock %}
