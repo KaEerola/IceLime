@@ -131,7 +131,7 @@ def add_post_book():
         validate_key(key)
         add_user_book(reference)
         flash('Reference added succesfully', "")
-        return redirect("/")
+        return redirect("/add_book")
     except:
         flash('You must put valid Author, Title, Publisher And Year',"")
         return redirect("/add_book")
@@ -254,7 +254,7 @@ def add_post_article():
         validate_key(key)
         add_user_article(reference)
         flash('Reference added succesfully', "")
-        return redirect("/")
+        return redirect("/add_article")
     except:
         flash('You must put valid Author, Title, Journal And Year',"")
         return redirect("/add_article")
@@ -324,7 +324,7 @@ def add_post_inproceeding():
         validate_key(key)
         add_user_inproceeding(reference)
         flash('Reference added succesfully', "")
-        return redirect("/")
+        return redirect("/add_inproceeding")
     except:
         flash('You must put valid Author, Title, Booktitle And Year',"")
         return redirect("/add_inproceeding")
