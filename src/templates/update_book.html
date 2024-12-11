@@ -7,10 +7,9 @@ Update Reference
 {% block header %}
 <header>
     <a href="/"><button>Back Home</button></a>
-    <a href="/add_reference"><button>Add Reference</button></a>
-    <a href="/edit_reference"><button>Edit Reference</button></a>
-    <a href="/remove_reference"><button>Remove Reference</button></a>
-    <a href="/export"><button>Export to File</button></a>
+    <a href="/add_reference"><button>Add New Reference</button></a>
+    <a href="/edit_reference"><button>Edit References</button></a>
+    <a href="/remove_reference"><button>Remove References</button></a>
 </header>
 {% endblock %}
 
@@ -54,10 +53,6 @@ Update Reference
 
         <label for="publisher">Publisher:</label>
         <input type="text" id="publisher" name="publisher" value="{{ publisher }}" placeholder="required">
-        <br><br>
-
-        <label for="editor">Editor (optional):</label>
-        <input type="text" id="editor" name="editor" value="{{ editor }}">
         <br><br>
 
         <label for="editor">Editor(s):</label>
