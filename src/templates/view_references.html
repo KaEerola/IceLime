@@ -48,7 +48,7 @@ View references
       {%- endif -%}
       {%- if book.volume %}, volume {{ book.volume }}{% endif -%}
       {%- if book.number %}, number {{ book.number }}{% endif -%}
-      {%- if book.pages %}, pages {{ book.pages }}{% endif -%}
+      {%- if book.pages %}, page(s) {{ book.pages }}{% endif -%}
       {%- if book.note %}, note: {{ book.note }}{% endif -%}.
     </p>
   {% endfor %}
@@ -68,7 +68,7 @@ View references
       {% if article.month %}{{ article.month }}{% endif %} {{ article.year }}
       {%- if article.volume %}, volume {{ article.volume }}{% endif -%}
       {%- if article.number %}, number {{ article.number }}{% endif -%}
-      {%- if article.pages %}, pages {{ article.pages }}{% endif -%}
+      {%- if article.pages %}, page(s) {{ article.pages }}{% endif -%}
       {%- if article.note %}, note: {{ article.note }}{% endif -%}.
     </p>
   {% endfor %}
@@ -84,7 +84,7 @@ View references
       {%- if inproceeding.number %}, number {{ inproceeding.number }}{% endif -%}
       {%- if inproceeding.series %}, series {{ inproceeding.series }}{% endif -%}
       {%- if inproceeding.editor %}, edited by {{ inproceeding.editor }}{% endif -%}
-      {%- if inproceeding.pages %}, pages {{ inproceeding.pages }}{% endif -%}
+      {%- if inproceeding.pages %}, page(s) {{ inproceeding.pages }}{% endif -%}
       {%- if inproceeding.address %}, address {{ inproceeding.address }}{% endif -%}
       {%- if inproceeding.organization %}, organization {{ inproceeding.organization }}{% endif -%}
       {%- if inproceeding.publisher %}, published by {{ inproceeding.publisher }}{% endif -%}.
