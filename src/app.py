@@ -677,6 +677,7 @@ def update_article_reference(article_id):
                            imported_month=reference.month,
                            note=reference.note if reference.note else "",
                            months=months,
+                           key=reference.key,
                            author_count=author_count,
                            reference=reference)
 
@@ -694,7 +695,7 @@ def update_post_article_reference(article_id):
     pages = request.form.get("pages") or None
     month = request.form.get("month") or None
     note = request.form.get("note") or None
-
+    key=request.form["key"]
 
     if request.form["action"] in ["add_author", "remove_author"]:
 
@@ -713,7 +714,7 @@ def update_post_article_reference(article_id):
                 authors.append(f"{firstname} {lastname}")
             idx += 1
 
-        reference = [authors, tit, jou, year, vol, num, pages, month, note]
+        reference = [authors, tit, jou, year, vol, num, pages, month, note, key]
 
         return render_template("update_article.html",
                                article_id=article_id,
@@ -727,6 +728,7 @@ def update_post_article_reference(article_id):
                                imported_month=month if month else "",
                                note=note if note else "",
                                months=months,
+                               key=key,
                                author_count=author_count)
 
     idx = 0
@@ -737,10 +739,11 @@ def update_post_article_reference(article_id):
             authors.append(f"{firstname} {lastname}")
         idx += 1
 
-    reference = [authors, tit, jou, year, vol, num, pages, month, note]
+    reference = [authors, tit, jou, year, vol, num, pages, month, note, key]
 
     try:
         validate_update(reference)
+        validate_update_key(get_article_by_id(article_id).key, key)
         update_article(article_id, reference)
         flash('Reference updated successfully', "")
         return redirect("/view_references")

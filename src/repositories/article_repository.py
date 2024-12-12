@@ -59,22 +59,23 @@ def update_article(article_id, article_updated):
     pages = article_updated[6]
     month = article_updated[7]
     note = article_updated[8]
+    key = article_updated[9]
 
     sql = text("""UPDATE articles SET author = :author, title = :title, journal = :journal,
                year = :year, volume = :volume, number = :number, pages = :pages, 
-               month = :month, note = :note
+               month = :month, note = :note, key = :key
                 WHERE id = :id""")
 
-    db.session.execute(sql ,{"id" :id, "author":author, "title":title, "journal":journal, 
+    db.session.execute(sql ,{"id" :id, "author":author, "title":title, "journal":journal,
                              "year": year, "volume": volume, "number": number, 
-                             "pages": pages, "month": month, "note": note})
+                             "pages": pages, "month": month, "note": note, "key": key})
 
     db.session.commit()
 
 def get_article_by_id(ref_id):
     result = db.session.execute(
         text("""SELECT id, author, title, journal, year, volume, number,
-            pages, month, note FROM articles WHERE id = :ref_id"""), {"ref_id": ref_id})
+            pages, month, note, key FROM articles WHERE id = :ref_id"""), {"ref_id": ref_id})
 
     article = result.fetchone()
 
