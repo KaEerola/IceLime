@@ -63,3 +63,15 @@ def validate_key(ref_key):
     for key in book_keys + article_keys + inproceeding_keys:
         if ref_key == key[0]:
             raise UserInputError("You have already used this key")
+
+def validate_update_key(current_key, new_key):
+    if not new_key:
+        raise UserInputError("You must have a key for the reference")
+
+    if current_key != new_key:
+        book_keys = get_book_keys()
+        article_keys = get_article_keys()
+        inproceeding_keys = get_inproceeding_keys()
+        for key in book_keys + article_keys + inproceeding_keys:
+            if new_key == key[0]:
+                raise UserInputError("You have already used this key")

@@ -9,7 +9,7 @@ from repositories.inproceeding_repository import remove_inproceeding, update_inp
 from repositories.inproceeding_repository import  get_inproceeding_by_id
 from config import app, test_env
 from util import validate_book, validate_article, validate_inproceeding, validate_update
-from util import validate_key
+from util import validate_key, validate_update_key
 from scraper import get_book_data_by_doi, get_article_data_by_doi, get_inproceeding_data_by_doi
 from export import Bibtex
 
@@ -554,6 +554,7 @@ def update_book_reference(book_id):
                            imported_month=reference.month,
                            note=reference.note if reference.note else "",
                            months=months,
+                           key=reference.key,
                            author_count=author_count,
                            editor_count=editor_count,
                            reference=reference)
@@ -574,6 +575,7 @@ def update_post_book_reference(book_id):
     pages = request.form.get("pages") or None
     month = request.form.get("month") or None
     note = request.form.get("note") or None
+    key = request.form["key"]
 
 
     if request.form["action"] in ["add_author", "add_editor", "remove_author", "remove_editor"]:
@@ -607,7 +609,7 @@ def update_post_book_reference(book_id):
                 editors.append(f"{firstname} {lastname}")
             idx += 1
 
-        reference = [authors, tit, pub, year, editors, vol, num, pages, month, note]
+        reference = [authors, tit, pub, year, editors, vol, num, pages, month, note, key]
 
         return render_template("update_book.html",
                                book_id=book_id,
@@ -622,6 +624,7 @@ def update_post_book_reference(book_id):
                                imported_month=month if month else "",
                                note=note if note else "",
                                months=months,
+                               key = key,
                                author_count=author_count,
                                editor_count=editor_count)
 
@@ -641,10 +644,11 @@ def update_post_book_reference(book_id):
             editors.append(f"{firstname} {lastname}")
         idx += 1
 
-    reference = [authors, tit, pub, year, editors, vol, num, pages, month, note]
+    reference = [authors, tit, pub, year, editors, vol, num, pages, month, note, key]
 
     try:
         validate_update(reference)
+        validate_update_key(get_book_by_id(book_id).key, key)
         update_book(book_id, reference)
         flash('Reference updated successfully', "")
         return redirect("/view_references")

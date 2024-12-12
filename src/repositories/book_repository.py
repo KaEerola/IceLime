@@ -59,21 +59,22 @@ def update_book(book_id, book_updated):
     pages = book_updated[7]
     month = book_updated[8]
     note = book_updated[9]
+    key = book_updated[10]
 
     sql = text("""UPDATE books SET author = :author, title = :title, year = :year,
                 publisher = :publisher, editor = :editor, volume = :volume,
-                number = :number, pages = :pages, month = :month, note = :note
+                number = :number, pages = :pages, month = :month, note = :note, key = :key
                 WHERE id = :id""")
 
     db.session.execute(sql ,{"id" :id, "author":author, "title":title,"year": year,
                             "publisher": publisher, "editor": editor,"volume": volume,
-                            "number": number, "pages": pages, "month": month, "note": note})
+                            "number": number, "pages": pages, "month": month, "note": note, "key":key})
     db.session.commit()
 
 def get_book_by_id(ref_id):
     result = db.session.execute(
         text('''SELECT id, author, title, year, publisher, editor,
-             volume, number, pages, month, note FROM books WHERE id = :ref_id'''),
+             volume, number, pages, month, note, key FROM books WHERE id = :ref_id'''),
             {"ref_id": ref_id}
     )
     book = result.fetchone()
