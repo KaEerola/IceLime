@@ -70,23 +70,25 @@ def update_inproceeding(inproceeding_id, inproceeding_updated):
     month = inproceeding_updated[10]
     organization = inproceeding_updated[11]
     publisher = inproceeding_updated[12]
+    key = inproceeding_updated[13]
 
     sql = text("""UPDATE inproceedings SET author = :author, title = :title, booktitle = :booktitle,
                 year = :year, editor = :editor, volume = :volume, number = :number, series = :series,
-                pages = :pages, address = :address, month = :month, organization = :organization, publisher = :publisher
+                pages = :pages, address = :address, month = :month, organization = :organization, publisher = :publisher, key = :key
                 WHERE id = :id""")
 
     db.session.execute(sql ,{"id" :id, "author":author, "title": title, "booktitle": booktitle,
                              "year": year, "editor": editor, "volume": volume,  
                              "number": number, "series": series, "pages": pages, "address": address,
-                             "month": month, "organization": organization, "publisher": publisher})
+                             "month": month, "organization": organization, "publisher": publisher,
+                             "key": key})
 
     db.session.commit()
 
 def get_inproceeding_by_id(ref_id):
     result = db.session.execute(
         text('''SELECT id, author, title, booktitle, year, editor, volume, number, series,
-            pages, address, month, organization, publisher FROM inproceedings WHERE id = :ref_id
+            pages, address, month, organization, publisher, key FROM inproceedings WHERE id = :ref_id
              '''),
             {"ref_id": ref_id}
     )

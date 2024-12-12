@@ -779,11 +779,13 @@ def update_post_inproceeding_reference(inproceeding_id):
     month = request.form.get("month") or None
     org = request.form.get("organization") or None
     pub = request.form.get("publisher") or None
+    key = request.form["key"]
 
-    reference = [aut, tit, jou, year, edt, vol, num, ser, pages, adr, month, org, pub]
+    reference = [aut, tit, jou, year, edt, vol, num, ser, pages, adr, month, org, pub, key]
 
     try:
         validate_update(reference)
+        validate_update_key(get_inproceeding_by_id(inproceeding_id).key, key)
         update_inproceeding(inproceeding_id, reference)
         flash("Reference updated successfully", "")
         return redirect("/view_references")
