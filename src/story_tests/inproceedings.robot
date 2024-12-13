@@ -55,6 +55,25 @@ Removing Of Inproceeding
     Press Remove
     Removal Shold Succeed With Message  Reference removed succesfully
 
+Using A Key That Is Already In Use
+    Go To Add Inproceeding
+    Write Title  Vakava konferenssi
+    Write Author Firstname  Jesse
+    Write Author Lastname  Meikäläinen
+    Write Booktitle  Konferenssi 1
+    Write Year  2005
+    Write Key  konferenssi
+    Press Submit
+    Submit Should Succeed With Message  Reference added succesfully
+    Write Title  Hauska konferenssi
+    Write Author Firstname  Maija
+    Write Author Lastname  Meikäläinen
+    Write Booktitle  Konferenssi
+    Write Year  2020
+    Write Key  konferenssi
+    Press Submit
+    Submit Should Fail With Message  You have already used this key
+
 *** Keywords ***
 Go To Add Inproceeding
     Go To  ${INPROCEEDING_URL}
@@ -99,7 +118,6 @@ Add Inproceeding Page Should Be Open
 
 Submit Should Fail With Message
     [Arguments]  ${message}
-    Add Inproceeding Page Should Be Open
     Page Should Contain  ${message}
 
 Press Edit Inproceeding

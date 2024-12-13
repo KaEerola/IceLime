@@ -56,6 +56,25 @@ Removing Of Article
     Press Remove
     Removal Shold Succeed With Message  Reference removed succesfully
 
+Using A Key That Is Already In Use
+    Go To Add Article
+    Write Author Firstname  Kalle
+    Write Author Lastname  Eerola
+    Write Title  Vakava tutkimus
+    Write Journal  Tiede-lehti
+    Write Year  2024
+    Write Key  Tutkimus
+    Press Submit
+    Submit Should Succeed With Message  Reference added succesfully
+    Write Author Firstname  Maija
+    Write Author Lastname  Meikäläinen
+    Write Title  Hauska tutkimus
+    Write Journal  Hauska-lehti
+    Write Year  2024
+    Write Key  Tutkimus
+    Press Submit
+    Submit Should Fail With Message  You have already used this key
+
 *** Keywords ***
 Go To Add Article
     Go To  ${ARTICLE_URL}
@@ -97,7 +116,6 @@ Add Article Page Should Be Open
 
 Submit Should Fail With Message
     [Arguments]  ${message}
-    Add Article Page Should Be Open
     Page Should Contain  ${message}
 
 Press Remove

@@ -89,6 +89,25 @@ Removing Of Book
     Press Remove
     Removal Shold Succeed With Message  Reference removed succesfully
 
+Using A Key That Is Already In Use
+    Go To Add Book
+    Write Author Firstname  Aleksis
+    Write Author Lastname  Kivi
+    Write Title  Seitsemän Veljestä
+    Write Year  1870
+    Write Publisher  Otava
+    Write Key  Kivi
+    Press Submit
+    Submit Should Succeed With Message  Reference added succesfully
+    Write Author Firstname  Maija
+    Write Author Lastname  Meikäläinen
+    Write Title  Meikäläisen muistelmat
+    Write Year  2020
+    Write Publisher  Kustantaja
+    Write Key  Kivi
+    Press Submit
+    Submit Should Fail With Message  You have already used this key
+
 *** Keywords ***
 Go To Add Book
     Go To  ${BOOK_URL}
