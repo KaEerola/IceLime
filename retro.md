@@ -28,3 +28,4 @@ Glad:
 
 In the end, we were able to fix our Pylint errors and get everything to work the way we intended it to.
 We started to check and fix Pylint errors as they appeared, instead of fixing the errors right before pushing to GitHub.
+As the sprints went on, we improved on writing more descriptive commit messages.
