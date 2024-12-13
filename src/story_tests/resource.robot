@@ -45,6 +45,9 @@ Go To Edit Reference
 Press Add Reference
     Click Button  add_reference
 
+Press Add Author
+    Click Button  add_author
+
 Submit Should Succeed With Message
     [Arguments]  ${message}
     Page Should Contain  ${message}

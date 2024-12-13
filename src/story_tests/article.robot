@@ -16,6 +16,20 @@ Succesfully Add An Article Reference With Required Info
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
 
+Succesfully Add An Article Reference With Multiple Authors
+    Go To Add Article
+    Write Author Firstname  Kirke
+    Write Author Lastname   Ruusalo
+    Press Add Author
+    Write Second Author Firstname  Kalle   
+    Write Second Author Lastname   Eerola
+    Write Title    SeriousArticle
+    Write Journal    IceLime
+    Write Year    2009
+    Write Key    serious
+    Press Submit
+    Submit Should Succeed With Message  Reference added succesfully
+
 Unsuccesfully Adding An Article Reference
     Go To Add Article
     Press Submit
@@ -57,6 +71,14 @@ Write Author Firstname
 Write Author Lastname
     [Arguments]  ${author_lastname}
     Input Text  author_lastname_0  ${author_lastname}
+
+Write Second Author Firstname
+    [Arguments]  ${author_firstname}
+    Input Text  author_firstname_1  ${author_firstname}
+
+Write Second Author Lastname
+    [Arguments]  ${author_lastname}
+    Input Text  author_lastname_1  ${author_lastname}
     
 Write Journal
     [Arguments]  ${journal}

@@ -15,6 +15,20 @@ Succesfully Add An Inproceeding Reference With Required Info
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
 
+Succesfully Add An Inproceeding Reference With Multiple Authors
+    Go To Add Inproceeding
+    Write Author Firstname  Kirke
+    Write Author Lastname   Ruusalo
+    Press Add Author
+    Write Second Author Firstname  Kalle   
+    Write Second Author Lastname   Eerola
+    Write Title    IceLime
+    Write Booktitle    Serious Stuff
+    Write Year    2009
+    Write Key    stuff
+    Press Submit
+    Submit Should Succeed With Message  Reference added succesfully
+
 Unsuccesfully Adding An Article Reference
     Go To Add Inproceeding
     Press Submit
@@ -59,6 +73,14 @@ Write Author Firstname
 Write Author Lastname
     [Arguments]  ${author_lastname}
     Input Text  author_lastname_0  ${author_lastname}
+
+Write Second Author Firstname
+    [Arguments]  ${author_firstname}
+    Input Text  author_firstname_1  ${author_firstname}
+
+Write Second Author Lastname
+    [Arguments]  ${author_lastname}
+    Input Text  author_lastname_1  ${author_lastname}
 
 Write Booktitle
     [Arguments]  ${booktitle}
