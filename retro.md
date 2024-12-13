@@ -25,3 +25,6 @@ Glad:
 - Everyone was independent, but we communicated well
 - We completed all of our tasks
 - We were able to get difficult functionalities work
+
+In the end, we were able to fix our Pylint errors and get everything to work the way we intended it to.
+We started to check and fix Pylint errors as they appeared, instead of fixing the errors right before pushing to GitHub.
