@@ -62,7 +62,7 @@ Using A Key That Is Already In Use
     Write Author Lastname  Meikäläinen
     Write Booktitle  Konferenssi 1
     Write Year  2005
-    Write Key  konferenssi
+    Write Key  konferenssi2
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
     Write Title  Hauska konferenssi
@@ -70,7 +70,7 @@ Using A Key That Is Already In Use
     Write Author Lastname  Meikäläinen
     Write Booktitle  Konferenssi
     Write Year  2020
-    Write Key  konferenssi
+    Write Key  konferenssi2
     Press Submit
     Submit Should Fail With Message  You have already used this key
 

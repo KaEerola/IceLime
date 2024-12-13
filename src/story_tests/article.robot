@@ -63,7 +63,7 @@ Using A Key That Is Already In Use
     Write Title  Vakava tutkimus
     Write Journal  Tiede-lehti
     Write Year  2024
-    Write Key  Tutkimus
+    Write Key  tutkimus1
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
     Write Author Firstname  Maija
@@ -71,7 +71,7 @@ Using A Key That Is Already In Use
     Write Title  Hauska tutkimus
     Write Journal  Hauska-lehti
     Write Year  2024
-    Write Key  Tutkimus
+    Write Key  tutkimus1
     Press Submit
     Submit Should Fail With Message  You have already used this key
 

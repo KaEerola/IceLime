@@ -96,7 +96,7 @@ Using A Key That Is Already In Use
     Write Title  Seitsemän Veljestä
     Write Year  1870
     Write Publisher  Otava
-    Write Key  Kivi
+    Write Key  Kivi2
     Press Submit
     Submit Should Succeed With Message  Reference added succesfully
     Write Author Firstname  Maija
@@ -104,7 +104,7 @@ Using A Key That Is Already In Use
     Write Title  Meikäläisen muistelmat
     Write Year  2020
     Write Publisher  Kustantaja
-    Write Key  Kivi
+    Write Key  Kivi2
     Press Submit
     Submit Should Fail With Message  You have already used this key
 
