@@ -18,7 +18,7 @@ Succesfully Add An Inproceeding Reference With Required Info
 Unsuccesfully Adding An Article Reference
     Go To Add Inproceeding
     Press Submit
-    Submit Should Fail With Message  You must put valid Author, Title, Booktitle And Year
+    Submit Should Fail With Message  You cannot have empty required fields
 
 Successfully Edit Inproceeding Reference
     Go To Edit Reference
@@ -34,7 +34,7 @@ Unsuccessfully Edit Inproceeding Reference
     Update Reference Page Should Be Open
     Leave Title Empty
     Press Update Inproceeding
-    Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields 
+    Submit Should Succeed With Message  You cannot have empty required fields 
 
 Removing Of Inproceeding
     Go To Remove Reference

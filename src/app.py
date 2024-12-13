@@ -132,8 +132,8 @@ def add_post_book():
         add_user_book(reference)
         flash('Reference added succesfully', "")
         return redirect("/add_book")
-    except:
-        flash('You must put valid Author, Title, Publisher And Year',"")
+    except Exception as error:
+        flash(str(error),"")
         return redirect("/add_book")
 
 @app.route("/view_references")
@@ -255,8 +255,8 @@ def add_post_article():
         add_user_article(reference)
         flash('Reference added succesfully', "")
         return redirect("/add_article")
-    except:
-        flash('You must put valid Author, Title, Journal And Year',"")
+    except Exception as error:
+        flash(str(error),"")
         return redirect("/add_article")
 
 
@@ -376,8 +376,8 @@ def add_post_inproceeding():
         add_user_inproceeding(reference)
         flash('Reference added succesfully', "")
         return redirect("/add_inproceeding")
-    except:
-        flash('You must put valid Author, Title, Booktitle And Year',"")
+    except Exception as error:
+        flash(str(error),"")
         return redirect("/add_inproceeding")
 
 @app.route("/fetch_book_doi", methods=["POST"])
@@ -583,8 +583,6 @@ def edit_post_reference():
     if inproceeding_id:
         return redirect("/update_inproceeding/"+str(inproceeding_id))
 
-    flash("No reference selected", "")
-
 @app.route("/update_book/<int:book_id>", methods=["GET"])
 def update_book_reference(book_id):
 
@@ -707,8 +705,8 @@ def update_post_book_reference(book_id):
         update_book(book_id, reference)
         flash('Reference updated successfully', "")
         return redirect("/view_references")
-    except:
-        flash("Something went wrong, please check that you have filled the required fields", "")
+    except Exception as error:
+        flash(str(error), "")
         return redirect("/update_book/"+str(book_id))
 
 @app.route("/update_article/<int:article_id>", methods=["GET"])
@@ -802,8 +800,8 @@ def update_post_article_reference(article_id):
         update_article(article_id, reference)
         flash('Reference updated successfully', "")
         return redirect("/view_references")
-    except:
-        flash("Something went wrong, please check that you have filled the required fields", "")
+    except Exception as error:
+        flash(str(error), "")
         return redirect("/update_article/"+str(article_id))
 
 @app.route("/update_inproceeding/<int:inproceeding_id>", methods=["GET"])
@@ -944,8 +942,8 @@ def update_post_inproceeding_reference(inproceeding_id):
         update_inproceeding(inproceeding_id, reference)
         flash("Reference updated successfully", "")
         return redirect("/view_references")
-    except:
-        flash("Something went wrong, please check that you have filled the required fields", "")
+    except Exception as error:
+        flash(str(error), "")
         return redirect("/update_inproceeding/"+str(inproceeding_id))
 
 

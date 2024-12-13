@@ -19,7 +19,7 @@ Succesfully Add An Article Reference With Required Info
 Unsuccesfully Adding An Article Reference
     Go To Add Article
     Press Submit
-    Submit Should Fail With Message  You must put valid Author, Title, Journal And Year
+    Submit Should Fail With Message  You cannot have empty required fields
 
 Successfully Edit Article Reference
     Go To Edit Reference
@@ -35,7 +35,7 @@ Unsuccessfully Edit Article Reference
     Update Reference Page Should Be Open
     Leave Journal Empty
     Press Update Article
-    Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields
+    Submit Should Succeed With Message  You cannot have empty required fields
 
 Removing Of Article
     Go To Remove Reference

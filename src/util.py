@@ -6,6 +6,10 @@ class UserInputError(Exception):
     pass
 
 def validate_book(content):
+    for i in range(1, 4):
+        if content[i] == "":
+            raise UserInputError("You cannot have empty required fields")
+
     if int(content[3]) > 2024:
         raise UserInputError("This year hasn't come yet")
     if int(content[3]) < 0:
@@ -15,32 +19,31 @@ def validate_book(content):
         if not content[4]:
             raise UserInputError("You must provide at least one author or editor")
 
-    for i in range(1, 4):
-        if content[i] == "":
-            raise UserInputError("You cannot have empty fields")
-
 def validate_article(content):
+    for i in range(4):
+        if content[i] == "":
+            raise UserInputError("You cannot have empty required fields")
+
     if int(content[3]) > 2024:
         raise UserInputError("This year hasn't come yet")
     if int(content[3]) < 0:
         raise UserInputError("You can't input a negative year")
-
-    for i in range(4):
-        if content[i] == "":
-            raise UserInputError("You cannot have empty fields")
 
 def validate_inproceeding(content):
+    for i in range(4):
+        if content[i] == "":
+            raise UserInputError("You cannot have empty required fields")
+        
     if int(content[3]) > 2024:
         raise UserInputError("This year hasn't come yet")
     if int(content[3]) < 0:
         raise UserInputError("You can't input a negative year")
 
-    for i in range(4):
-        if content[i] == "":
-            raise UserInputError("You cannot have empty fields")
-
 def validate_update(reference):
-    print(reference)
+    for i in range(1, 4):
+        if reference[i] == "":
+            raise UserInputError("You cannot have empty required fields")
+
     if int(reference[3]) > 2024:
         raise UserInputError("This year hasn't come yet")
     if int(reference[3]) < 0:
@@ -49,10 +52,6 @@ def validate_update(reference):
     if not reference[0]:
         if not reference[4]:
             raise UserInputError("You must provide at least one author or editor")
-
-    for i in range(1, 4):
-        if reference[i] == "":
-            raise UserInputError("You cannot have empty fields")
 
 def validate_key(ref_key):
     if not ref_key:

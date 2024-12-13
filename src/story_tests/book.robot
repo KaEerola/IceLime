@@ -19,7 +19,7 @@ Succesfully Add A Book Reference
 Unsuccesfully Adding A Book Reference
     Go To Add Book
     Press Submit
-    Submit Should Fail With Message  You must put valid Author, Title, Publisher And Year
+    Submit Should Fail With Message  You cannot have empty required fields
 
 Successfully Edit Book Reference
     Go To Add Book
@@ -49,7 +49,7 @@ Unsuccessfully Edit Book Reference
     Update Reference Page Should Be Open
     Leave Author Empty
     Press Update Book
-    Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields  
+    Submit Should Succeed With Message  You cannot have empty required fields  
 
 Removing Of Book
     Go To Add Book
