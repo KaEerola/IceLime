@@ -86,6 +86,28 @@ In view_reference window is button "Remove a reference" clicking which user can 
 
 In every page where you are adding references. There is add DOI field where you can paste links of page of reference you want to add. It will automaticly fulfill input fields with reference information. 
 
+## Sprint 4 
+
+### User can use navigation bar at the top of application
+
+The application now has a navigation bar at the top, where the user can move to the different windows.
+
+### User can choose a key for a reference
+
+When adding a new reference, the user is required to choose a unique key for the reference. This key is used to identify the reference in several other places (when actually using the references to cite in text).
+
+### User can have references with multiple authors
+
+When the user adds a reference, they can input multiple authors into the fields. They can also do this when editing a reference, and they can remove authors as well.
+
+### User can have references with multiple editors
+
+When the user adds a reference, they can input multiple editors into the fields. They can also do this when editing a reference, and they can remove editors as well. In the case of adding a book, there is a possibility for the user to only have editors instead of authors.
+
+### User has a more pleasant experience with CSS and styling
+
+The user has a great time when navigating through the application.
+
 # Contributors
 
 
