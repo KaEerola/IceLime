@@ -25,17 +25,61 @@ Create a reference
   </form>
 
   <form action="/add_inproceeding" method="post">
-    <p>Author:</p>
-    Firstname: <input type="text" name="author_firstname" value="{{author_firstname}}" placeholder="required">
-    Lastname: <input type="text" name="author_lastname" value="{{author_lastname}}" placeholder="required">
+    <p>Author(s):</p>
+    <input type="hidden" name="author_count" value="{{ author_count }}">
+    {% for idx in range(author_count) %}
+      <div class="author-row">
+        <p>
+          <label>First name(s):</label>
+          <input type="text" name="author_firstname_{{ idx }}"
+                 value="{{ authors[idx].rsplit(' ', 1)[0] if idx < authors|length else '' }}"
+                 placeholder="required">
+          <label>Last name:</label>
+          <input type="text" name="author_lastname_{{ idx }}"
+                 value="{{ authors[idx].rsplit(' ', 1)[1] if idx < authors|length else '' }}"
+                 placeholder="required">
+
+          {% if idx == author_count - 1 %}
+            <button type="submit" name="action" value="add_author">+</button>
+          {% endif %}
+          {% if idx == author_count - 1 and idx != 0 %}
+            <button type="submit" name="action" value="remove_author">-</button>
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+
     <p>Title:</p>
     <input type="text" name="title" value="{{title}}" placeholder="required">
     <p>Booktitle:</p>
     <input type="text" name="booktitle" value="{{booktitle}}" placeholder="required">
     <p>Year:</p>
     <input type="number" name="year" value="{{year}}" placeholder="required">
-    <p>Editor:</p>
-    <input type="text" name="editor" value="{{editor}}" placeholder="optional">
+
+    <p>Editor(s):</p>
+    <input type="hidden" name="editor_count" value="{{ editor_count }}">
+    {% for idx in range(editor_count) %}
+      <div class="editor-row">
+        <p>
+          <label>First name(s):</label>
+          <input type="text" name="editor_firstname_{{ idx }}"
+                 value="{{ editors[idx].rsplit(' ', 1)[0] if idx < editors|length else '' }}"
+                 placeholder="optional">
+          <label>Last name:</label>
+          <input type="text" name="editor_lastname_{{ idx }}"
+                 value="{{ editors[idx].rsplit(' ', 1)[1] if idx < editors|length else '' }}"
+                 placeholder="optional">
+
+          {% if idx == editor_count - 1 %}
+            <button type="submit" name="action" value="add_editor">+</button>
+          {% endif %}
+          {% if idx == editor_count - 1 and idx != 0 %}
+            <button type="submit" name="action" value="remove_editor">-</button>
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+
     <p>Volume:</p>
     <input type="number" name="volume" value="{{volume}}" placeholder="optional">
     <p>Number:</p>
@@ -54,6 +98,8 @@ Create a reference
     </select>
     <p>Organization:</p>
     <input type="text" name="organization" placeholder="optional">
+    <p>Note:</p>
+    <input type="text" name="note" value="{{note}}" placeholder="optional">
     <p>Publisher:</p>
     <input type="text" name="publisher" value="{{publisher}}" placeholder="optional">
     <p>Choose a unique key for the reference:</p>

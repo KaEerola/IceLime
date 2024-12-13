@@ -262,62 +262,113 @@ def add_post_article():
 
 @app.route("/add_inproceeding", methods = ["GET"])
 def add_inproceeding():
+    authors = []
+    author_count = 1
+    editors = []
+    editor_count = 1
 
     months = ["", "January", "February", "March", "April",
               "May", "June", "July", "August", "September",
               "October", "November", "December"]
 
-    return render_template("add_inproceeding.html", months = months)
+    return render_template("add_inproceeding.html", authors=authors, author_count=author_count, editors=editors, editor_count=editor_count, months=months)
 
 @app.route("/add_inproceeding", methods=["POST"])
 def add_post_inproceeding():
-
-    if request.form["action"] == "reset":
-        months = ["", "January", "February", "March", "April",
+    months = ["", "January", "February", "March", "April",
                   "May", "June", "July", "August", "September",
                   "October", "November", "December"]
+    authors = []
+    author_count = int(request.form.get("author_count", 1))
+    editors = []
+    editor_count = int(request.form.get("editor_count", 1))
+
+    if request.form["action"] == "reset":
+        return render_template("add_inproceeding.html",
+                               months=months,
+                               author_count=1,
+                               editor_count=1)
+
+    elif request.form["action"] in ["add_author", "add_editor", "remove_author", "remove_editor"]:
+
+        if request.form["action"] == "add_author":
+            author_count += 1
+
+        elif request.form["action"] == "add_editor":
+            editor_count += 1
+
+        elif request.form["action"] == "remove_author":
+            author_count -= 1
+
+        elif request.form["action"] == "remove_editor":
+            editor_count -= 1
+
+        idx = 0
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        idx = 0
+        while idx < editor_count:
+            firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                editors.append(f"{firstname} {lastname}")
+            idx += 1
 
         return render_template("add_inproceeding.html",
-                               author_firstname="",
-                               author_lastname="",
-                               title="",
-                               booktitle="",
-                               year="",
-                               editor="",
-                               volume="",
-                               number="",
-                               series="",
-                               pages="",
-                               address="",
-                               month="",
-                               organization="",
-                               publisher="",
-                               key="",
-                               months=months)
+                               authors=authors,
+                               title=request.form["title"],
+                               booktitle=request.form["booktitle"],
+                               year=request.form["year"],
+                               editors=editors,
+                               volume=request.form.get("volume", ""),
+                               number=request.form.get("number", ""),
+                               series=request.form.get("series", ""),
+                               pages=request.form.get("pages", ""),
+                               address=request.form.get("address", ""),
+                               imported_month=request.form.get("month", ""),
+                               organization=request.form.get("organization", ""),
+                               publisher=request.form.get("publisher", ""),
+                               note=request.form.get("note", ""),
+                               key=request.form["key"],
+                               months=months,
+                               author_count=author_count,
+                               editor_count=editor_count)
 
-    aut_firstname = request.form["author_firstname"]
-    aut_lastname = request.form["author_lastname"]
+    idx = 0
+    while f"author_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"author_firstname_{idx}").strip()
+        lastname = request.form.get(f"author_lastname_{idx}").strip()
+        if firstname and lastname:
+            authors.append(f"{firstname} {lastname}")
+        idx += 1
+    idx = 0
+    while f"editor_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+        if firstname and lastname:
+            editors.append(f"{firstname} {lastname}")
+        idx += 1
+
     tit = request.form["title"]
-    bti = request.form["booktitle"]
+    btit = request.form["booktitle"]
     year = request.form["year"]
-    edt = request.form.get("editor") or None
     vol = request.form.get("volume") or None
     num = request.form.get("number") or None
-    series = request.form.get("series") or None
+    ser = request.form.get("series") or None
     pages = request.form.get("pages") or None
-    address = request.form.get("address") or None
+    addr = request.form.get("address") or None
     month = request.form.get("month") or None
     org = request.form.get("organization") or None
-    publisher = request.form.get("publisher") or None
+    note = request.form.get("note") or None
+    pub = request.form.get("publisher") or None
     key = request.form["key"]
 
-    reference = [aut_firstname,
-                 aut_lastname,
-                 tit, bti, year,
-                 edt, vol, num,
-                 series, pages,
-                 address, month,
-                 org, publisher, key]
+    reference = [authors, tit, btit, year, editors, vol, num, ser, pages, addr, month, org, note, pub, key]
 
     try:
         validate_inproceeding(reference)
@@ -326,7 +377,7 @@ def add_post_inproceeding():
         flash('Reference added succesfully', "")
         return redirect("/add_inproceeding")
     except:
-        flash('You must put valid Author, Title, Booktitle And Year',"")
+        flash('You must put valid Author, Title, Publisher And Year',"")
         return redirect("/add_inproceeding")
 
 @app.route("/fetch_book_doi", methods=["POST"])
@@ -349,7 +400,6 @@ def fetch_book_doi():
         author_count = len(authors) if authors else 1
         editors = data[5]
         editor_count = len(editors) if editors else 1
-        print(editors)
         return render_template("add_book.html",
                                authors = authors,
                                title = data[1],
@@ -413,22 +463,26 @@ def fetch_inproceeding_doi():
         ]
 
     try:
+        print("test")
         data = get_inproceeding_data_by_doi(doi)
-        editor_fullname = ""
-        if data[6] and data[7]:
-            editor_fullname = f"{data[6]} {data[7]}"
+        print(data)
+        authors = data[0]
+        author_count = len(authors) if authors else 1
+        editors = data[5]
+        editor_count = len(editors) if editors else 1
 
         return render_template("add_inproceeding.html",
-                               author_firstname = data[0],
-                               author_lastname = data[1],
-                               title = data[2],
-                               publisher = data[3],
-                               year = data[4],
+                               authors = authors,
+                               title = data[1],
+                               publisher = data[2],
+                               year = data[3],
                                months = months,
-                               imported_month = data[5],
-                               editor = editor_fullname,
-                               booktitle = data[8],
-                               volume = data[9],)
+                               imported_month = data[4],
+                               editors = editors,
+                               booktitle = data[6],
+                               volume = data[7],
+                               author_count = author_count,
+                               editor_count = editor_count)
 
     except:
         flash("Failed to fetch the data, please check the DOI.", "")
@@ -440,6 +494,7 @@ def export():
     books = get_books()
     articles = get_articles()
     inproceedings = get_inproceedings()
+
 
     bibtex = Bibtex()
     bibtex.create_book_bibtex(books)
@@ -755,22 +810,51 @@ def update_post_article_reference(article_id):
 def update_inproceeding_reference(inproceeding_id):
 
     reference = get_inproceeding_by_id(inproceeding_id)
+    authors = reference.author
+    author_count = len(authors) if authors else 1
+    editors = reference.editor
+    editor_count = len(editors) if editors else 1
     months = ["", "January", "February", "March", "April", "May", "June",
               "July", "August", "September", "October", "November", "December"]
-    for field, value in reference.__dict__.items():
-        if not value:
-            reference.__dict__[field] = ""
 
-    return render_template("update_inproceeding.html", reference=reference, months=months)
+    return render_template("update_inproceeding.html",
+                           inproceeding_id=reference.id,
+                           authors=authors,
+                           title=reference.title,
+                           booktitle=reference.booktitle,
+                           year=reference.year,
+                           editors=editors if editors else "",
+                           volume=reference.volume if reference.volume else "",
+                           number=reference.number if reference.number else "",
+                           series=reference.series if reference.series else "",
+                           pages=reference.pages if reference.pages else "",
+                           address=reference.address if reference.address else "",
+                           imported_month=reference.month,
+                           organization=reference.organization if reference.organization else "",
+                           note=reference.note if reference.note else "",
+                           publisher=reference.publisher if reference.publisher else "",
+                           months=months,
+                           key=reference.key,
+                           author_count=author_count,
+                           editor_count=editor_count,
+                           reference=reference)
 
 @app.route("/update_inproceeding/<int:inproceeding_id>", methods=["POST"])
 def update_post_inproceeding_reference(inproceeding_id):
 
-    aut = request.form["author"]
+    authors = []
+    author_count = int(request.form.get("author_count", 1))
+    editors = []
+    editor_count = int(request.form.get("editor_count", 1))
+
+    months = ["", "January", "February", "March", "April",
+              "May", "June", "July", "August", "September",
+              "October", "November", "December"]
+
     tit = request.form["title"]
+    btit = request.form["booktitle"]
     jou = request.form["booktitle"]
     year = request.form["year"]
-    edt = request.form.get("editor") or None
     vol = request.form.get("volume") or None
     num = request.form.get("number") or None
     ser = request.form.get("series") or None
@@ -778,10 +862,81 @@ def update_post_inproceeding_reference(inproceeding_id):
     adr = request.form.get("address") or None
     month = request.form.get("month") or None
     org = request.form.get("organization") or None
+    note = request.form.get("note") or None
     pub = request.form.get("publisher") or None
     key = request.form["key"]
 
-    reference = [aut, tit, jou, year, edt, vol, num, ser, pages, adr, month, org, pub, key]
+    if request.form["action"] in ["add_author", "add_editor", "remove_author", "remove_editor"]:
+
+
+        if request.form["action"] == "add_author":
+            author_count += 1
+
+        elif request.form["action"] == "add_editor":
+            editor_count += 1
+
+        elif request.form["action"] == "remove_author":
+            author_count -= 1
+
+        elif request.form["action"] == "remove_editor":
+            editor_count -= 1
+
+        idx = 0
+        while idx < author_count:
+            firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                authors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        idx = 0
+        while idx < editor_count:
+            firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+            lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+            if firstname or lastname:
+                editors.append(f"{firstname} {lastname}")
+            idx += 1
+
+        reference = [authors, tit, btit, year, editors, vol, num, ser, pages, adr, month, org, note, pub, key]
+
+        return render_template("update_inproceeding.html",
+                               inproceeding_id=inproceeding_id,
+                               authors=authors,
+                               title=tit,
+                               booktitle=btit,
+                               year=year,
+                               editors=editors if editors else "",
+                               volume=vol if vol else "",
+                               number=num if num else "",
+                               series=ser if ser else "",
+                               pages=pages if pages else "",
+                               address=adr if adr else "",
+                               imported_month=month if month else "",
+                               organization=org if org else "",
+                               note=note if note else "",
+                               publisher=pub if pub else "",
+                               months=months,
+                               key = key,
+                               author_count=author_count,
+                               editor_count=editor_count)
+
+    idx = 0
+    while f"author_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"author_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"author_lastname_{idx}", "").strip()
+        if firstname and lastname:
+            authors.append(f"{firstname} {lastname}")
+        idx += 1
+
+    idx = 0
+    while f"editor_firstname_{idx}" in request.form:
+        firstname = request.form.get(f"editor_firstname_{idx}", "").strip()
+        lastname = request.form.get(f"editor_lastname_{idx}", "").strip()
+        if firstname and lastname:
+            editors.append(f"{firstname} {lastname}")
+        idx += 1
+
+    reference = [authors, tit, btit, year, editors, vol, num, ser, pages, adr, month, org, note, pub, key]
 
     try:
         validate_update(reference)

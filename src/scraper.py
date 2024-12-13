@@ -118,33 +118,27 @@ def get_inproceeding_data_by_doi(doi):
         item = data_as_json["message"]
 
         authors = item.get("author", [])
-        author_firstname = ""
-        author_lastname = ""
+        author_list = []
         if authors:
             for author in authors:
                 if "given" in author and "family" in author:
-                    author_firstname = author["given"]
-                    author_lastname = author["family"]
-                    break
+                    fullname = f"{author['given']} {author['family']}"
+                    author_list.append(fullname)
 
         editors = item.get("editor", [])
-        editor_firstname = ""
-        editor_lastname = ""
+        editor_list = []
         if editors:
             for editor in editors:
                 if "given" in editor and "family" in editor:
-                    editor_firstname = editor["given"]
-                    editor_lastname = editor["family"]
-                    break
-        print(editor_firstname)
+                    fullname = f"{editor['given']} {editor['family']}"
+                    editor_list.append(fullname)
+
         titles = item.get("title", [])
         main_title = titles[0] if titles else ""
         subtitle = item.get("subtitle", [])
         title_full = f"{main_title}: {subtitle[0]}" if subtitle else main_title
-        print(title_full)
         booktitle = item.get("container-title", "")[0]
         volume = item.get("volume", "")
-        print(booktitle)
         publisher = item.get("publisher", "")
 
         publication_date_print = item.get("published-print", {}).get("date-parts", [[]])[0]
@@ -158,14 +152,12 @@ def get_inproceeding_data_by_doi(doi):
 
         month = months[month_int - 1]
 
-        return [author_firstname,
-                author_lastname,
+        return [author_list,
                 title_full,
                 publisher,
                 year,
                 month,
-                editor_firstname,
-                editor_lastname,
+                editor_list,
                 booktitle,
                 volume]
 

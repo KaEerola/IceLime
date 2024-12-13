@@ -112,15 +112,38 @@ class Bibtex():
         with open("src/bibtex.bib", "a") as file:
 
             for inpro in inproceeding_list:
-
                 file.write(f'''@inproceedings{{{inpro.key}''')
-                file.write(f''',\n    author = {{{inpro.author}}}''')
+
+
+                authors = inpro.author
+                formatted_authors = []
+
+                for author in authors:
+
+                    firstname = author.rsplit(" ", 1)[0]
+                    lastname = author.rsplit(" ", 1)[1]
+                    formatted_authors.append(f"{lastname}, {firstname}")
+
+                authors_str = " and ".join(formatted_authors)
+
+                file.write(f''',\n    author = {{{authors_str}}}''')
                 file.write(f''',\n    title = {{{inpro.title}}}''')
                 file.write(f''',\n    year = {{{inpro.year}}}''')
                 file.write(f''',\n    booktitle = {{{inpro.booktitle}}}''')
 
                 if inpro.editor:
-                    file.write(f''',\n    editor = {{{inpro.editor}}}''')
+                    editors = inpro.editor
+                    formatted_editors = []
+
+                    for editor in editors:
+
+                        firstname = editor.rsplit(" ", 1)[0]
+                        lastname = editor.rsplit(" ", 1)[1]
+                        formatted_editors.append(f"{lastname}, {firstname}")
+
+                    editors_str = " and ".join(formatted_editors)
+
+                    file.write(f''',\n    editor = {{{editors_str}}}''')
                 
                 if inpro.volume:
                     file.write(f''',\n    volume = {{{inpro.volume}}}''')
@@ -145,6 +168,9 @@ class Bibtex():
 
                 if inpro.publisher:
                     file.write(f''',\n    publisher = {{{inpro.publisher}}}''')
+
+                if inpro.note:
+                    file.write(f''',\n    note = {{{inpro.note}}}''')
 
                 file.write('''\n}\n\n\n''')
 

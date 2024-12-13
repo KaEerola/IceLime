@@ -76,18 +76,33 @@ View references
   {% if inproceedings %}<h3>Inproceedings:</h3>{% endif %}
   {% for inproceeding in inproceedings %}
     <p>
-      {{ inproceeding.author }}.
+      {% if inproceeding.author|length == 1 %}
+        {{ inproceeding.author[0] }}.
+      {% else %}
+        {% set last_author = inproceeding.author[-1] %}
+        {% set other_authors = inproceeding.author[:-1] %}
+        {{ other_authors | join(', ') }} and {{ last_author }}.
+      {% endif %}
       {{ inproceeding.title }}.
       In <i>{{ inproceeding.booktitle }}</i>,
       {% if inproceeding.month %}{{ inproceeding.month }}{% endif %} {{ inproceeding.year }}
       {%- if inproceeding.volume %}, volume {{ inproceeding.volume }}{% endif -%}
       {%- if inproceeding.number %}, number {{ inproceeding.number }}{% endif -%}
       {%- if inproceeding.series %}, series {{ inproceeding.series }}{% endif -%}
-      {%- if inproceeding.editor %}, edited by {{ inproceeding.editor }}{% endif -%}
+      {%- if inproceeding.editor -%}
+          {%- if inproceeding.editor|length == 1 -%}
+              , edited by {{ inproceeding.editor[0] }}
+          {%- else -%}
+              {%- set last_editor = inproceeding.editor[-1] -%}
+              {%- set other_editors = inproceeding.editor[:-1] -%}
+              , edited by {{ other_editors | join(', ') }} and {{ last_editor }}
+          {%- endif -%}
+      {%- endif -%}
       {%- if inproceeding.pages %}, page(s) {{ inproceeding.pages }}{% endif -%}
       {%- if inproceeding.address %}, address {{ inproceeding.address }}{% endif -%}
-      {%- if inproceeding.organization %}, organization {{ inproceeding.organization }}{% endif -%}
-      {%- if inproceeding.publisher %}, published by {{ inproceeding.publisher }}{% endif -%}.
+      {%- if inproceeding.organization %}, organization: {{ inproceeding.organization }}{% endif -%}
+      {%- if inproceeding.publisher %}, published by {{ inproceeding.publisher }}{% endif -%}
+      {%- if inproceeding.note %}, note: {{ inproceeding.note }}{% endif -%}.
     </p>
   {% endfor %}
   {% if books or articles or inproceedings %}

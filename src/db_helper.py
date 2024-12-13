@@ -57,11 +57,11 @@ def setup_db():
       """
       CREATE TABLE inproceedings (
           id SERIAL PRIMARY KEY,
-          "author" TEXT,
+          "author" TEXT[],
           "title" TEXT,
           "booktitle" TEXT,
           "year" integer,
-          "editor" TEXT,
+          "editor" TEXT[],
           "volume" integer,
           "number" integer,
           "series" TEXT,
@@ -69,6 +69,7 @@ def setup_db():
           "address" TEXT,
           "month" TEXT,
           "organization" TEXT,
+          "note" TEXT,
           "publisher" TEXT,
           "key" TEXT
       )
