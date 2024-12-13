@@ -98,11 +98,11 @@ When adding a new reference, the user is required to choose a unique key for the
 
 ### User can have references with multiple authors
 
-When the user adds a reference, they can input multiple authors into the fields. They can also do this when editing a reference, and they can remove authors as well.
+When the user adds a reference, they can input multiple authors into the fields. They can also do this when editing a reference. User can dynamically increase or decrease the amount of authors in the input form using + and - buttons.
 
 ### User can have references with multiple editors
 
-When the user adds a reference, they can input multiple editors into the fields. They can also do this when editing a reference, and they can remove editors as well. In the case of adding a book, there is a possibility for the user to only have editors instead of authors.
+When the user adds a reference, they can input multiple editors into the fields. They can also do this when editing a reference. User can dynamically increase or decrease the amount of editors in the input form using + and - buttons. In the case of adding a book, there is a possibility for the user to only have editors instead of authors.
 
 ### User has a more pleasant experience with CSS and styling
 
