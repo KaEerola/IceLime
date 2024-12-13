@@ -51,7 +51,7 @@ jobs:
         run: poetry run pytest src/tests
 
       - name: Coverage
-        run: pytest --cov --cov-report=xml
+        run: poetry run coverage run --branch -m pytest
           
       - name: Pylint
         run: poetry run pylint src --fail-under=9
