@@ -39,7 +39,7 @@ http://127.0.0.1:5001/
 
 # Coverage
 
-Majority of the tests we have made are robot tests, but for the unittests coverage report can be found in Codecov. https://app.codecov.io/gh/KaEerola/IceLime
+The majority of the tests are robot tests. Unittest coverage report can be found at Codecov: https://app.codecov.io/gh/KaEerola/IceLime
 
 # Definition of Done
 
