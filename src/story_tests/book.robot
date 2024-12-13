@@ -74,7 +74,7 @@ Unsuccessfully Edit Book Reference
     Update Reference Page Should Be Open
     Leave Title Empty
     Press Update Book
-    Submit Should Succeed With Message  You must provide at least one author or editor  
+    Submit Should Succeed With Message  You cannot have empty required fields
 
 Removing Of Book
     Go To Add Book
