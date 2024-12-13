@@ -49,6 +49,9 @@ jobs:
         env: 
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: poetry run pytest src/tests
+
+      - name: Coverage
+        run: pytest --cov --cov-report=xml
           
       - name: Pylint
         run: poetry run pylint src --fail-under=9
