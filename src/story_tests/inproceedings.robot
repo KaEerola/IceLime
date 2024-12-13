@@ -32,7 +32,7 @@ Unsuccessfully Edit Inproceeding Reference
     Go To Edit Reference
     Press Edit Inproceeding
     Update Reference Page Should Be Open
-    Leave Author Empty
+    Leave Title Empty
     Press Update Inproceeding
     Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields 
 
@@ -54,11 +54,11 @@ Write Title
 
 Write Author Firstname
     [Arguments]  ${author_firstname}
-    Input Text  author_firstname  ${author_firstname}
+    Input Text  author_firstname_0  ${author_firstname}
 
 Write Author Lastname
     [Arguments]  ${author_lastname}
-    Input Text  author_lastname  ${author_lastname}
+    Input Text  author_lastname_0  ${author_lastname}
 
 Write Booktitle
     [Arguments]  ${booktitle}
@@ -90,5 +90,5 @@ Write Page
 Press Update Inproceeding
     Click Button  Update reference
 
-Leave Author Empty
-    Clear Element Text  name:author
+Leave Title Empty
+    Clear Element Text  name:title

@@ -45,9 +45,9 @@ Successfully Import An Inproceeding Reference By DOI
     Go To Add Inproceeding
     Write Doi  10.1145/3372923.3404836
     Press Import
-    ${firstname}  Get Value  name=author_firstname
+    ${firstname}  Get Value  name=author_firstname_0
     Should Be Equal As Strings  ${firstname}  Michael
-    ${lastname}  Get Value  name=author_lastname
+    ${lastname}  Get Value  name=author_lastname_0
     Should Be Equal As Strings  ${lastname}  Paris
     ${title}  Get Value  name=title
     Should Be Equal As Strings  ${title}  How to Assess the Exhaustiveness of Longitudinal Web Archives: A Case Study of the German Academic Web

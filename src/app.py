@@ -377,7 +377,7 @@ def add_post_inproceeding():
         flash('Reference added succesfully', "")
         return redirect("/add_inproceeding")
     except:
-        flash('You must put valid Author, Title, Publisher And Year',"")
+        flash('You must put valid Author, Title, Booktitle And Year',"")
         return redirect("/add_inproceeding")
 
 @app.route("/fetch_book_doi", methods=["POST"])
