@@ -26,7 +26,7 @@ View references
       <label for="book-select">Choose a book to edit:</label>
       <select name="book_id" id="book-select">
           {% for book in books %}
-            <option value="{{book.id}}">{{book.title}} id: {{book.id}}</option>
+            <option value="{{book.id}}">{{book.title}} key: {{book.key}}</option>
           {% endfor %}
           </select>
       <br><br>
@@ -42,7 +42,7 @@ View references
       <label for="article-select">Choose an article to edit:</label>
       <select name="article_id" id="article-select">
           {% for article in articles %}
-            <option value="{{article.id}}">{{article.title}} id: {{article.id}}</option>
+            <option value="{{article.id}}">{{article.title}} key: {{article.key}}</option>
           {% endfor %}
           </select>
       <br><br>
@@ -58,7 +58,7 @@ View references
       <label for="inproceeding-select">Choose an inproceeding to edit:</label>
       <select name="inproceeding_id" id="inproceeding-select">
           {% for inproceeding in inproceedings %}
-            <option value="{{inproceeding.id}}">{{inproceeding.title}} id: {{inproceeding.id}}</option>
+            <option value="{{inproceeding.id}}">{{inproceeding.title}} key: {{inproceeding.key}}</option>
           {% endfor %}
           </select>
       <br><br>
