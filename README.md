@@ -39,7 +39,7 @@ http://127.0.0.1:5001/
 
 # Coverage
 
-Coverage report can be found in htmlcov directory. There is a index.html file which has coverage report for files which are tested by unitest. https://app.codecov.io/gh/KaEerola/IceLime
+Majority of the tests we have made are robot tests, but for the unittests coverage report can be found in Codecov: here is the link to the coverage report: https://app.codecov.io/gh/KaEerola/IceLime
 
 # Definition of Done
 
