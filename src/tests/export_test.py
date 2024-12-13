@@ -52,11 +52,11 @@ txt2 = '''@article{article3,
 '''
 
 txt3 = '''@inproceedings{inproceedings4,
-    author = {Jack Back},
+    author = {Back, Jack},
     title = {Chocko Iland},
     year = {2017},
     booktitle = {New Journal},
-    editor = {2},
+    editor = {Editor, Erkki},
     volume = {23},
     number = {14}
 }
@@ -99,8 +99,8 @@ class TestStatisticsService(unittest.TestCase):
         self.assertEqual(txt2 == text,True)
 
     def test_exports_bibtex_inproceedings(self):
-        inpro = Inproceeding("4","Jack Back","Chocko Iland","New Journal","2017", "2", "23","14",
-                             "","","","","","","inproceedings4")
+        inpro = Inproceeding("4",["Jack Back"],"Chocko Iland","New Journal","2017",["Erkki Editor"], "23","14",
+                             "","","","","","","","inproceedings4")
 
         bibtex = Bibtex()
         bibtex.create_inproceedings_bibtex([inpro])
@@ -108,5 +108,7 @@ class TestStatisticsService(unittest.TestCase):
         with open("src/bibtex.bib","r",encoding= 'utf-8') as file:
 
             text = file.read()
+            print(txt3)
+            print(text)
 
         self.assertEqual(txt3 == text,True)
