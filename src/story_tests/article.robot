@@ -21,19 +21,19 @@ Unsuccesfully Adding An Article Reference
     Press Submit
     Submit Should Fail With Message  You must put valid Author, Title, Journal And Year
 
-#Successfully Edit Article Reference
-    #Go To Edit Reference
-    #Press Edit Article
-    #Update Reference Page Should Be Open
-    #Write Page  75
-    #Press Update Article
-    #Submit Should Succeed With Message  Reference updated successfully
+Successfully Edit Article Reference
+    Go To Edit Reference
+    Press Edit Article
+    Update Reference Page Should Be Open
+    Write Page  75
+    Press Update Article
+    Submit Should Succeed With Message  Reference updated successfully
 
 Unsuccessfully Edit Article Reference
     Go To Edit Reference
     Press Edit Article
     Update Reference Page Should Be Open
-    Leave Author Empty
+    Leave Journal Empty
     Press Update Article
     Submit Should Succeed With Message  Something went wrong, please check that you have filled the required fields
 
@@ -91,5 +91,5 @@ Write Page
 Press Update Article
     Click Button  Update reference
 
-Leave Author Empty
-    Clear Element Text  name:author_firstname_0
+Leave Journal Empty
+    Clear Element Text  name:journal
