@@ -3,6 +3,10 @@ Repository for the miniproject
 
 ![GHA workflow badge](https://github.com/KaEerola/IceLime/workflows/CI/badge.svg)
 
+# Project Report
+
+https://docs.google.com/document/d/15vqCODRXUYO3Vsodsao47D3_4svnRYiBmM0Al0pvP08/edit?usp=sharing
+
 # Backlog link
 
 https://docs.google.com/spreadsheets/d/17_ErdDH1jxFkODuv1_hyGJekEFNDRP_3ufEJWUNcTP8/edit?gid=0#gid=0
