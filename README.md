@@ -41,6 +41,26 @@ Server should start in the address:
 
 http://127.0.0.1:5001/
 
+# How To Use:
+
+Once you start the program you arrive at the app main page.
+
+There you have the option to either add a new reference or go to view the references you have added so far.
+
+You can add three types of BibTeX references, books, articles and inproceedings.
+
+Each reference type has a different amount of required and optional fields.
+
+You can fill out the fields manually, or if you have it, you can use the Digital Object Identifier (DOI) to automatically import some of the fields.
+
+You can also modify and add more information before submitting when using the DOI import if you so wish.
+
+When you have added references, you can see them listed in the View References -page.
+
+You can edit and delete the references you currently have.
+
+You can export the references into a .bib file where they are formatted following common BibTeX style, which allows you to import the file directly into your LaTeX project without any further modifications.
+
 # Coverage
 
 The majority of the tests are robot tests. Unittest coverage report can be found at Codecov: https://app.codecov.io/gh/KaEerola/IceLime
